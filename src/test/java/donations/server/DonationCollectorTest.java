@@ -1,12 +1,10 @@
 package donations.server;
 
 import org.junit.Test;
-
-import concesionario.clases.DonationInfo;
-import concesionario.server.DonationCollector;
-
 import org.junit.Before;
 import static org.junit.Assert.assertEquals;
+
+import donations.serialization.DonationInfo;
 
 public class DonationCollectorTest {
 
