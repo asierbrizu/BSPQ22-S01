@@ -33,6 +33,19 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+
 public class VentanaInicio extends JFrame {
 
 	private JPanel contentPane;
@@ -58,36 +71,34 @@ public class VentanaInicio extends JFrame {
 	private JButton btnIniciarSesionUsuario;
 	private JButton btnCerrar;
 	
-	
+	private Client client;
+	private WebTarget webTarget;
+
+	private Thread thread;
+	private final AtomicBoolean running = new AtomicBoolean(false);
 
 	
 	
 	
 	
 	public static void main(String[] args) {
+		String hostname = args[0];
+		String port = args[1];
+
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 		} catch (UnsupportedLookAndFeelException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					
-					
-					new VentanaInicio();
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		VentanaInicio ventana = new VentanaInicio(hostname, port);
+			
 	}
 
-	public VentanaInicio() {
+	public VentanaInicio(String hostname, String port) {
+		
+		client = ClientBuilder.newClient();
+		webTarget = client.target(String.format("http://%s:%s/rest", hostname, port));
 		
 		Connection con =null;
 		try {
@@ -188,12 +199,15 @@ public class VentanaInicio extends JFrame {
 		progressBarRegistarAdmin.setBounds(415, 360, 146, 14);
 		progressBarRegistarAdmin.setVisible(false);
 
+		//Esta linea me da error, ni idea
+		//thread = new Thread(this);
+		thread.start();
 		
 		btnRegistrarUsuario.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				new VentanaRegistro();
+				new VentanaRegistro(hostname, port);
 			}
 		});
 
@@ -223,7 +237,7 @@ public class VentanaInicio extends JFrame {
 							break;
 						case 2:
 							ventanaActual.dispose();
-							new VentanaAdministrador();
+							new VentanaAdministrador(hostname, port);
 
 							break;
 						default:
@@ -263,6 +277,30 @@ public class VentanaInicio extends JFrame {
 
 		setVisible(true);
 		
-	
 	}
+
+//public void comprarCoche() {}
+
+	public void run() {
+		running.set(true);
+		while(running.get()) {
+			try { 
+				Thread.sleep(2000);
+				System.out.println("Obtaining data from server...");
+				
+					//Cosas
+					//DonationInfo donationInfo = getDonationInfo();
+					//this.total.setText(Integer.toString(donationInfo.getTotal()));
+				 
+            } catch (InterruptedException e){ 
+                Thread.currentThread().interrupt();
+                System.out.println("Thread was interrupted, Failed to complete operation");
+            }
+		}
+	}
+
+	public void stop() {
+		this.running.set(false);
+	}
+
 }
