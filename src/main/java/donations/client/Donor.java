@@ -150,6 +150,6 @@ public class Donor implements ActionListener, Runnable {
 		String hostname = args[0];
 		String port = args[1];
 
-		Donor donor = new Donor(hostname, port);
+		new Donor(hostname, port);
 	}
 }
