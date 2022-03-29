@@ -5,15 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.util.Properties;
-import java.util.logging.FileHandler;
-import java.util.logging.Handler;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -30,8 +21,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JProgressBar;
 import java.awt.Font;
-import javax.swing.JScrollPane;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
 import javax.swing.JPasswordField;
@@ -142,33 +131,63 @@ public class VentanaRegistro extends JFrame {
 		textCorreo = new JTextField();
 		textCorreo.setBounds(170, 202, 102, 20);
 		
+		JDateChooser txtFecha = new JDateChooser();
+		  // HACER QUE EL TEXTFIELD DONDE APARECE LA FECHA TRAS SELECCIONARLA CON JFILECHOOSER NO SE PUEDA EDITAR
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) txtFecha.getDateEditor();
+        editor.setEditable(false);
+        // solo se puede seleccionar una fecha como minimo de hace 18 a�os
+        long milisegundosHace18anios= System.currentTimeMillis()-568036800000L;
+        txtFecha.setMinSelectableDate(new Date(milisegundosHace18anios));
+		txtFecha.setBounds(170, 137, 102, 20);
+		panelIzquierda.add(txtFecha);
+		
+		JLabel lblContrasenia = new JLabel();
+		lblContrasenia.setText("Contraseña");
+		lblContrasenia.setForeground(Color.WHITE);
+		lblContrasenia.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblContrasenia.setBounds(26, 262, 38, 14);
+		panelIzquierda.add(lblContrasenia);
+		
+		txtContrasenia = new JPasswordField();
+		txtContrasenia.setBounds(170, 259, 102, 20);
+		panelIzquierda.add(txtContrasenia);
+		labelCerrar = new JLabel("Cerrando ventana...");
+		labelCerrar.setBounds(200, 300, 200, 10);
+		labelCerrar.setVisible(false);
+		
 		JButton btnGuardar = new JButton();
 		btnGuardar.setBounds(185, 345, 126, 38);
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("1");
 				Connection con = null;
 				try {
+					System.out.println("2");
 					con = BD.initBD("concesionario.db");
 					
 				} catch (DBException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+				System.out.println("3");
 				try {
-					BD.insertarUsuario(con, null, null, textNombre.getText(), textApellido.getText(), textDni.getText(), null);
+					System.out.println("4");
+					BD.insertarUsuario(con, textCorreo.getText(), txtContrasenia.getText(), textNombre.getText(), textApellido.getText(), textDni.getText(), txtFecha.getDateFormatString());
 				} catch (DBException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-					
+				System.out.println("5");
 				try {
+					System.out.println("6");
 					BD.closeBD(con);
 				} catch (DBException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();	
 				}
-				
+				System.out.println("7");
+				dispose();
+				new VentanaAdministrador();
 			}
 		});
 		btnGuardar.setText("Guardar");
@@ -196,30 +215,6 @@ public class VentanaRegistro extends JFrame {
 		panelIzquierda.add(textNombre);
 		new ImageIcon("img/avioncito.png");
 
-		
-		JDateChooser txtFecha = new JDateChooser();
-		  // HACER QUE EL TEXTFIELD DONDE APARECE LA FECHA TRAS SELECCIONARLA CON JFILECHOOSER NO SE PUEDA EDITAR
-        JTextFieldDateEditor editor = (JTextFieldDateEditor) txtFecha.getDateEditor();
-        editor.setEditable(false);
-        // solo se puede seleccionar una fecha como minimo de hace 18 a�os
-        long milisegundosHace18anios= System.currentTimeMillis()-568036800000L;
-        txtFecha.setMinSelectableDate(new Date(milisegundosHace18anios));
-		txtFecha.setBounds(170, 137, 102, 20);
-		panelIzquierda.add(txtFecha);
-		
-		JLabel lblContrasenia = new JLabel();
-		lblContrasenia.setText("Correo");
-		lblContrasenia.setForeground(Color.WHITE);
-		lblContrasenia.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblContrasenia.setBounds(26, 262, 38, 14);
-		panelIzquierda.add(lblContrasenia);
-		
-		txtContrasenia = new JPasswordField();
-		txtContrasenia.setBounds(170, 259, 102, 20);
-		panelIzquierda.add(txtContrasenia);
-		labelCerrar = new JLabel("Cerrando ventana...");
-		labelCerrar.setBounds(200, 300, 200, 10);
-		labelCerrar.setVisible(false);
 
 		progressBarCerrar = new JProgressBar(0, 100);
 		progressBarCerrar.setBounds(415, 360, 146, 14);
