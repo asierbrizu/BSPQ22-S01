@@ -1,20 +1,10 @@
 package concesionario.client;
 
-
-
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.Connection;
+<<<<<<< HEAD
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -25,39 +15,30 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+=======
+>>>>>>> c60cbc72d6ca611ff4ef5bf7f40d28c94ccf1b9c
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
-
-import com.formdev.flatlaf.FlatLightLaf;
 
 import concesionario.server.bd.BD;
 import concesionario.server.bd.DBException;
 
 import java.awt.Color;
-import java.awt.HeadlessException;
-import java.awt.Image;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
+import javax.swing.JPasswordField;
+
 
 public class VentanaRegistro extends JFrame {
 
@@ -80,6 +61,7 @@ public class VentanaRegistro extends JFrame {
 	private JTextField textNombre;
 	private JTextField textCorreo;
 	JDateChooser txtFecha = new JDateChooser();
+	private JPasswordField txtContrasenia;
 	
 	
 
@@ -172,7 +154,7 @@ public class VentanaRegistro extends JFrame {
 		textCorreo.setBounds(170, 202, 102, 20);
 		
 		JButton btnGuardar = new JButton();
-		btnGuardar.setBounds(26, 277, 126, 38);
+		btnGuardar.setBounds(185, 345, 126, 38);
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -211,6 +193,17 @@ public class VentanaRegistro extends JFrame {
         txtFecha.setMinSelectableDate(new Date(milisegundosHace18anios));
 		txtFecha.setBounds(170, 137, 102, 20);
 		panelIzquierda.add(txtFecha);
+		
+		JLabel lblContrasenia = new JLabel();
+		lblContrasenia.setText("Correo");
+		lblContrasenia.setForeground(Color.WHITE);
+		lblContrasenia.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblContrasenia.setBounds(26, 262, 38, 14);
+		panelIzquierda.add(lblContrasenia);
+		
+		txtContrasenia = new JPasswordField();
+		txtContrasenia.setBounds(170, 259, 102, 20);
+		panelIzquierda.add(txtContrasenia);
 		labelCerrar = new JLabel("Cerrando ventana...");
 		labelCerrar.setBounds(200, 300, 200, 10);
 		labelCerrar.setVisible(false);

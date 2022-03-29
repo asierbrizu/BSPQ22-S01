@@ -6,24 +6,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.SQLException;
-import java.util.Properties;
-import java.util.logging.FileHandler;
-import java.util.logging.Handler;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,7 +23,6 @@ import concesionario.server.bd.DBException;
 
 import java.awt.Color;
 import java.awt.HeadlessException;
-import java.awt.Image;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
