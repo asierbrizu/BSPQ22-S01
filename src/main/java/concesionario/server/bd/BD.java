@@ -55,15 +55,6 @@ public class BD {
 
 
 	
-	/**
-	 * Método que recibe los datos de un Azafato y comprueba que est� registrado en la BBDD
-	 * @param String usuario Nombre de usuario del azafato
-	 * @param String contra contrasenia del azafato
-	 * @return 0 si el nombre de usuario del azafato no esta registrado
-	 * 		   1 si el nombre de usuario del azafato esta  registrado pero la contrasenia no es correcta
-	 * 		   2 si el nombre de usuario del azafato esta  registrado y la contrasenia es correcta
-	 * @throws DBException 
-	 */
 	public static int obtenerUsuario(Connection con, String usuario, String contra) throws DBException {
 		String sentencia = "SELECT contrasenya FROM Usuario WHERE email = '"+usuario+"'";
 		Statement st = null;
@@ -253,8 +244,39 @@ public class BD {
 			}
 		}
 	}
+public static boolean existeDni(Connection con, String dni) throws SQLException {
+		
+		String sent = "select * from Usuario where dni='"+dni+"'";
+		Statement st = null;
+		st = con.createStatement();
+
+		ResultSet rs = st.executeQuery(sent);
+		boolean existe = false;
+		if(rs.next())
+			existe = true;
+		rs.close();
+		return existe;
+	}
 	
 
 	
 	
+
+public static boolean existeEmail(Connection con, String email) throws SQLException {
+	
+	String sent = "select * from Usuario where email='"+email+"'";
+	Statement st = null;
+	st = con.createStatement();
+
+	ResultSet rs = st.executeQuery(sent);
+	boolean existe = false;
+	if(rs.next())
+		existe = true;
+	rs.close();
+	return existe;
+}
+
+
+
+
 }
