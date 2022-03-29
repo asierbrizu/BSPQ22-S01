@@ -65,7 +65,7 @@ public class BD {
 	 * @throws DBException 
 	 */
 	public static int obtenerUsuario(Connection con, String usuario, String contra) throws DBException {
-		String sentencia = "SELECT contrasenya FROM Usuario WHERE usuario = '"+usuario+"'";
+		String sentencia = "SELECT contrasenya FROM Usuario WHERE email = '"+usuario+"'";
 		Statement st = null;
 		int resul = 0;
 		try {

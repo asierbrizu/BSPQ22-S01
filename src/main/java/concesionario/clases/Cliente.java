@@ -9,7 +9,6 @@ public class Cliente {
 	private String fechaNacimiento;
 	private String dni;
 	private String email;
-	
 	public Cliente() {
 		
 	}
