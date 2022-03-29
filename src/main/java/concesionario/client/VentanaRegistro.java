@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-<<<<<<< HEAD
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -15,8 +14,6 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
-=======
->>>>>>> c60cbc72d6ca611ff4ef5bf7f40d28c94ccf1b9c
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -197,19 +194,14 @@ public class VentanaRegistro extends JFrame {
 		panelIzquierda.add(textDni);
 		panelIzquierda.add(lblNombre);
 		panelIzquierda.add(textNombre);
-<<<<<<< HEAD
-		panelIzquierda.add(lblMensajeDNI);
-		panelIzquierda.add(lblMensajeApellido);
-		panelIzquierda.add(lblMensajeNombre);
 		new ImageIcon("img/avioncito.png");
 
-=======
 		
 		JDateChooser txtFecha = new JDateChooser();
 		  // HACER QUE EL TEXTFIELD DONDE APARECE LA FECHA TRAS SELECCIONARLA CON JFILECHOOSER NO SE PUEDA EDITAR
         JTextFieldDateEditor editor = (JTextFieldDateEditor) txtFecha.getDateEditor();
         editor.setEditable(false);
-        // solo se puede seleccionar una fecha como minimo de hace 18 años
+        // solo se puede seleccionar una fecha como minimo de hace 18 aï¿½os
         long milisegundosHace18anios= System.currentTimeMillis()-568036800000L;
         txtFecha.setMinSelectableDate(new Date(milisegundosHace18anios));
 		txtFecha.setBounds(170, 137, 102, 20);
@@ -225,7 +217,6 @@ public class VentanaRegistro extends JFrame {
 		txtContrasenia = new JPasswordField();
 		txtContrasenia.setBounds(170, 259, 102, 20);
 		panelIzquierda.add(txtContrasenia);
->>>>>>> 82dca8a9747a51b193fc47fd181ea2175f8d65d2
 		labelCerrar = new JLabel("Cerrando ventana...");
 		labelCerrar.setBounds(200, 300, 200, 10);
 		labelCerrar.setVisible(false);
