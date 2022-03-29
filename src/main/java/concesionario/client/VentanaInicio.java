@@ -78,7 +78,7 @@ public class VentanaInicio extends JFrame {
 				try {
 					
 					
-					VentanaInicio vi = new VentanaInicio();
+					new VentanaInicio();
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -173,7 +173,6 @@ public class VentanaInicio extends JFrame {
 		textUsuario.setColumns(10);
 		textUsuario.setBounds(281, 22, 157, 28);
 		panelCentral.add(textUsuario);
-		ImageIcon im = new ImageIcon("img/avioncito.png");
 		
 		panelSur = new JPanel(null);
 		contentPane.add(panelSur, BorderLayout.SOUTH);

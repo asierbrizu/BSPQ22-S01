@@ -12,8 +12,6 @@ import java.sql.Statement;
 
 public class BD {
 	
-	private static Connection con;
-	
 	/**
 	 * Método que crea la conexion con la BBD
 	 * @param String nombreBD El nombre de la BBDD
