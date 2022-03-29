@@ -48,15 +48,9 @@ public class VentanaRegistro extends JFrame {
 	private JTextField textCorreo;
 	
 	
-
-	
-	
-	
-	
-
 	public VentanaRegistro() {
 		
-		Connection con =null;
+		Connection con = null;
 		try {
 			con = BD.initBD("concesionario.db");
 			
@@ -79,8 +73,6 @@ public class VentanaRegistro extends JFrame {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();	
 		}
-		
-		
 
 		setTitle("REGISTRO");
 		ventanaActual = this;
@@ -160,6 +152,28 @@ public class VentanaRegistro extends JFrame {
 		btnGuardar.setBounds(26, 277, 126, 38);
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Connection con = null;
+				try {
+					con = BD.initBD("concesionario.db");
+					
+				} catch (DBException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				try {
+					BD.insertarUsuario(con, null, null, textNombre.getText(), textApellido.getText(), textDni.getText(), null);
+				} catch (DBException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+					
+				try {
+					BD.closeBD(con);
+				} catch (DBException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();	
+				}
 				
 			}
 		});
@@ -189,7 +203,7 @@ public class VentanaRegistro extends JFrame {
 		panelIzquierda.add(lblMensajeDNI);
 		panelIzquierda.add(lblMensajeApellido);
 		panelIzquierda.add(lblMensajeNombre);
-		ImageIcon im = new ImageIcon("img/avioncito.png");
+		new ImageIcon("img/avioncito.png");
 
 		labelCerrar = new JLabel("Cerrando ventana...");
 		labelCerrar.setBounds(200, 300, 200, 10);
