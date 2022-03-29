@@ -4,6 +4,19 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+<<<<<<< HEAD
+import java.sql.Date;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.Properties;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+=======
+>>>>>>> c60cbc72d6ca611ff4ef5bf7f40d28c94ccf1b9c
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,19 +33,23 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JProgressBar;
 import java.awt.Font;
+import javax.swing.JScrollPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JTextFieldDateEditor;
+import javax.swing.JPasswordField;
+
 
 public class VentanaRegistro extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel labelCerrar;
-	private JFrame ventanaActual;
-	
 	public static String database;
 	public static String milisegundos;
 	public static String columnas;
 	public static String imagenes;
 	private JProgressBar progressBarCerrar;
-	private JProgressBar progressBarRegistarAdmin;
+	private JProgressBar progressBarRegistarUsuario;
 	private JPanel panelIzquierda;
 	private JLabel lblApellido;
 	private JTextField textApellido;
@@ -42,10 +59,9 @@ public class VentanaRegistro extends JFrame {
 	private JTextField textDni;
 	private JLabel lblNombre;
 	private JTextField textNombre;
-	private JLabel lblMensajeDNI;
-	private JLabel lblMensajeApellido;
-	private JLabel lblMensajeNombre;
 	private JTextField textCorreo;
+	JDateChooser txtFecha = new JDateChooser();
+	private JPasswordField txtContrasenia;
 	
 	
 	public VentanaRegistro() {
@@ -75,7 +91,6 @@ public class VentanaRegistro extends JFrame {
 		}
 
 		setTitle("REGISTRO");
-		ventanaActual = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 522, 486);
 		contentPane = new JPanel();
@@ -89,13 +104,13 @@ public class VentanaRegistro extends JFrame {
 		contentPane.add(panelIzquierda, BorderLayout.CENTER);
 		
 		lblApellido = new JLabel();
-		lblApellido.setBounds(26, 54, 45, 14);
+		lblApellido.setBounds(26, 54, 65, 14);
 		lblApellido.setText("Apellido");
 		lblApellido.setForeground(Color.WHITE);
 		lblApellido.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		textApellido = new JTextField();
-		textApellido.setBounds(117, 51, 102, 20);
+		textApellido.setBounds(170, 51, 102, 20);
 		
 		lblEmail = new JLabel();
 		lblEmail.setBounds(26, 205, 38, 14);
@@ -104,52 +119,34 @@ public class VentanaRegistro extends JFrame {
 		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		lblFecha = new JLabel();
-		lblFecha.setBounds(26, 143, 65, 14);
+		lblFecha.setBounds(26, 143, 102, 14);
 		lblFecha.setText("Fecha_ncto");
 		lblFecha.setForeground(Color.WHITE);
 		lblFecha.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		lblDni = new JLabel();
-		lblDni.setBounds(26, 92, 20, 14);
+		lblDni.setBounds(26, 92, 78, 14);
 		lblDni.setText("DNI");
 		lblDni.setForeground(Color.WHITE);
 		lblDni.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		textDni = new JTextField();
-		textDni.setBounds(130, 89, 89, 20);
+		textDni.setBounds(170, 89, 99, 20);
 		
 		lblNombre = new JLabel();
-		lblNombre.setBounds(26, 26, 44, 14);
+		lblNombre.setBounds(26, 26, 65, 14);
 		lblNombre.setText("Nombre");
 		lblNombre.setForeground(Color.WHITE);
 		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		textNombre = new JTextField();
-		textNombre.setBounds(117, 23, 102, 20);
-		
-		lblMensajeDNI = new JLabel();
-		lblMensajeDNI.setBounds(229, 92, 245, 14);
-		lblMensajeDNI.setText("*");
-		lblMensajeDNI.setForeground(Color.ORANGE);
-		lblMensajeDNI.setFont(new Font("Tahoma", Font.BOLD, 11));
-		
-		lblMensajeApellido = new JLabel();
-		lblMensajeApellido.setBounds(229, 54, 245, 14);
-		lblMensajeApellido.setText("*");
-		lblMensajeApellido.setForeground(Color.ORANGE);
-		lblMensajeApellido.setFont(new Font("Tahoma", Font.BOLD, 11));
-		
-		lblMensajeNombre = new JLabel();
-		lblMensajeNombre.setBounds(229, 26, 257, 14);
-		lblMensajeNombre.setText("*");
-		lblMensajeNombre.setForeground(Color.ORANGE);
-		lblMensajeNombre.setFont(new Font("Tahoma", Font.BOLD, 11));
+		textNombre.setBounds(170, 23, 102, 20);
 		
 		textCorreo = new JTextField();
-		textCorreo.setBounds(130, 202, 89, 20);
+		textCorreo.setBounds(170, 202, 102, 20);
 		
 		JButton btnGuardar = new JButton();
-		btnGuardar.setBounds(26, 277, 126, 38);
+		btnGuardar.setBounds(185, 345, 126, 38);
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Connection con = null;
@@ -180,7 +177,7 @@ public class VentanaRegistro extends JFrame {
 		btnGuardar.setText("Guardar");
 		
 		JButton btnCancelar = new JButton();
-		btnCancelar.setBounds(170, 277, 134, 38);
+		btnCancelar.setBounds(26, 345, 134, 38);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -200,11 +197,35 @@ public class VentanaRegistro extends JFrame {
 		panelIzquierda.add(textDni);
 		panelIzquierda.add(lblNombre);
 		panelIzquierda.add(textNombre);
+<<<<<<< HEAD
 		panelIzquierda.add(lblMensajeDNI);
 		panelIzquierda.add(lblMensajeApellido);
 		panelIzquierda.add(lblMensajeNombre);
 		new ImageIcon("img/avioncito.png");
 
+=======
+		
+		JDateChooser txtFecha = new JDateChooser();
+		  // HACER QUE EL TEXTFIELD DONDE APARECE LA FECHA TRAS SELECCIONARLA CON JFILECHOOSER NO SE PUEDA EDITAR
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) txtFecha.getDateEditor();
+        editor.setEditable(false);
+        // solo se puede seleccionar una fecha como minimo de hace 18 años
+        long milisegundosHace18anios= System.currentTimeMillis()-568036800000L;
+        txtFecha.setMinSelectableDate(new Date(milisegundosHace18anios));
+		txtFecha.setBounds(170, 137, 102, 20);
+		panelIzquierda.add(txtFecha);
+		
+		JLabel lblContrasenia = new JLabel();
+		lblContrasenia.setText("Correo");
+		lblContrasenia.setForeground(Color.WHITE);
+		lblContrasenia.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblContrasenia.setBounds(26, 262, 38, 14);
+		panelIzquierda.add(lblContrasenia);
+		
+		txtContrasenia = new JPasswordField();
+		txtContrasenia.setBounds(170, 259, 102, 20);
+		panelIzquierda.add(txtContrasenia);
+>>>>>>> 82dca8a9747a51b193fc47fd181ea2175f8d65d2
 		labelCerrar = new JLabel("Cerrando ventana...");
 		labelCerrar.setBounds(200, 300, 200, 10);
 		labelCerrar.setVisible(false);
@@ -212,9 +233,9 @@ public class VentanaRegistro extends JFrame {
 		progressBarCerrar = new JProgressBar(0, 100);
 		progressBarCerrar.setBounds(415, 360, 146, 14);
 		progressBarCerrar.setVisible(false);
-		progressBarRegistarAdmin = new JProgressBar(0, 100);
-		progressBarRegistarAdmin.setBounds(415, 360, 146, 14);
-		progressBarRegistarAdmin.setVisible(false);
+		progressBarRegistarUsuario = new JProgressBar(0, 100);
+		progressBarRegistarUsuario.setBounds(415, 360, 146, 14);
+		progressBarRegistarUsuario.setVisible(false);
 	
 
 		

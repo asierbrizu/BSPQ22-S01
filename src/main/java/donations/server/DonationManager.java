@@ -120,6 +120,6 @@ public class DonationManager implements ActionListener, Runnable {
 		String hostname = args[0];
 		String port = args[1];
 
-		DonationManager donationManager = new DonationManager(hostname, port);
+		new DonationManager(hostname, port);
 	}
 }

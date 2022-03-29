@@ -60,7 +60,7 @@ public class ConcesionarioManager implements ActionListener, Runnable {
 		String hostname = args[0];
 		String port = args[1];
 
-		ConcesionarioManager donationManager = new ConcesionarioManager(hostname, port);
+		new ConcesionarioManager(hostname, port);
 	}
 
 
