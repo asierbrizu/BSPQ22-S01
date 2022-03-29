@@ -50,7 +50,7 @@ public class VentanaRegistro extends JFrame {
 	private JPasswordField txtContrasenia;
 	
 	
-	public VentanaRegistro() {
+	public VentanaRegistro(String hostname, String port) {
 		
 		Connection con = null;
 		try {
@@ -187,7 +187,7 @@ public class VentanaRegistro extends JFrame {
 				}
 				System.out.println("7");
 				dispose();
-				new VentanaAdministrador();
+				new VentanaAdministrador(hostname, port);
 			}
 		});
 		btnGuardar.setText("Guardar");
@@ -197,7 +197,8 @@ public class VentanaRegistro extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				new VentanaInicio();
+				
+				new VentanaInicio(hostname, port);
 			}
 		});
 		btnCancelar.setText("Cancelar");

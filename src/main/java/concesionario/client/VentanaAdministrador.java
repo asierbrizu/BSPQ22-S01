@@ -49,7 +49,7 @@ public class VentanaAdministrador extends JFrame {
 	private ImageIcon imagenIrAzafato;
 	public static JFrame ventanaActual;
 
-	public VentanaAdministrador() {
+	public VentanaAdministrador(String hostname, String port) {
 
 		ventanaActual = this;
 
@@ -261,7 +261,7 @@ public class VentanaAdministrador extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ventanaActual = null;
 				dispose();
-				new VentanaInicio();
+				new VentanaInicio(hostname, port);
 			}
 		});
 		menuItemCerrarSesion.setText("Cerrar sesion");
