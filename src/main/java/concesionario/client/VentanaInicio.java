@@ -2,7 +2,7 @@ package concesionario.client;
 
 
 
-import java.awt.BorderLayout;
+import java.awt.BorderLayout; 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,8 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
-
-import com.formdev.flatlaf.FlatLightLaf;
 
 import concesionario.server.bd.BD;
 import concesionario.server.bd.DBException;
@@ -57,7 +55,7 @@ public class VentanaInicio extends JFrame {
 	private JFrame ventanaActual;
 	private JPasswordField textContrasenia;
 	private JTextField textUsuario;
-	
+
 	public static String database;
 	public static String milisegundos;
 	public static String columnas;
@@ -70,45 +68,32 @@ public class VentanaInicio extends JFrame {
 	private JButton btnRegistrarUsuario;
 	private JButton btnIniciarSesionUsuario;
 	private JButton btnCerrar;
-	
+
 	private Client client;
 	private WebTarget webTarget;
 
 	private Thread thread;
 	private final AtomicBoolean running = new AtomicBoolean(false);
 
-	
-	
-	
-	
+
 	public static void main(String[] args) {
 		String hostname = args[0];
 		String port = args[1];
 
-		try {
-			UIManager.setLookAndFeel(new FlatLightLaf());
-		} catch (UnsupportedLookAndFeelException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		VentanaInicio ventana = new VentanaInicio(hostname, port);
-			
+
+
 	}
 
 	public VentanaInicio(String hostname, String port) {
-		
+
 		client = ClientBuilder.newClient();
 		webTarget = client.target(String.format("http://%s:%s/rest", hostname, port));
-		
+
 		Connection con =null;
 		try {
 			con = BD.initBD("concesionario.db");
-			
-		} catch (DBException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
+
 			try {
 				BD.crearTablas(con);
 			} catch (DBException e3) {
@@ -116,15 +101,21 @@ public class VentanaInicio extends JFrame {
 				e3.printStackTrace();
 			}
 			
-			
+		} catch (DBException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+
+
 		try {
 			BD.closeBD(con);
 		} catch (DBException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();	
 		}
-		
-		
+
+
 
 		setTitle("VENTANA INICIO");
 		ventanaActual = this;
@@ -184,7 +175,7 @@ public class VentanaInicio extends JFrame {
 		textUsuario.setColumns(10);
 		textUsuario.setBounds(281, 22, 157, 28);
 		panelCentral.add(textUsuario);
-		
+
 		panelSur = new JPanel(null);
 		contentPane.add(panelSur, BorderLayout.SOUTH);
 
@@ -200,9 +191,9 @@ public class VentanaInicio extends JFrame {
 		progressBarRegistarAdmin.setVisible(false);
 
 		//Esta linea me da error, ni idea
-		//thread = new Thread(this);
+		thread = new Thread();
 		thread.start();
-		
+
 		btnRegistrarUsuario.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -214,21 +205,21 @@ public class VentanaInicio extends JFrame {
 		btnIniciarSesionUsuario.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				if (!textUsuario.getText().equals("") && !textContrasenia.getText().equals("")) {
-				
-				String n= textUsuario.getText();
-				String c= textContrasenia.getText();
-				Connection con = null;
-				try {
-					con = BD.initBD("concesionario.db");
-				} catch (DBException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
-				try {
-					switch (BD.obtenerUsuario(con,n,c)) {
+
+					String n= textUsuario.getText();
+					String c= textContrasenia.getText();
+					Connection con = null;
+					try {
+						con = BD.initBD("concesionario.db");
+					} catch (DBException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+					try {
+						switch (BD.obtenerUsuario(con,n,c)) {
 						case 0:
 							JOptionPane.showMessageDialog(null, "Ese usuario no se encuentra registrado", "Error", JOptionPane.ERROR_MESSAGE);
 							break;
@@ -243,43 +234,43 @@ public class VentanaInicio extends JFrame {
 						default:
 							break;
 
-}
-				} catch (HeadlessException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				} catch (DBException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
-				try {
-					BD.closeBD(con);
-				} catch (DBException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				textUsuario.setText("");
-				textContrasenia.setText("");
-				
+						}
+					} catch (HeadlessException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					} catch (DBException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					try {
+						BD.closeBD(con);
+					} catch (DBException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					textUsuario.setText("");
+					textContrasenia.setText("");
+
 				}
 				else {
-					 JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 
 			}
 
 		});
-	
 
-		
 
-		
-		
+
+
+
+
 
 		setVisible(true);
-		
+
 	}
 
-//public void comprarCoche() {}
+	//public void comprarCoche() {}
 
 	public void run() {
 		running.set(true);
@@ -287,15 +278,15 @@ public class VentanaInicio extends JFrame {
 			try { 
 				Thread.sleep(2000);
 				System.out.println("Obtaining data from server...");
-				
-					//Cosas
-					//DonationInfo donationInfo = getDonationInfo();
-					//this.total.setText(Integer.toString(donationInfo.getTotal()));
-				 
-            } catch (InterruptedException e){ 
-                Thread.currentThread().interrupt();
-                System.out.println("Thread was interrupted, Failed to complete operation");
-            }
+
+				//Cosas
+				//DonationInfo donationInfo = getDonationInfo();
+				//this.total.setText(Integer.toString(donationInfo.getTotal()));
+
+			} catch (InterruptedException e){ 
+				Thread.currentThread().interrupt();
+				System.out.println("Thread was interrupted, Failed to complete operation");
+			}
 		}
 	}
 
