@@ -1,5 +1,6 @@
 package concesionario.clases;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Coche {
@@ -9,18 +10,18 @@ public class Coche {
 	private String marca;
 	private String modelo;
 	private double precioBase;
+	private ArrayList<Extra> extras = new ArrayList();
 	 
-	
-	public Coche() {
-	}
-	
-	public Coche(String matricula, String color, String marca, String modelo, double precioBase) {
+
+	public Coche(String matricula, String color, String marca, String modelo, double precioBase,
+			ArrayList<Extra> extras) {
 		super();
 		this.matricula = matricula;
 		this.color = color;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.precioBase = precioBase;
+		this.extras = extras;
 	}
 
 	public String getMatricula() {
@@ -61,6 +62,16 @@ public class Coche {
 
 	public void setPrecioBase(double precioBase) {
 		this.precioBase = precioBase;
+	}
+	
+	
+
+	public ArrayList<Extra> getExtras() {
+		return extras;
+	}
+
+	public void setExtras(ArrayList<Extra> extras) {
+		this.extras = extras;
 	}
 
 	@Override
