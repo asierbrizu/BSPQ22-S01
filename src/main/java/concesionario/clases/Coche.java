@@ -13,7 +13,7 @@ public class Coche {
 	private ArrayList<Extra> extras = new ArrayList();
 	 
 
-	public Coche(String matricula, String color, String marca, String modelo, double precioBase,
+	public Coche(String matricula, String marca, String modelo, String color, double precioBase,
 			ArrayList<Extra> extras) {
 		super();
 		this.matricula = matricula;

@@ -175,9 +175,6 @@ public class BD {
 		
 	}
 	
-	
-	
-	
 	public static void insertarUsuario(Connection con, String email, String contra, String nombre, String apellido, String dni, String fecha_ncto ) throws DBException {
 		
 		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Usuario (email, contrasenya , nombre , apellido , dni , fecha_ncto) VALUES (?,?,?,?,?,?)"); 
@@ -247,12 +244,26 @@ public class BD {
 			}
 		}
 	}
-public static boolean existeDni(Connection con, String dni) throws SQLException {
+	public static boolean existeDni(Connection con, String dni) throws SQLException {
+			
+			String sent = "select * from Usuario where dni='"+dni+"'";
+			Statement st = null;
+			st = con.createStatement();
+	
+			ResultSet rs = st.executeQuery(sent);
+			boolean existe = false;
+			if(rs.next())
+				existe = true;
+			rs.close();
+			return existe;
+		}
+	/*	
+	public static boolean existeCoche(Connection con, String marca) throws SQLException {
 		
-		String sent = "select * from Usuario where dni='"+dni+"'";
+		String sent = "select * from coche where marca='"+ marca +"'";
 		Statement st = null;
 		st = con.createStatement();
-
+	
 		ResultSet rs = st.executeQuery(sent);
 		boolean existe = false;
 		if(rs.next())
@@ -260,53 +271,37 @@ public static boolean existeDni(Connection con, String dni) throws SQLException 
 		rs.close();
 		return existe;
 	}
-	
-public static boolean existeCoche(Connection con, String marca) throws SQLException {
-	
-	String sent = "select * from coche where marca='"+ marca +"'";
-	Statement st = null;
-	st = con.createStatement();
-
-	ResultSet rs = st.executeQuery(sent);
-	boolean existe = false;
-	if(rs.next())
-		existe = true;
-	rs.close();
-	return existe;
-}
-	
-public static ArrayList<String> listaCoches(Connection con, String marca) throws SQLException {
-	
-	String sent = "select * from coche where marca='"+ marca +"'";
-	Statement st = null;
-	st = con.createStatement();
-	ArrayList<String> listaCoches = new ArrayList<String>();
-	
-	ResultSet rs = st.executeQuery(sent);
-	
-	if(rs.next()) {
-		listaCoches.add(rs.getNString(3));
-		System.out.println(rs.getNString(3));
+	*/
+	public static ArrayList<Coche> listaCoches(Connection con, String marca) throws SQLException {
+		
+		String sent = "select * from coche where marca='"+ marca +"'";
+		Statement st = null;
+		st = con.createStatement();
+		
+		ArrayList<Coche> listaCoches = new ArrayList<Coche>();
+		Coche coche = null;
+		ResultSet rs = st.executeQuery(sent);
+		
+		while(rs.next()) {
+			coche = new Coche(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), null);
+			listaCoches.add(coche);
+		}
+		rs.close();
+		return listaCoches;
 	}
-	rs.close();
-	return listaCoches;
-}
-
-public static boolean existeEmail(Connection con, String email) throws SQLException {
 	
-	String sent = "select * from Usuario where email='"+email+"'";
-	Statement st = null;
-	st = con.createStatement();
-
-	ResultSet rs = st.executeQuery(sent);
-	boolean existe = false;
-	if(rs.next())
-		existe = true;
-	rs.close();
-	return existe;
-}
-
-
-
+	public static boolean existeEmail(Connection con, String email) throws SQLException {
+		
+		String sent = "select * from Usuario where email='"+email+"'";
+		Statement st = null;
+		st = con.createStatement();
+	
+		ResultSet rs = st.executeQuery(sent);
+		boolean existe = false;
+		if(rs.next())
+			existe = true;
+		rs.close();
+		return existe;
+	}
 
 }
