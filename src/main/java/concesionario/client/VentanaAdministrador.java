@@ -23,6 +23,16 @@ public class VentanaAdministrador extends JFrame {
 	private static JMenu menuEmpleados;
 	private JMenuBar menuPrincipal;
 	private JMenuItem menuItemAudi;
+	private JMenuItem menuItemMercedes;
+	private JMenuItem menuItemHyundai;
+	private JMenuItem menuItemAlfaRomeo;
+	private JMenuItem menuItemCupra;
+	private JMenuItem menuItemDacia;
+	private JMenuItem menuItemJaguar;
+	private JMenuItem menuItemTesla;
+	private JMenuItem menuItemMazda;
+	private JMenuItem menuItemFerrari;
+	private JMenuItem menuItemHonda;
 	private JMenuItem menuItemBMW;
 	//private JMenuItem menuItemReservarTicket;
 	//private JMenuItem menuItemVerTickets;
@@ -81,23 +91,130 @@ public class VentanaAdministrador extends JFrame {
 
 		menuItemAudi = new JMenuItem();
 		menuItemAudi.setIcon(imagenAniadir);
-		menuItemAudi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_MASK));
 		menuItemAudi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//CreadorPasajeros cus = new CreadorPasajeros();
-				/*panelEscritorio.add(cus);
-				cus.setVisible(true);
-				bloquearBotones();*/
+				
 				System.out.println("1");
 				new VentanaCoches(hostname, port, "Audi");
 				System.out.println("2");
 				dispose();
 			}
 		});
+		
+		menuItemMercedes = new JMenuItem();
+		menuItemMercedes.setIcon(imagenAniadir);
+		menuItemMercedes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("1");
+				new VentanaCoches(hostname, port, "Mercedes");
+				System.out.println("2");
+				dispose();
+			}
+		});
+		
+		menuItemHyundai = new JMenuItem();
+		menuItemHyundai.setIcon(imagenAniadir);
+		menuItemHyundai.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("1");
+				new VentanaCoches(hostname, port, "Hyundai");
+				System.out.println("2");
+				dispose();
+			}
+		});
+		
+		menuItemAlfaRomeo = new JMenuItem();
+		menuItemAlfaRomeo.setIcon(imagenAniadir);
+		menuItemAlfaRomeo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("1");
+				new VentanaCoches(hostname, port, "Alfa Romeo");
+				System.out.println("2");
+				dispose();
+			}
+		});
+		
+		menuItemCupra = new JMenuItem();
+		menuItemCupra.setIcon(imagenAniadir);
+		menuItemCupra.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("1");
+				new VentanaCoches(hostname, port, "Cupra");
+				System.out.println("2");
+				dispose();
+			}
+		});
+		
+		menuItemDacia = new JMenuItem();
+		menuItemDacia.setIcon(imagenAniadir);
+		menuItemDacia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("1");
+				new VentanaCoches(hostname, port, "Dacia");
+				System.out.println("2");
+				dispose();
+			}
+		});
+		
+		menuItemJaguar = new JMenuItem();
+		menuItemJaguar.setIcon(imagenAniadir);
+		menuItemJaguar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("1");
+				new VentanaCoches(hostname, port, "Jaguar");
+				System.out.println("2");
+				dispose();
+			}
+		});
+		
+		menuItemTesla = new JMenuItem();
+		menuItemTesla.setIcon(imagenAniadir);
+		menuItemTesla.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("1");
+				new VentanaCoches(hostname, port, "Tesla");
+				System.out.println("2");
+				dispose();
+			}
+		});
+		
+		menuItemMazda = new JMenuItem();
+		menuItemMazda.setIcon(imagenAniadir);
+		menuItemMazda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("1");
+				new VentanaCoches(hostname, port, "Mazda");
+				System.out.println("2");
+				dispose();
+			}
+		});
+		
+		menuItemFerrari = new JMenuItem();
+		menuItemFerrari.setIcon(imagenAniadir);
+		menuItemFerrari.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("1");
+				new VentanaCoches(hostname, port, "Ferrari");
+				System.out.println("2");
+				dispose();
+			}
+		});
+		
+		menuItemHonda = new JMenuItem();
+		menuItemHonda.setIcon(imagenAniadir);
+		menuItemHonda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("1");
+				new VentanaCoches(hostname, port, "Honda");
+				System.out.println("2");
+				dispose();
+			}
+		});
+		
 		menuItemBMW = new JMenuItem();
 		menuItemBMW.setIcon(imagenActualizar);
 
-		menuItemBMW.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
+		
 		//menuTickets = new JMenu();
 		//menuTickets.setIcon(imagenTicket);
 		//menuTickets.setMnemonic('T');
@@ -148,8 +265,28 @@ public class VentanaAdministrador extends JFrame {
 		menuCoches.setText("Coches");
 		
 		menuItemAudi.setText("Audi");
+		menuItemMercedes.setText("Mercedes");
+		menuItemHyundai.setText("Hyundai");
+		menuItemAlfaRomeo.setText("Alfa Romeo");
+		menuItemCupra.setText("Cupra");
+		menuItemDacia.setText("Dacia");
+		menuItemJaguar.setText("Jaguar");
+		menuItemTesla.setText("Tesla");
+		menuItemMazda.setText("Mazda");
+		menuItemFerrari.setText("Ferrari");
+		menuItemHonda.setText("Honda");
 
 		menuCoches.add(menuItemAudi);
+		menuCoches.add(menuItemMercedes);
+		menuCoches.add(menuItemHyundai);
+		menuCoches.add(menuItemAlfaRomeo);
+		menuCoches.add(menuItemCupra);
+		menuCoches.add(menuItemDacia);
+		menuCoches.add(menuItemJaguar);
+		menuCoches.add(menuItemTesla);
+		menuCoches.add(menuItemMazda);
+		menuCoches.add(menuItemFerrari);
+		menuCoches.add(menuItemHonda);
 
 		menuItemBMW.setText("BMW");
 		menuItemBMW.addActionListener(new ActionListener() {
