@@ -67,8 +67,6 @@ public class VentanaRegistro extends JFrame {
 	
 	public VentanaRegistro(String hostname, String port) {
 		
-		
-
 		panelIzquierda_1 = new JPanel();
 		con=null;
 		dni="";
@@ -368,12 +366,6 @@ public class VentanaRegistro extends JFrame {
 		progressBarRegistarUsuario.setBounds(415, 360, 146, 14);
 		progressBarRegistarUsuario.setVisible(false);
 	
-
-		
-
-	
-		
-
 		setVisible(true);
 	}	
 		

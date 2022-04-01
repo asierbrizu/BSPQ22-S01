@@ -8,6 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import concesionario.clases.Coche;
 
 
 public class BD {
@@ -258,9 +261,36 @@ public static boolean existeDni(Connection con, String dni) throws SQLException 
 		return existe;
 	}
 	
+public static boolean existeCoche(Connection con, String marca) throws SQLException {
+	
+	String sent = "select * from coche where marca='"+ marca +"'";
+	Statement st = null;
+	st = con.createStatement();
 
+	ResultSet rs = st.executeQuery(sent);
+	boolean existe = false;
+	if(rs.next())
+		existe = true;
+	rs.close();
+	return existe;
+}
 	
+public static ArrayList<String> listaCoches(Connection con, String marca) throws SQLException {
 	
+	String sent = "select * from coche where marca='"+ marca +"'";
+	Statement st = null;
+	st = con.createStatement();
+	ArrayList<String> listaCoches = new ArrayList<String>();
+	
+	ResultSet rs = st.executeQuery(sent);
+	
+	if(rs.next()) {
+		listaCoches.add(rs.getNString(3));
+		System.out.println(rs.getNString(3));
+	}
+	rs.close();
+	return listaCoches;
+}
 
 public static boolean existeEmail(Connection con, String email) throws SQLException {
 	

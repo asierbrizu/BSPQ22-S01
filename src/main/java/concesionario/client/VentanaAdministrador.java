@@ -88,6 +88,10 @@ public class VentanaAdministrador extends JFrame {
 				/*panelEscritorio.add(cus);
 				cus.setVisible(true);
 				bloquearBotones();*/
+				System.out.println("1");
+				new VentanaCoches(hostname, port, "Audi");
+				System.out.println("2");
+				dispose();
 			}
 		});
 		menuItemBMW = new JMenuItem();
@@ -302,6 +306,7 @@ public class VentanaAdministrador extends JFrame {
 		});
 
 		setJMenuBar(menuPrincipal);
+		setTitle("VENTANA ADMINISTRADOR");
 
 		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
