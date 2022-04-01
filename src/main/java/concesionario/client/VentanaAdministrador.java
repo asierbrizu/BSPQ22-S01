@@ -16,23 +16,23 @@ import java.awt.Font;
 public class VentanaAdministrador extends JFrame {
 
 	static JDesktopPane panelEscritorio;
-	public static JLabel lblDeustoFly;
-	private static JMenu menuPasajero;
-	private static JMenu menuTickets;
-	private static JMenu menuVuelo;
-	private static JMenu menuUsuario;
+	public static JLabel lblDeustoAuto;
+	private static JMenu menuCoches;
+	//private static JMenu menuTickets;
+	//private static JMenu menuVuelo;
+	private static JMenu menuEmpleados;
 	private JMenuBar menuPrincipal;
-	private JMenuItem menuItemAniadirPasajero;
-	private JMenuItem menuItemActualizarPasajero;
-	private JMenuItem menuItemReservarTicket;
-	private JMenuItem menuItemVerTickets;
-	private JMenuItem menuItemAnadirVuelo;
+	private JMenuItem menuItemAudi;
+	private JMenuItem menuItemBMW;
+	//private JMenuItem menuItemReservarTicket;
+	//private JMenuItem menuItemVerTickets;
+	//private JMenuItem menuItemAnadirVuelo;
 	private JMenuItem menuItemCerrarSesion;
-	private JMenuItem menuItemVerVuelos;
-	private JMenuItem menuItemGestionarAzafatos;
-	private JMenuItem menuItemGestionarEquipajes;
+	//private JMenuItem menuItemVerVuelos;
+	private JMenuItem menuItemGestionarEmpleados;
+	//private JMenuItem menuItemGestionarEquipajes;
 	private JMenuItem menuItemDarPermisos;
-	private JMenuItem menuItemVentanaAzafato;
+	private JMenuItem menuItemVentanaEmpleado;
 
 	private ImageIcon imagenAzafato;
 	private ImageIcon imagenCerrarSesion;
@@ -71,18 +71,18 @@ public class VentanaAdministrador extends JFrame {
 		panelEscritorio.setBackground(new Color(0, 0, 128));
 		menuPrincipal = new JMenuBar();
 		menuPrincipal.setBackground(Color.LIGHT_GRAY);
-		menuPasajero = new JMenu();
-		menuPasajero.setIcon(imagenPasajero);
-		menuPasajero.setMnemonic('P');
+		menuCoches = new JMenu();
+		menuCoches.setIcon(imagenPasajero);
+		menuCoches.setMnemonic('P');
 		
-		 lblDeustoFly = new JLabel("CONCESIONARIO ADAIA");
-		lblDeustoFly.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 36));
-		lblDeustoFly.setForeground(new Color(255, 255, 0));
+		lblDeustoAuto = new JLabel("CONCESIONARIO ADAIA");
+		lblDeustoAuto.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 36));
+		lblDeustoAuto.setForeground(new Color(255, 255, 0));
 
-		menuItemAniadirPasajero = new JMenuItem();
-		menuItemAniadirPasajero.setIcon(imagenAniadir);
-		menuItemAniadirPasajero.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_MASK));
-		menuItemAniadirPasajero.addActionListener(new ActionListener() {
+		menuItemAudi = new JMenuItem();
+		menuItemAudi.setIcon(imagenAniadir);
+		menuItemAudi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_MASK));
+		menuItemAudi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//CreadorPasajeros cus = new CreadorPasajeros();
 				/*panelEscritorio.add(cus);
@@ -90,28 +90,30 @@ public class VentanaAdministrador extends JFrame {
 				bloquearBotones();*/
 			}
 		});
-		menuItemActualizarPasajero = new JMenuItem();
-		menuItemActualizarPasajero.setIcon(imagenActualizar);
+		menuItemBMW = new JMenuItem();
+		menuItemBMW.setIcon(imagenActualizar);
 
-		menuItemActualizarPasajero.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
-		menuTickets = new JMenu();
-		menuTickets.setIcon(imagenTicket);
-		menuTickets.setMnemonic('T');
-		menuItemReservarTicket = new JMenuItem();
+		menuItemBMW.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
+		//menuTickets = new JMenu();
+		//menuTickets.setIcon(imagenTicket);
+		//menuTickets.setMnemonic('T');
+		//menuItemReservarTicket = new JMenuItem();
+		/*
 		menuItemReservarTicket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				lblDeustoFly.setVisible(false);
-				/*ReservarTicket r = new ReservarTicket();
+				lblDeustoAuto.setVisible(false);
+				ReservarTicket r = new ReservarTicket();
 				panelEscritorio.add(r);
 				r.setVisible(true);
-				bloquearBotones();*/
+				bloquearBotones();
 			}
 		});
-		menuItemVerTickets = new JMenuItem();
-		menuVuelo = new JMenu();
-		menuVuelo.setMnemonic('V');
-		menuUsuario = new JMenu();
-		menuUsuario.setMnemonic('U');// alt+u para abrir menu usuario
+		*/
+		//menuItemVerTickets = new JMenuItem();
+		//menuVuelo = new JMenu();
+		//menuVuelo.setMnemonic('V');
+		menuEmpleados = new JMenu();
+		menuEmpleados.setMnemonic('U');// alt+u para abrir menu usuario
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(1366, 768));
@@ -124,14 +126,14 @@ public class VentanaAdministrador extends JFrame {
 			gl_panelEscritorio.createParallelGroup(Alignment.LEADING)
 				.addGroup(Alignment.TRAILING, gl_panelEscritorio.createSequentialGroup()
 					.addContainerGap(570, Short.MAX_VALUE)
-					.addComponent(lblDeustoFly, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lblDeustoAuto, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE)
 					.addGap(450))
 		);
 		gl_panelEscritorio.setVerticalGroup(
 			gl_panelEscritorio.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelEscritorio.createSequentialGroup()
 					.addGap(221)
-					.addComponent(lblDeustoFly, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lblDeustoAuto, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(314, Short.MAX_VALUE))
 		);
 		
@@ -139,14 +141,14 @@ public class VentanaAdministrador extends JFrame {
 		
 		panelEscritorio.setLayout(gl_panelEscritorio);
 
-		menuPasajero.setText("Pasajero");
+		menuCoches.setText("Coches");
 		
-		menuItemAniadirPasajero.setText("Anadir pasajero");
+		menuItemAudi.setText("Audi");
 
-		menuPasajero.add(menuItemAniadirPasajero);
+		menuCoches.add(menuItemAudi);
 
-		menuItemActualizarPasajero.setText("Actualizar pasajero");
-		menuItemActualizarPasajero.addActionListener(new ActionListener() {
+		menuItemBMW.setText("BMW");
+		menuItemBMW.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 			/*	BuscarPasajero b = new BuscarPasajero();
 				panelEscritorio.add(b);
@@ -155,101 +157,104 @@ public class VentanaAdministrador extends JFrame {
 
 			}
 		});
-		menuPasajero.add(menuItemActualizarPasajero);
+		menuCoches.add(menuItemBMW);
 
-		menuPrincipal.add(menuPasajero);
+		menuPrincipal.add(menuCoches);
 
-		menuItemGestionarEquipajes = new JMenuItem();
-		menuItemGestionarEquipajes.setIcon(imagenMaleta);
-		menuItemGestionarEquipajes.setText("Gestionar equipajes");
+		//menuItemGestionarEquipajes = new JMenuItem();
+		//menuItemGestionarEquipajes.setIcon(imagenMaleta);
+		//menuItemGestionarEquipajes.setText("Gestionar equipajes");
+		/*
 		menuItemGestionarEquipajes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				/*CreadorEquipajes b = new CreadorEquipajes();
+				CreadorEquipajes b = new CreadorEquipajes();
 				panelEscritorio.add(b);
 				b.setVisible(true);
-				bloquearBotones();*/
+				bloquearBotones();
 
 			}
 		});
-		menuPasajero.add(menuItemGestionarEquipajes);
+		*/
+		//menuCoches.add(menuItemGestionarEquipajes);
 
-		menuTickets.setText("Tickets");
+		//menuTickets.setText("Tickets");
 
-		menuItemReservarTicket.setText("Reservar Ticket");
-		menuItemReservarTicket.setIcon(imagenReservar);
+		//menuItemReservarTicket.setText("Reservar Ticket");
+		//menuItemReservarTicket.setIcon(imagenReservar);
 
-		menuTickets.add(menuItemReservarTicket);
+		//menuTickets.add(menuItemReservarTicket);
 
-		menuItemVerTickets.setText("Ver tickets");
-		menuItemVerTickets.setIcon(imagenListar);
-
+		//menuItemVerTickets.setText("Ver tickets");
+		//menuItemVerTickets.setIcon(imagenListar);
+		/*
 		menuItemVerTickets.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				/*VerTickets v = new VerTickets();
+				VerTickets v = new VerTickets();
 				panelEscritorio.add(v);
 				v.setVisible(true);
 
-				bloquearBotones();*/
+				bloquearBotones();
 
 			}
 
 		});
+		*/
+		//menuTickets.add(menuItemVerTickets);
 
-		menuTickets.add(menuItemVerTickets);
+		//menuPrincipal.add(menuTickets);
 
-		menuPrincipal.add(menuTickets);
+		//menuVuelo.setText("Vuelo");
+		//menuVuelo.setIcon(imagenAvion);
 
-		menuVuelo.setText("Vuelo");
-		menuVuelo.setIcon(imagenAvion);
+		//menuPrincipal.add(menuVuelo);
 
-		menuPrincipal.add(menuVuelo);
-
-		menuItemAnadirVuelo = new JMenuItem();
-		menuItemAnadirVuelo.setIcon(imagenAniadir);
-		menuItemAnadirVuelo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_MASK));
-		menuItemAnadirVuelo.setText("Anadir vuelo");
+		//menuItemAnadirVuelo = new JMenuItem();
+		//menuItemAnadirVuelo.setIcon(imagenAniadir);
+		//menuItemAnadirVuelo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_MASK));
+		//menuItemAnadirVuelo.setText("Anadir vuelo");
+		/*
 		menuItemAnadirVuelo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-			/*	CreadorVuelos f = new CreadorVuelos();
+				CreadorVuelos f = new CreadorVuelos();
 				panelEscritorio.add(f);
 				f.setVisible(true);
-				bloquearBotones();*/
+				bloquearBotones();
 
 			}
 		});
+		*/
+		//menuVuelo.add(menuItemAnadirVuelo);
 
-		menuVuelo.add(menuItemAnadirVuelo);
-
-		menuItemVerVuelos = new JMenuItem();
-		menuItemVerVuelos.setIcon(imagenListar);
-		menuItemVerVuelos.setText("Ver vuelos");
-		menuVuelo.add(menuItemVerVuelos);
+		//menuItemVerVuelos = new JMenuItem();
+		//menuItemVerVuelos.setIcon(imagenListar);
+		//menuItemVerVuelos.setText("Ver vuelos");
+		//menuVuelo.add(menuItemVerVuelos);
+		/*
 		menuItemVerVuelos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				/*VerVuelos v = new VerVuelos();
+				VerVuelos v = new VerVuelos();
 				panelEscritorio.add(v);
 				v.setVisible(true);
-				bloquearBotones();*/
+				bloquearBotones();
 			}
 		});
+		*/
+		menuEmpleados.setText("Empleados");
+		menuEmpleados.setIcon(imagenUsuario);
 
-		menuUsuario.setText("Usuario");
-		menuUsuario.setIcon(imagenUsuario);
+		menuPrincipal.add(menuEmpleados);
 
-		menuPrincipal.add(menuUsuario);
-
-		menuItemGestionarAzafatos = new JMenuItem();
-		menuItemGestionarAzafatos.setIcon(imagenAzafato);
-		menuItemGestionarAzafatos.setText("Gestionar azafatos");
-		menuUsuario.add(menuItemGestionarAzafatos);
-		menuItemGestionarAzafatos.addActionListener(new ActionListener() {
+		menuItemGestionarEmpleados = new JMenuItem();
+		menuItemGestionarEmpleados.setIcon(imagenAzafato);
+		menuItemGestionarEmpleados.setText("Gestionar empleados");
+		menuEmpleados.add(menuItemGestionarEmpleados);
+		menuItemGestionarEmpleados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				/*bloquearBotones();
 				VisorAzafatos v = new VisorAzafatos();
 				panelEscritorio.add(v);
 				v.toFront();
 				v.setVisible(true);*/
-				
 
 			}
 
@@ -265,12 +270,12 @@ public class VentanaAdministrador extends JFrame {
 			}
 		});
 		menuItemCerrarSesion.setText("Cerrar sesion");
-		menuUsuario.add(menuItemCerrarSesion);
+		menuEmpleados.add(menuItemCerrarSesion);
 
 		menuItemDarPermisos = new JMenuItem();
 		menuItemDarPermisos.setText("Dar permisos");
 		menuItemDarPermisos.setIcon(imagenLlave);
-		menuUsuario.add(menuItemDarPermisos);
+		menuEmpleados.add(menuItemDarPermisos);
 		menuItemDarPermisos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				/*VentanaPermisos v = new VentanaPermisos();
@@ -282,11 +287,11 @@ public class VentanaAdministrador extends JFrame {
 
 		});
 		
-		menuItemVentanaAzafato = new JMenuItem();
-		menuItemVentanaAzafato.setText("Ventana Azafato");
-		menuItemVentanaAzafato.setIcon(imagenIrAzafato);
-		menuUsuario.add(menuItemVentanaAzafato);
-		menuItemVentanaAzafato.addActionListener(new ActionListener() {
+		menuItemVentanaEmpleado = new JMenuItem();
+		menuItemVentanaEmpleado.setText("Ventana Empleado");
+		menuItemVentanaEmpleado.setIcon(imagenIrAzafato);
+		menuEmpleados.add(menuItemVentanaEmpleado);
+		menuItemVentanaEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				dispose();
 				/*VentanaAzafato v = new VentanaAzafato();
@@ -313,10 +318,10 @@ public class VentanaAdministrador extends JFrame {
 	 */
 	public static void bloquearBotones() {
 
-		menuPasajero.setEnabled(false);
-		menuTickets.setEnabled(false);
-		menuVuelo.setEnabled(false);
-		menuUsuario.setEnabled(false);
+		menuCoches.setEnabled(false);
+		//menuTickets.setEnabled(false);
+		//menuVuelo.setEnabled(false);
+		menuEmpleados.setEnabled(false);
 
 	}
 
@@ -325,10 +330,10 @@ public class VentanaAdministrador extends JFrame {
 	 */
 	public static void desbloquearBotones() {
 
-		menuPasajero.setEnabled(true);
-		menuTickets.setEnabled(true);
-		menuVuelo.setEnabled(true);
-		menuUsuario.setEnabled(true);
+		menuCoches.setEnabled(true);
+		//menuTickets.setEnabled(true);
+		//menuVuelo.setEnabled(true);
+		menuEmpleados.setEnabled(true);
 
 	}
 

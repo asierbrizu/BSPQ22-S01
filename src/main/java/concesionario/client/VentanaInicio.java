@@ -80,9 +80,7 @@ public class VentanaInicio extends JFrame {
 		String hostname = args[0];
 		String port = args[1];
 
-		VentanaInicio ventana = new VentanaInicio(hostname, port);
-
-
+		new VentanaInicio(hostname, port);
 	}
 
 	public VentanaInicio(String hostname, String port) {
@@ -201,6 +199,13 @@ public class VentanaInicio extends JFrame {
 				new VentanaRegistro(hostname, port);
 			}
 		});
+		
+		btnCerrar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 
 		btnIniciarSesionUsuario.addActionListener(new ActionListener() {
 			@Override
@@ -259,12 +264,6 @@ public class VentanaInicio extends JFrame {
 			}
 
 		});
-
-
-
-
-
-
 
 		setVisible(true);
 
