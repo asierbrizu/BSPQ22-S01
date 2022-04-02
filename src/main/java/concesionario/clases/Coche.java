@@ -7,7 +7,6 @@ public class Coche {
 	
 	private String idCoche;
 	
-	
 	private String matricula;
 	private String color;
 	private String marca;
