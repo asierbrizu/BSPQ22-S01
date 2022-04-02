@@ -360,5 +360,23 @@ public class BD {
 
 
     }
+    
+    public static String getUltimaMatricula(Connection con) {
+    	int id = BD.getSiguienteIdCompra(con);
+    	int id_old = id -1; 
+    	String matricula = "";
+    	String sent = "select matricula from Compra where id = " + id_old;
+    	Statement st = null;
+    	 try {
+             st = con.createStatement();
+             ResultSet rs=st.executeQuery(sent);
+             if (rs.next()) {
+            	 matricula = rs.getString(1);
+             }
+    	 } catch (SQLException e) { 
+             e.printStackTrace();
+         }
+         return matricula;
+    }
 
 }
