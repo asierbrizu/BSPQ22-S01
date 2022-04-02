@@ -10,7 +10,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import concesionario.clases.Cliente;
 import concesionario.clases.Coche;
+import concesionario.clases.Extra;
 
 
 public class BD {
@@ -88,6 +90,33 @@ public class BD {
 			}
 		}
 		return resul;
+	}
+	public static Cliente obtenerInfoCliente(Connection con, String email) throws DBException {
+		String sentencia = "SELECT nombre,apellido,dni,fecha_ncto FROM Usuario WHERE email = '"+email+"'";
+		Statement st = null;
+		Cliente cliente= new Cliente();
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(sentencia);
+			if(rs.next()) {
+				cliente=new Cliente(rs.getString("nombre"), rs.getString("apellido"), rs.getString("fecha_ncto"), rs.getString("dni"), email);
+			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DBException("No se ha podido comprobar si existe el usuario");
+			
+		} finally {
+			if(st!=null) {
+				try {
+					st.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return cliente;
 	}
 	
 	
@@ -283,7 +312,10 @@ public class BD {
 		ResultSet rs = st.executeQuery(sent);
 		
 		while(rs.next()) {
-			coche = new Coche(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), null);
+			//public Coche(String idCoche, String matricula, String color, String marca, String modelo, double precioBase,
+					//String imagen, ArrayList<Extra> extras) {
+			
+			coche = new Coche(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getDouble(6), rs.getString(7), new ArrayList<Extra>());
 			listaCoches.add(coche);
 		}
 		rs.close();
@@ -303,5 +335,30 @@ public class BD {
 		rs.close();
 		return existe;
 	}
+	
+	/**
+     * Obtiene el numero de ticket mas alto que haya en la BBDD.Se usa para calcular en otro metodo el numero siguiente, y autoincrementarlo de forma manual
+     * @param Connection con
+     * @return int ultimoTicketNum 
+     */
+    public static int getSiguienteIdCompra(Connection con) {
+        String sent = "select MAX(ID) from Compra";
+        Statement st = null;
+        int ultimoIDCompra=0;
+        try {
+            st = con.createStatement();
+            ResultSet rs=st.executeQuery(sent);
+
+            if (rs.next()) {
+            	ultimoIDCompra=rs.getInt(1);
+            	ultimoIDCompra++;
+            }
+        } catch (SQLException e) { 
+            e.printStackTrace();
+        }
+        return ultimoIDCompra;
+
+
+    }
 
 }

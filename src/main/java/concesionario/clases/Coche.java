@@ -5,25 +5,32 @@ import java.util.Objects;
 
 public class Coche {
 	
+	private String idCoche;
+	
+	
 	private String matricula;
 	private String color;
 	private String marca;
 	private String modelo;
 	private double precioBase;
+	private String imagen;
 	private ArrayList<Extra> extras = new ArrayList();
 	 
-
-	public Coche(String matricula, String marca, String modelo, String color, double precioBase,
-			ArrayList<Extra> extras) {
+	public Coche(String idCoche, String matricula, String color, String marca, String modelo, double precioBase,
+			String imagen, ArrayList<Extra> extras) {
 		super();
+		this.idCoche = idCoche;
 		this.matricula = matricula;
 		this.color = color;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.precioBase = precioBase;
+		this.imagen = imagen;
 		this.extras = extras;
 	}
 
+
+	
 	public String getMatricula() {
 		return matricula;
 	}
@@ -73,6 +80,28 @@ public class Coche {
 	public void setExtras(ArrayList<Extra> extras) {
 		this.extras = extras;
 	}
+
+	public String getIdCoche() {
+		return idCoche;
+	}
+
+
+	public void setIdCoche(String idCoche) {
+		this.idCoche = idCoche;
+	}
+
+
+	public String getImagen() {
+		return imagen;
+	}
+
+
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {

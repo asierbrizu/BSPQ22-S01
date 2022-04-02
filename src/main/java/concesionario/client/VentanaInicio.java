@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import concesionario.clases.Cliente;
 import concesionario.clases.Coche;
 import concesionario.clases.Compra;
 import concesionario.server.bd.BD;
@@ -34,6 +36,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.ws.rs.client.Client;
@@ -73,9 +76,11 @@ public class VentanaInicio extends JFrame {
 	private Client client;
 	private WebTarget webTarget;
 
+	private static Connection con =null;
 	private Thread thread;
 	private final AtomicBoolean running = new AtomicBoolean(false);
 
+	public static Cliente clienteActual=null;
 
 	public static void main(String[] args) {
 		String hostname = args[0];
@@ -89,7 +94,7 @@ public class VentanaInicio extends JFrame {
 		client = ClientBuilder.newClient();
 		webTarget = client.target(String.format("http://%s:%s/rest", hostname, port));
 
-		Connection con =null;
+		
 		try {
 			con = BD.initBD("concesionario.db");
 
@@ -234,6 +239,7 @@ public class VentanaInicio extends JFrame {
 							break;
 						case 2:
 							ventanaActual.dispose();
+							clienteActual=BD.obtenerInfoCliente(con, textUsuario.getText());
 							new VentanaAdministrador(hostname, port);
 
 							break;
@@ -273,8 +279,19 @@ public class VentanaInicio extends JFrame {
 	public void comprarCoche(Coche coche) throws CompraException{
 		WebTarget donationsWebTarget = webTarget.path("collector/compra");
 		Invocation.Builder invocationBuilder = donationsWebTarget.request(MediaType.APPLICATION_JSON);
-		
-		Compra compra=new Compra();//= new Compra(id, cliente, matricula, fecha);
+		try {
+			con = BD.initBD("concesionario.db");
+		} catch (DBException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String idCompra=String.valueOf(BD.getSiguienteIdCompra(con));
+		String matricula;//ASIGNAR MATRICULA
+		long milis = System.currentTimeMillis();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss:SSS");
+		Date fecha = new Date(milis);
+		String fechaActual = sdf.format(fecha);
+		Compra compra=new Compra(idCompra, clienteActual,matricula, fechaActual, coche.getIdCoche());
 		Response response = invocationBuilder.post(Entity.entity(compra, MediaType.APPLICATION_JSON));
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			throw new CompraException("" + response.getStatus());

@@ -95,7 +95,7 @@ public class VentanaAdministrador extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				System.out.println("1");
-				new VentanaCoches(hostname, port, "Audi");
+				new VentanaCoche(hostname, port, "Audi");
 				System.out.println("2");
 				dispose();
 			}
@@ -106,7 +106,7 @@ public class VentanaAdministrador extends JFrame {
 		menuItemMercedes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("1");
-				new VentanaCoches(hostname, port, "Mercedes");
+				new VentanaCoche(hostname, port, "Mercedes");
 				System.out.println("2");
 				dispose();
 			}
@@ -117,7 +117,7 @@ public class VentanaAdministrador extends JFrame {
 		menuItemHyundai.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("1");
-				new VentanaCoches(hostname, port, "Hyundai");
+				new VentanaCoche(hostname, port, "Hyundai");
 				System.out.println("2");
 				dispose();
 			}
@@ -128,7 +128,7 @@ public class VentanaAdministrador extends JFrame {
 		menuItemAlfaRomeo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("1");
-				new VentanaCoches(hostname, port, "Alfa Romeo");
+				new VentanaCoche(hostname, port, "Alfa Romeo");
 				System.out.println("2");
 				dispose();
 			}
@@ -139,7 +139,7 @@ public class VentanaAdministrador extends JFrame {
 		menuItemCupra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("1");
-				new VentanaCoches(hostname, port, "Cupra");
+				new VentanaCoche(hostname, port, "Cupra");
 				System.out.println("2");
 				dispose();
 			}
@@ -150,7 +150,7 @@ public class VentanaAdministrador extends JFrame {
 		menuItemDacia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("1");
-				new VentanaCoches(hostname, port, "Dacia");
+				new VentanaCoche(hostname, port, "Dacia");
 				System.out.println("2");
 				dispose();
 			}
@@ -161,7 +161,7 @@ public class VentanaAdministrador extends JFrame {
 		menuItemJaguar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("1");
-				new VentanaCoches(hostname, port, "Jaguar");
+				new VentanaCoche(hostname, port, "Jaguar");
 				System.out.println("2");
 				dispose();
 			}
@@ -172,7 +172,7 @@ public class VentanaAdministrador extends JFrame {
 		menuItemTesla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("1");
-				new VentanaCoches(hostname, port, "Tesla");
+				new VentanaCoche(hostname, port, "Tesla");
 				System.out.println("2");
 				dispose();
 			}
@@ -183,7 +183,7 @@ public class VentanaAdministrador extends JFrame {
 		menuItemMazda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("1");
-				new VentanaCoches(hostname, port, "Mazda");
+				new VentanaCoche(hostname, port, "Mazda");
 				System.out.println("2");
 				dispose();
 			}
@@ -194,7 +194,7 @@ public class VentanaAdministrador extends JFrame {
 		menuItemFerrari.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("1");
-				new VentanaCoches(hostname, port, "Ferrari");
+				new VentanaCoche(hostname, port, "Ferrari");
 				System.out.println("2");
 				dispose();
 			}
@@ -205,7 +205,7 @@ public class VentanaAdministrador extends JFrame {
 		menuItemHonda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("1");
-				new VentanaCoches(hostname, port, "Honda");
+				new VentanaCoche(hostname, port, "Honda");
 				System.out.println("2");
 				dispose();
 			}
