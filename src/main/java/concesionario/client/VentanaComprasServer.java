@@ -23,13 +23,14 @@ public class VentanaComprasServer extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JTextField textField_4;
 	private HashMap<String, Compra> hashCompras;
 	
 
 	public VentanaComprasServer(ArrayList<Compra> compras) {
 		getContentPane().setBackground(new Color(255, 255, 255));
-		setBounds(100, 100, 315, 425);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 315, 468);	
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
 //		String[] compras = new String[7];
@@ -69,6 +70,7 @@ public class VentanaComprasServer extends JFrame {
 						textField_1.setText(hashCompras.get(listaCompras.getSelectedValue()).getMatricula());
 						textField_2.setText(hashCompras.get(listaCompras.getSelectedValue()).getCliente().getNombre() + " " + hashCompras.get(listaCompras.getSelectedValue()).getCliente().getApellido());
 						textField_3.setText(hashCompras.get(listaCompras.getSelectedValue()).getFecha());
+						textField_4.setText(hashCompras.get(listaCompras.getSelectedValue()).getId_coche());
 						repaint();
 						validate();
 	                }
@@ -82,10 +84,10 @@ public class VentanaComprasServer extends JFrame {
 		getContentPane().add(titulo);
 		
 		
-		panelInformacion = new JPanel();
+		JPanel panelInformacion = new JPanel();
 		panelInformacion.setBackground(new Color(255, 255, 255));
 		panelInformacion.setBorder(new TitledBorder(null, "Informacion: ", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelInformacion.setBounds(10, 201, 283, 178);
+		panelInformacion.setBounds(10, 201, 283, 221);
 		getContentPane().add(panelInformacion);
 		panelInformacion.setLayout(null);
 		
@@ -129,18 +131,28 @@ public class VentanaComprasServer extends JFrame {
 		textField_3.setBounds(83, 147, 190, 20);
 		panelInformacion.add(textField_3);
 		
+		textField_4 = new JTextField();
+		textField_4.setEditable(false);
+		textField_4.setColumns(10);
+		textField_4.setBounds(83, 190, 190, 20);
+		panelInformacion.add(textField_4);
+		
+		JLabel cochelbl = new JLabel("Coche id:");
+		cochelbl.setBounds(10, 193, 66, 14);
+		panelInformacion.add(cochelbl);
+		
 		setVisible(true);
 	}
 	
 	public static void main(String[] args) {
 		ArrayList<Compra> compras = new ArrayList<>();
-		compras.add(new Compra("12343", new Cliente(), "5143LMV", "28/10/2021"));
-		compras.add(new Compra("23355", new Cliente(), "5143LMV", "29/10/2021"));
-		compras.add(new Compra("65454", new Cliente(), "5143LMV", "27/10/2021"));
-		compras.add(new Compra("23456", new Cliente(), "5143LMV", "26/10/2021"));
-		compras.add(new Compra("65432", new Cliente(), "5143LMV", "25/10/2021"));
-		compras.add(new Compra("65432", new Cliente(), "5143LMV", "24/10/2021"));
-		compras.add(new Compra("76543", new Cliente(), "5143LMV", "23/10/2021"));
+		compras.add(new Compra("12343", new Cliente(), "5143LMV", "28/10/2021","1"));
+		compras.add(new Compra("23355", new Cliente(), "5143LMV", "29/10/2021","2"));
+		compras.add(new Compra("65454", new Cliente(), "5143LMV", "27/10/2021","3"));
+		compras.add(new Compra("23456", new Cliente(), "5143LMV", "26/10/2021","4"));
+		compras.add(new Compra("65432", new Cliente(), "5143LMV", "25/10/2021","5"));
+		compras.add(new Compra("65432", new Cliente(), "5143LMV", "24/10/2021","6"));
+		compras.add(new Compra("76543", new Cliente(), "5143LMV", "23/10/2021","7"));
 		new VentanaComprasServer(compras);
 	}
 	

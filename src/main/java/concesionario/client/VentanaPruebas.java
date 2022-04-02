@@ -20,6 +20,7 @@ public class VentanaPruebas {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JTextField textField_4;
 
 	/**
 	 * Launch the application.
@@ -50,7 +51,7 @@ public class VentanaPruebas {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(255, 255, 255));
-		frame.setBounds(100, 100, 315, 425);
+		frame.setBounds(100, 100, 315, 468);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -68,7 +69,7 @@ public class VentanaPruebas {
 		JPanel panelInformacion = new JPanel();
 		panelInformacion.setBackground(new Color(255, 255, 255));
 		panelInformacion.setBorder(new TitledBorder(null, "Informacion: ", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelInformacion.setBounds(10, 201, 283, 178);
+		panelInformacion.setBounds(10, 201, 283, 221);
 		frame.getContentPane().add(panelInformacion);
 		panelInformacion.setLayout(null);
 		
@@ -111,5 +112,15 @@ public class VentanaPruebas {
 		textField_3.setColumns(10);
 		textField_3.setBounds(83, 147, 190, 20);
 		panelInformacion.add(textField_3);
+		
+		textField_4 = new JTextField();
+		textField_4.setEditable(false);
+		textField_4.setColumns(10);
+		textField_4.setBounds(83, 190, 190, 20);
+		panelInformacion.add(textField_4);
+		
+		JLabel cochelbl = new JLabel("Coche id:");
+		cochelbl.setBounds(10, 193, 66, 14);
+		panelInformacion.add(cochelbl);
 	}
 }
