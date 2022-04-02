@@ -296,6 +296,12 @@ public class VentanaRegistro extends JFrame {
 					}
 					System.out.println("7");
 					dispose();
+					try {
+						VentanaInicio.clienteActual=BD.obtenerInfoCliente(con, correo);
+					} catch (DBException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					new VentanaAdministrador(hostname, port);
 				
 			//}else {

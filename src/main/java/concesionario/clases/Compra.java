@@ -8,18 +8,20 @@ public class Compra {
 	private Cliente cliente;
 	private String matricula;
 	private String fecha;
+	private String id_coche;
 	
 	public Compra() {	
 	}
-
-	public Compra(String id, Cliente cliente, String matricula, String fecha) {
+	
+	public Compra(String id, Cliente cliente, String matricula, String fecha, String id_coche) {
 		super();
 		this.id = id;
 		this.cliente = cliente;
 		this.matricula = matricula;
 		this.fecha = fecha;
+		this.id_coche = id_coche;
 	}
-
+	
 	public String getId() {
 		return id;
 	}
@@ -50,6 +52,14 @@ public class Compra {
 
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
+	}
+
+	public String getId_coche() {
+		return id_coche;
+	}
+
+	public void setId_coche(String id_coche) {
+		this.id_coche = id_coche;
 	}
 
 	@Override
