@@ -37,6 +37,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.ws.rs.client.Client;
@@ -286,12 +287,44 @@ public class VentanaInicio extends JFrame {
 			e1.printStackTrace();
 		}
 		String idCompra=String.valueOf(BD.getSiguienteIdCompra(con));
-		String matricula;//ASIGNAR MATRICULA
+		String matricula = BD.getUltimaMatricula(con);
+		String new_matricula = "";
+		
+		char[] charMatricula = matricula.toCharArray();
+		int ultima = charMatricula[charMatricula.length-1];
+		int anteUltima = charMatricula[charMatricula.length-2];
+		int tercera = charMatricula[charMatricula.length-3];
+		System.out.println(ultima);
+		
+		int n = (int) (Math.random()*9000)+1000;
+		new_matricula = ""+n;
+		if (ultima < 90) {
+			int nuevaUltima = ultima+1;			
+			new_matricula = new_matricula + tercera + anteUltima + nuevaUltima;
+			
+		}else if(ultima == 90) {
+			int nuevaUltima = 65;
+			
+			if (anteUltima < 90) {
+				int nuevaAnteUltima = anteUltima+1;				
+				new_matricula = new_matricula + tercera + nuevaAnteUltima + nuevaUltima;
+				
+			} else if (anteUltima == 90) {
+				int nuevaAnteUltima = 65;
+				
+				if(tercera < 90) {
+					int nuevaTercera = tercera+1;					
+					new_matricula = new_matricula + nuevaTercera + nuevaAnteUltima + nuevaUltima;
+				}
+			}
+			
+		}
+		
 		long milis = System.currentTimeMillis();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss:SSS");
 		Date fecha = new Date(milis);
 		String fechaActual = sdf.format(fecha);
-		Compra compra=new Compra(idCompra, clienteActual,matricula, fechaActual, coche.getIdCoche());
+		Compra compra=new Compra(idCompra, clienteActual, new_matricula, fechaActual, coche.getIdCoche());
 		Response response = invocationBuilder.post(Entity.entity(compra, MediaType.APPLICATION_JSON));
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			throw new CompraException("" + response.getStatus());
