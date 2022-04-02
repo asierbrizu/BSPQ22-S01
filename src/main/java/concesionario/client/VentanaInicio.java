@@ -14,8 +14,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import concesionario.clases.Coche;
+import concesionario.clases.Compra;
 import concesionario.server.bd.BD;
 import concesionario.server.bd.DBException;
+import concesionario.util.CompraException;
 
 import java.awt.Color;
 import java.awt.HeadlessException;
@@ -266,8 +269,17 @@ public class VentanaInicio extends JFrame {
 		setVisible(true);
 
 	}
-
-	//public void comprarCoche() {}
+	
+	public void comprarCoche(Coche coche) throws CompraException{
+		WebTarget donationsWebTarget = webTarget.path("collector/compra");
+		Invocation.Builder invocationBuilder = donationsWebTarget.request(MediaType.APPLICATION_JSON);
+		
+		Compra compra=new Compra();//= new Compra(id, cliente, matricula, fecha);
+		Response response = invocationBuilder.post(Entity.entity(compra, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			throw new CompraException("" + response.getStatus());
+		}
+	}
 
 	public void run() {
 		running.set(true);
