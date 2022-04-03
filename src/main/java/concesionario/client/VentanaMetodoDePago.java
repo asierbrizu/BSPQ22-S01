@@ -24,7 +24,7 @@ public class VentanaMetodoDePago extends JFrame{
 	private JTextField textField;
 	private JTextField textField_1;
 
-	
+
 
 	public VentanaMetodoDePago() {
 		getContentPane().setBackground(Color.WHITE);

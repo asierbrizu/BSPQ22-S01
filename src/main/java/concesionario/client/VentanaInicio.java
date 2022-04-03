@@ -153,8 +153,6 @@ public class VentanaInicio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				
-				
-				
 				//He introducido aqui la solicitud de crear compra porque todavia no tengo la ventana para comprarlos
 				clienteActual=new Cliente("Asier", "Brizuela", "16-10-1999", "Demasiado personal", "asierbrizu@opendeusto.es");
 				try {

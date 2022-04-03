@@ -8,18 +8,26 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 
+import concesionario.clases.Coche;
+import concesionario.server.bd.BD;
+import concesionario.server.bd.DBException;
+
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.awt.event.InputEvent;
 import java.awt.Font;
+import java.awt.GridLayout;
 
 
 public class VentanaAdministrador extends JFrame {
 
-	static JDesktopPane panelEscritorio;
+	static JPanel panelPrincipal;
+	
 	public static JLabel lblDeustoAuto;
 	private static JMenu menuCoches;
-	//private static JMenu menuTickets;
-	//private static JMenu menuVuelo;
 	private static JMenu menuEmpleados;
 	private JMenuBar menuPrincipal;
 	private JMenuItem menuItemAudi;
@@ -34,13 +42,8 @@ public class VentanaAdministrador extends JFrame {
 	private JMenuItem menuItemFerrari;
 	private JMenuItem menuItemHonda;
 	private JMenuItem menuItemBMW;
-	//private JMenuItem menuItemReservarTicket;
-	//private JMenuItem menuItemVerTickets;
-	//private JMenuItem menuItemAnadirVuelo;
 	private JMenuItem menuItemCerrarSesion;
-	//private JMenuItem menuItemVerVuelos;
 	private JMenuItem menuItemGestionarEmpleados;
-	//private JMenuItem menuItemGestionarEquipajes;
 	private JMenuItem menuItemDarPermisos;
 	private JMenuItem menuItemVentanaEmpleado;
 
@@ -48,42 +51,27 @@ public class VentanaAdministrador extends JFrame {
 	private ImageIcon imagenCerrarSesion;
 	private ImageIcon imagenAniadir;
 	private ImageIcon imagenLlave;
-	private ImageIcon imagenMaleta;
-	private ImageIcon imagenPasajero;
-	private ImageIcon imagenTicket;
-	private ImageIcon imagenAvion;
 	private ImageIcon imagenActualizar;
-	private ImageIcon imagenReservar;
-	private ImageIcon imagenListar;
 	private ImageIcon imagenUsuario;
 	private ImageIcon imagenIrAzafato;
-	public static JFrame ventanaActual;
+	
+	private ArrayList<Coche> listaCoches = new ArrayList<>();
+
 
 	public VentanaAdministrador(String hostname, String port) {
+		
+		setLayout(new GridLayout(1,1));
+	
+		
 
-		ventanaActual = this;
-
-		imagenAzafato = new ImageIcon("img/azafato.png");
-		imagenCerrarSesion = new ImageIcon("img/logout.png");
-		imagenAniadir = new ImageIcon("img/plus.png");
-		imagenMaleta = new ImageIcon("img/maleta.png");
-		imagenPasajero = new ImageIcon("img/pasajero.png");
-		imagenTicket = new ImageIcon("img/ticket.png");
-		imagenAvion = new ImageIcon("img/avion.png");
-		imagenActualizar = new ImageIcon("img/actualizar.png");
-		imagenReservar = new ImageIcon("img/escribir.png");
-		imagenListar = new ImageIcon("img/blocnotas.png");
-		imagenUsuario = new ImageIcon("img/usuario.png");
-		imagenLlave = new ImageIcon("img/llave.png");
-		imagenIrAzafato = new ImageIcon("img/flecha.png");
-
-		panelEscritorio = new JDesktopPane();
-		panelEscritorio.setBackground(new Color(0, 0, 128));
+		panelPrincipal = new JPanel();
+		panelPrincipal.setBackground(Color.WHITE);
+		add(panelPrincipal);
+		
 		menuPrincipal = new JMenuBar();
 		menuPrincipal.setBackground(Color.LIGHT_GRAY);
 		menuCoches = new JMenu();
-		menuCoches.setIcon(imagenPasajero);
-		menuCoches.setMnemonic('P');
+		menuCoches.setMnemonic('C');
 		
 		lblDeustoAuto = new JLabel("CONCESIONARIO ADAIA");
 		lblDeustoAuto.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 36));
@@ -214,53 +202,77 @@ public class VentanaAdministrador extends JFrame {
 		menuItemBMW = new JMenuItem();
 		menuItemBMW.setIcon(imagenActualizar);
 
-		
-		//menuTickets = new JMenu();
-		//menuTickets.setIcon(imagenTicket);
-		//menuTickets.setMnemonic('T');
-		//menuItemReservarTicket = new JMenuItem();
-		/*
-		menuItemReservarTicket.addActionListener(new ActionListener() {
+		menuItemBMW.addActionListener(new ActionListener() {
+			
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				lblDeustoAuto.setVisible(false);
-				ReservarTicket r = new ReservarTicket();
-				panelEscritorio.add(r);
-				r.setVisible(true);
-				bloquearBotones();
+				panelPrincipal.removeAll();
+				
+				panelPrincipal.add(new VentanaPanelCoche());
+				repaint();
+				validate();
+				
 			}
 		});
-		*/
-		//menuItemVerTickets = new JMenuItem();
-		//menuVuelo = new JMenu();
-		//menuVuelo.setMnemonic('V');
+		
+		
+		ArrayList<String> marcas = new ArrayList<>();
+		marcas.add("Audi");
+		marcas.add("Mercedes");
+		marcas.add("ALfa Romero");
+		marcas.add("Cupra");
+		marcas.add("Dacia");
+		marcas.add("Jaguar");
+		marcas.add("Tesla");
+		marcas.add("Mazda");
+		marcas.add("Ferrari");
+		marcas.add("Honda");
+		marcas.add("BMW");
+		
+		for (String  marca : marcas) {
+
+			Connection con =null;
+			try {
+				con = BD.initBD("concesionario.db");
+
+				try {
+					BD.crearTablas(con);
+				} catch (DBException e3) {
+					e3.printStackTrace();
+				}
+				
+				try {
+					ArrayList<Coche> temp = new ArrayList<>();
+					temp = BD.listaCoches(con, marca);
+					for (Coche c : temp) {
+						listaCoches.add(c);
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+			} catch (DBException e1) {
+				e1.printStackTrace();
+			}
+			
+			try {
+				BD.closeBD(con);
+			} catch (DBException e1) {
+				e1.printStackTrace();	
+			}
+			
+			
+		}
+		
+		
 		menuEmpleados = new JMenu();
 		menuEmpleados.setMnemonic('U');// alt+u para abrir menu usuario
 
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(1366, 768));
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setPreferredSize(new Dimension(1366, 815));
 		setVisible(true);
 		
-		
 
-		GroupLayout gl_panelEscritorio = new GroupLayout(panelEscritorio);
-		gl_panelEscritorio.setHorizontalGroup(
-			gl_panelEscritorio.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panelEscritorio.createSequentialGroup()
-					.addContainerGap(570, Short.MAX_VALUE)
-					.addComponent(lblDeustoAuto, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE)
-					.addGap(450))
-		);
-		gl_panelEscritorio.setVerticalGroup(
-			gl_panelEscritorio.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelEscritorio.createSequentialGroup()
-					.addGap(221)
-					.addComponent(lblDeustoAuto, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(314, Short.MAX_VALUE))
-		);
-		
-		
-		
-		panelEscritorio.setLayout(gl_panelEscritorio);
 
 		menuCoches.setText("Coches");
 		
@@ -275,6 +287,7 @@ public class VentanaAdministrador extends JFrame {
 		menuItemMazda.setText("Mazda");
 		menuItemFerrari.setText("Ferrari");
 		menuItemHonda.setText("Honda");
+		menuItemBMW.setText("BMW");
 
 		menuCoches.add(menuItemAudi);
 		menuCoches.add(menuItemMercedes);
@@ -288,7 +301,7 @@ public class VentanaAdministrador extends JFrame {
 		menuCoches.add(menuItemFerrari);
 		menuCoches.add(menuItemHonda);
 
-		menuItemBMW.setText("BMW");
+		
 		menuItemBMW.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 			/*	BuscarPasajero b = new BuscarPasajero();
@@ -302,84 +315,10 @@ public class VentanaAdministrador extends JFrame {
 
 		menuPrincipal.add(menuCoches);
 
-		//menuItemGestionarEquipajes = new JMenuItem();
-		//menuItemGestionarEquipajes.setIcon(imagenMaleta);
-		//menuItemGestionarEquipajes.setText("Gestionar equipajes");
-		/*
-		menuItemGestionarEquipajes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				CreadorEquipajes b = new CreadorEquipajes();
-				panelEscritorio.add(b);
-				b.setVisible(true);
-				bloquearBotones();
-
-			}
-		});
-		*/
-		//menuCoches.add(menuItemGestionarEquipajes);
-
-		//menuTickets.setText("Tickets");
-
-		//menuItemReservarTicket.setText("Reservar Ticket");
-		//menuItemReservarTicket.setIcon(imagenReservar);
-
-		//menuTickets.add(menuItemReservarTicket);
-
-		//menuItemVerTickets.setText("Ver tickets");
-		//menuItemVerTickets.setIcon(imagenListar);
-		/*
-		menuItemVerTickets.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				VerTickets v = new VerTickets();
-				panelEscritorio.add(v);
-				v.setVisible(true);
-
-				bloquearBotones();
-
-			}
-
-		});
-		*/
-		//menuTickets.add(menuItemVerTickets);
-
-		//menuPrincipal.add(menuTickets);
-
-		//menuVuelo.setText("Vuelo");
-		//menuVuelo.setIcon(imagenAvion);
-
-		//menuPrincipal.add(menuVuelo);
-
-		//menuItemAnadirVuelo = new JMenuItem();
-		//menuItemAnadirVuelo.setIcon(imagenAniadir);
-		//menuItemAnadirVuelo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_MASK));
-		//menuItemAnadirVuelo.setText("Anadir vuelo");
-		/*
-		menuItemAnadirVuelo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				CreadorVuelos f = new CreadorVuelos();
-				panelEscritorio.add(f);
-				f.setVisible(true);
-				bloquearBotones();
-
-			}
-		});
-		*/
-		//menuVuelo.add(menuItemAnadirVuelo);
-
-		//menuItemVerVuelos = new JMenuItem();
-		//menuItemVerVuelos.setIcon(imagenListar);
-		//menuItemVerVuelos.setText("Ver vuelos");
-		//menuVuelo.add(menuItemVerVuelos);
-		/*
-		menuItemVerVuelos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				VerVuelos v = new VerVuelos();
-				panelEscritorio.add(v);
-				v.setVisible(true);
-				bloquearBotones();
-			}
-		});
-		*/
+		
+		
+		
+	
 		menuEmpleados.setText("Empleados");
 		menuEmpleados.setIcon(imagenUsuario);
 
@@ -391,11 +330,9 @@ public class VentanaAdministrador extends JFrame {
 		menuEmpleados.add(menuItemGestionarEmpleados);
 		menuItemGestionarEmpleados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				/*bloquearBotones();
-				VisorAzafatos v = new VisorAzafatos();
-				panelEscritorio.add(v);
-				v.toFront();
-				v.setVisible(true);*/
+
+
+				
 
 			}
 
@@ -405,7 +342,6 @@ public class VentanaAdministrador extends JFrame {
 		menuItemCerrarSesion.setIcon(imagenCerrarSesion);
 		menuItemCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ventanaActual = null;
 				dispose();
 				new VentanaInicio(hostname, port);
 			}
@@ -419,10 +355,9 @@ public class VentanaAdministrador extends JFrame {
 		menuEmpleados.add(menuItemDarPermisos);
 		menuItemDarPermisos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				/*VentanaPermisos v = new VentanaPermisos();
-				panelEscritorio.add(v);
-				v.setVisible(true);
-				bloquearBotones();*/
+
+
+				
 
 			}
 
@@ -435,9 +370,8 @@ public class VentanaAdministrador extends JFrame {
 		menuItemVentanaEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				dispose();
-				/*VentanaAzafato v = new VentanaAzafato();
-				v.setVisible(true);
-				bloquearBotones();*/
+
+
 			
 		}
 		});
@@ -445,12 +379,6 @@ public class VentanaAdministrador extends JFrame {
 		setJMenuBar(menuPrincipal);
 		setTitle("VENTANA ADMINISTRADOR");
 
-		GroupLayout layout = new GroupLayout(getContentPane());
-		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(
-				layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(panelEscritorio));
-		layout.setVerticalGroup(
-				layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(panelEscritorio));
 
 		pack();
 	}
@@ -461,8 +389,6 @@ public class VentanaAdministrador extends JFrame {
 	public static void bloquearBotones() {
 
 		menuCoches.setEnabled(false);
-		//menuTickets.setEnabled(false);
-		//menuVuelo.setEnabled(false);
 		menuEmpleados.setEnabled(false);
 
 	}
@@ -473,31 +399,8 @@ public class VentanaAdministrador extends JFrame {
 	public static void desbloquearBotones() {
 
 		menuCoches.setEnabled(true);
-		//menuTickets.setEnabled(true);
-		//menuVuelo.setEnabled(true);
 		menuEmpleados.setEnabled(true);
 
 	}
 
-	/**
-	 * Metodo que sirve para saber si la ventana en uso es la de
-	 * administrador o la de azafato
-	 * 
-	 * @return boolean true si la ventana es la VentanaAdministrador,false si es la ventana
-	 *         VentanaAzafato
-	 */
-	public static boolean VentanaAdminEstaActiva() {
-		if (ventanaActual == null) {
-			return false;
-		}
-
-		else if (ventanaActual.isShowing() && ventanaActual != null) {
-			return true;
-		}
-		return false;
-
-	}
-	public static JDesktopPane getPanelEscritorio() {
-		return panelEscritorio;
-	}
 }

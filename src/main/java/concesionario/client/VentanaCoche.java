@@ -19,7 +19,7 @@ import concesionario.server.bd.DBException;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
-public class VentanaCoche extends JInternalFrame {
+public class VentanaCoche extends JPanel {
 
 	public static JLabel lblCocheMarca;
 	public static JLabel lblCocheModelo;

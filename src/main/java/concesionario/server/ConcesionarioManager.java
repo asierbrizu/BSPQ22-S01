@@ -38,6 +38,7 @@ public class ConcesionarioManager extends JFrame implements ActionListener, Runn
 	private JTextField textField_4;
 	
 	private ArrayList<Compra> compras = new ArrayList<>();
+	String[] arrayParaLaJList;
 	private HashMap<String, Compra> hashCompras;
 	
 	private Client client;
@@ -55,16 +56,8 @@ public class ConcesionarioManager extends JFrame implements ActionListener, Runn
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
-//		String[] compras = new String[7];
-//		compras[0] ="patata";
-//		compras[1]= "maiz";
-//		compras[2]= "repollo";
-//		compras[3]= "audi";
-//		compras[4]= "bmw";
-//		compras[5]= "alfa romero";
-//		compras[6]= "bmw";
-		
-		String[] arrayParaLaJList = new String[compras.size()];
+
+		arrayParaLaJList = new String[compras.size()];
 		hashCompras = new HashMap<>();
 		int i = 0;
 		for (Compra compra : compras) {
@@ -87,7 +80,6 @@ public class ConcesionarioManager extends JFrame implements ActionListener, Runn
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
-//						panelInformacion.add(new JLabel(listaCompras.getSelectedValue().toString()));
 						textField.setText(hashCompras.get(listaCompras.getSelectedValue()).getId());
 						textField_1.setText(hashCompras.get(listaCompras.getSelectedValue()).getMatricula());
 						textField_2.setText(hashCompras.get(listaCompras.getSelectedValue()).getCliente().getNombre() + " " + hashCompras.get(listaCompras.getSelectedValue()).getCliente().getApellido());
@@ -191,8 +183,20 @@ public class ConcesionarioManager extends JFrame implements ActionListener, Runn
 				
 					try {
 						compras=getCompras();
-					} catch (CompraException e) {
-						e.printStackTrace();
+						
+						arrayParaLaJList = new String[compras.size()];
+						hashCompras = new HashMap<>();
+						int i = 0;
+						for (Compra compra : compras) {
+							arrayParaLaJList[i] = compra.getId();
+							hashCompras.put(compra.getId(), compra);
+							i++;
+						}
+						
+						repaint();
+						validate();
+						
+					} catch (Exception e) {
 					}
 				
             } catch (InterruptedException e){ 
