@@ -5,10 +5,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 import javax.swing.JTextField;
@@ -19,7 +22,9 @@ import java.awt.SystemColor;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+import concesionario.clases.Cliente;
 import concesionario.clases.Coche;
+import concesionario.util.CompraException;
 
 public class VentanaMetodoDePago extends JFrame{
 
@@ -59,6 +64,15 @@ public class VentanaMetodoDePago extends JFrame{
 		btnPagar.setForeground(Color.WHITE);
 		btnPagar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					VentanaInicio.comprarCoche(coche);
+					JOptionPane.showMessageDialog( null, "Coche comprado.  Revisa tu cuenta bancaria.", 
+	                        "Compra realizada", JOptionPane.INFORMATION_MESSAGE);
+					dispose();
+				} catch (CompraException e1) {
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		btnPagar.setBounds(144, 311, 112, 23);

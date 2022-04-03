@@ -58,7 +58,7 @@ public class VentanaInicio extends JFrame {
 	private JButton btnCerrar;
 
 	private Client client;
-	private WebTarget webTarget;
+	private static WebTarget webTarget;
 
 	private static Connection con =null;
 	private Thread thread;
@@ -152,15 +152,6 @@ public class VentanaInicio extends JFrame {
 		btnRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				
-				//He introducido aqui la solicitud de crear compra porque todavia no tengo la ventana para comprarlos
-				clienteActual=new Cliente("Asier", "Brizuela", "16-10-1999", "Demasiado personal", "asierbrizu@opendeusto.es");
-				try {
-					comprarCoche(new Coche("2", "No la deberia usar", "Tampoco", "Esto tampoco", "No usa nada de esto", 12.12, "...", new ArrayList<>()));
-				} catch (CompraException e1) {
-					e1.printStackTrace();
-				}
-				
 				new VentanaRegistro(hostname, port);
 			}
 		});
@@ -230,7 +221,7 @@ public class VentanaInicio extends JFrame {
 	}
 	
 
-	public void comprarCoche(Coche coche) throws CompraException{
+	public static void comprarCoche(Coche coche) throws CompraException{
 		WebTarget donationsWebTarget = webTarget.path("collector/compra");
 		Invocation.Builder invocationBuilder = donationsWebTarget.request(MediaType.APPLICATION_JSON);
 		try {
@@ -240,38 +231,47 @@ public class VentanaInicio extends JFrame {
 		}
 		String idCompra=String.valueOf(BD.getSiguienteIdCompra(con));
 		String matricula = BD.getUltimaMatricula(con);
-		String new_matricula = "";
+String new_matricula = "";
 		
 		char[] charMatricula = matricula.toCharArray();
-		int ultima = charMatricula[charMatricula.length-1];
-		int anteUltima = charMatricula[charMatricula.length-2];
-		int tercera = charMatricula[charMatricula.length-3];
-		System.out.println(ultima);
+		int intUltima = charMatricula[charMatricula.length-1];
+		int intAnteUltima = charMatricula[charMatricula.length-2];
+		int intTercera = charMatricula[charMatricula.length-3];
 		
 		int n = (int) (Math.random()*9000)+1000;
 		new_matricula = ""+n;
-		if (ultima < 90) {
-			int nuevaUltima = ultima+1;			
-			new_matricula = new_matricula + tercera + anteUltima + nuevaUltima;
+		
+		if (intUltima < 90) {
+			int asciiUltima = intUltima+1;	
+			char nuevaUltima = (char) asciiUltima;
+			char anteUltima = (char) intAnteUltima;
+			char tercera = (char) intTercera;
+			new_matricula = new_matricula + ""+ tercera + ""+ anteUltima + "" + nuevaUltima;
 			
-		}else if(ultima == 90) {
-			int nuevaUltima = 65;
+		}else if(intUltima == 90) {
+			int asciiUltima = 65;
+			char nuevaUltima = (char) asciiUltima;
 			
-			if (anteUltima < 90) {
-				int nuevaAnteUltima = anteUltima+1;				
-				new_matricula = new_matricula + tercera + nuevaAnteUltima + nuevaUltima;
+			if (intAnteUltima < 90) {
+				int asciiAnteUltima = intAnteUltima+1;
+				char nuevaAnteUltima = (char) asciiAnteUltima;
+				char tercera = (char) intTercera;
 				
-			} else if (anteUltima == 90) {
-				int nuevaAnteUltima = 65;
+				new_matricula = new_matricula + "" + tercera + "" + nuevaAnteUltima + "" + nuevaUltima;
 				
-				if(tercera < 90) {
-					int nuevaTercera = tercera+1;					
-					new_matricula = new_matricula + nuevaTercera + nuevaAnteUltima + nuevaUltima;
+			} else if (intAnteUltima == 90) {
+				int asciiAnteUltima = 65;
+				char nuevaAnteUltima = (char) asciiAnteUltima;
+
+				if(intTercera < 90) {
+					int asciiTercera = intTercera+1;
+					char nuevaTercera = (char) asciiTercera;
+					
+					new_matricula = new_matricula + "" + nuevaTercera + "" + nuevaAnteUltima + "" + nuevaUltima;
 				}
 			}
 			
 		}
-		
 		long milis = System.currentTimeMillis();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss:SSS");
 		Date fecha = new Date(milis);
