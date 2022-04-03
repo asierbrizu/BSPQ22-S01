@@ -19,6 +19,8 @@ import java.awt.SystemColor;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+import concesionario.clases.Coche;
+
 public class VentanaMetodoDePago extends JFrame{
 
 	private JTextField textField;
@@ -26,10 +28,10 @@ public class VentanaMetodoDePago extends JFrame{
 
 
 
-	public VentanaMetodoDePago() {
+	public VentanaMetodoDePago(Coche coche) {
 		getContentPane().setBackground(Color.WHITE);
 		setBounds(100, 100, 291, 394);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Metodo de pago");
@@ -43,6 +45,14 @@ public class VentanaMetodoDePago extends JFrame{
 		btnCancelar.setForeground(Color.WHITE);
 		btnCancelar.setBounds(22, 311, 112, 23);
 		getContentPane().add(btnCancelar);
+		btnCancelar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
 		
 		JButton btnPagar = new JButton("Pagar");
 		btnPagar.setBackground(Color.BLACK);
@@ -110,8 +120,4 @@ public class VentanaMetodoDePago extends JFrame{
 		setVisible(true);
 	}
 	
-	
-	public static void main(String[] args) {
-		new VentanaMetodoDePago();
-	}
 }
