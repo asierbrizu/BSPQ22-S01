@@ -25,7 +25,7 @@ public class VentanaPanelCoche extends JPanel{
 	JLabel lblNewLabel_1;
 
 	public VentanaPanelCoche(ArrayList<Coche> cochesMarca){
-
+		pagina = 0;
 		coche = cochesMarca.get(pagina);
 
 		setLayout(new BorderLayout(0, 0));
