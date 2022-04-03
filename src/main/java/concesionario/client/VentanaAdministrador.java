@@ -17,6 +17,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.awt.event.InputEvent;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -56,7 +57,8 @@ public class VentanaAdministrador extends JFrame {
 	private ImageIcon imagenIrAzafato;
 	
 	private ArrayList<Coche> listaCoches = new ArrayList<>();
-
+	private HashMap<String, ArrayList<Coche>> hashMarcas = new HashMap<String, ArrayList<Coche>>();
+ 
 
 	public VentanaAdministrador(String hostname, String port) {
 		
@@ -199,27 +201,13 @@ public class VentanaAdministrador extends JFrame {
 			}
 		});
 		
-		menuItemBMW = new JMenuItem();
-		menuItemBMW.setIcon(imagenActualizar);
-
-		menuItemBMW.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				panelPrincipal.removeAll();
-				
-				panelPrincipal.add(new VentanaPanelCoche());
-				repaint();
-				validate();
-				
-			}
-		});
+	
 		
 		
 		ArrayList<String> marcas = new ArrayList<>();
 		marcas.add("Audi");
 		marcas.add("Mercedes");
-		marcas.add("ALfa Romero");
+		marcas.add("Alfa Romero");
 		marcas.add("Cupra");
 		marcas.add("Dacia");
 		marcas.add("Jaguar");
@@ -273,45 +261,66 @@ public class VentanaAdministrador extends JFrame {
 		setVisible(true);
 		
 
-
 		menuCoches.setText("Coches");
-		
-		menuItemAudi.setText("Audi");
-		menuItemMercedes.setText("Mercedes");
-		menuItemHyundai.setText("Hyundai");
-		menuItemAlfaRomeo.setText("Alfa Romeo");
-		menuItemCupra.setText("Cupra");
-		menuItemDacia.setText("Dacia");
-		menuItemJaguar.setText("Jaguar");
-		menuItemTesla.setText("Tesla");
-		menuItemMazda.setText("Mazda");
-		menuItemFerrari.setText("Ferrari");
-		menuItemHonda.setText("Honda");
-		menuItemBMW.setText("BMW");
-
-		menuCoches.add(menuItemAudi);
-		menuCoches.add(menuItemMercedes);
-		menuCoches.add(menuItemHyundai);
-		menuCoches.add(menuItemAlfaRomeo);
-		menuCoches.add(menuItemCupra);
-		menuCoches.add(menuItemDacia);
-		menuCoches.add(menuItemJaguar);
-		menuCoches.add(menuItemTesla);
-		menuCoches.add(menuItemMazda);
-		menuCoches.add(menuItemFerrari);
-		menuCoches.add(menuItemHonda);
 
 		
-		menuItemBMW.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-			/*	BuscarPasajero b = new BuscarPasajero();
-				panelEscritorio.add(b);
-				b.setVisible(true);
-				bloquearBotones();*/
-
+		
+		for (Coche coche : listaCoches) {
+			if(!hashMarcas.containsKey(coche.getMarca())){
+				ArrayList<Coche> temp = new ArrayList<>();
+				temp.add(coche);
+				hashMarcas.put(coche.getMarca(), temp);
+			} else {
+				ArrayList<Coche> temp = new ArrayList<>();
+				temp = hashMarcas.get(coche.getMarca());
+				temp.add(coche);
+				hashMarcas.put(coche.getMarca(), temp);
 			}
-		});
-		menuCoches.add(menuItemBMW);
+		}
+		
+		for (String marca : marcas) {
+			JMenuItem menuMarca = new JMenuItem();
+			menuMarca.setText(marca);
+			menuCoches.add(menuMarca);
+			
+			menuMarca.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					panelPrincipal.removeAll();
+					panelPrincipal.add(new VentanaPanelCoche(hashMarcas.get(marca)));
+					repaint();
+					validate();
+					
+					
+				}
+			});
+		}
+		
+//		menuItemAudi.setText("Audi");
+//		menuItemMercedes.setText("Mercedes");
+//		menuItemHyundai.setText("Hyundai");
+//		menuItemAlfaRomeo.setText("Alfa Romeo");
+//		menuItemCupra.setText("Cupra");
+//		menuItemDacia.setText("Dacia");
+//		menuItemJaguar.setText("Jaguar");
+//		menuItemTesla.setText("Tesla");
+//		menuItemMazda.setText("Mazda");
+//		menuItemFerrari.setText("Ferrari");
+//		menuItemHonda.setText("Honda");
+//		menuItemBMW.setText("BMW");
+//
+//		menuCoches.add(menuItemAudi);
+//		menuCoches.add(menuItemMercedes);
+//		menuCoches.add(menuItemHyundai);
+//		menuCoches.add(menuItemAlfaRomeo);
+//		menuCoches.add(menuItemCupra);
+//		menuCoches.add(menuItemDacia);
+//		menuCoches.add(menuItemJaguar);
+//		menuCoches.add(menuItemTesla);
+//		menuCoches.add(menuItemMazda);
+//		menuCoches.add(menuItemFerrari);
+//		menuCoches.add(menuItemHonda);
 
 		menuPrincipal.add(menuCoches);
 
