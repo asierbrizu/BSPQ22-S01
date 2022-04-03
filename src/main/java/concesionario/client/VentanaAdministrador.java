@@ -84,7 +84,7 @@ public class VentanaAdministrador extends JFrame {
 		ArrayList<String> marcas = new ArrayList<>();
 		marcas.add("Audi");
 		marcas.add("Mercedes");
-		marcas.add("Alfa Romero");
+		marcas.add("Alfa Romeo");
 		marcas.add("Cupra");
 		marcas.add("Dacia");
 		marcas.add("Jaguar");
