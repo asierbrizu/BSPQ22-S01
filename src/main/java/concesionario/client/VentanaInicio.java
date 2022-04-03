@@ -35,7 +35,7 @@ import java.awt.event.ActionEvent;
 public class VentanaInicio extends JFrame {
 
 	private JTextField textEmail;
-	private JTextField textContrasenya;
+	private JPasswordField textContrasenya;
 
 	public static String database;
 	public static String milisegundos;
@@ -123,7 +123,7 @@ public class VentanaInicio extends JFrame {
 		getContentPane().add(textEmail);
 		textEmail.setColumns(10);
 		
-		textContrasenya = new JTextField();
+		textContrasenya = new JPasswordField();
 		textContrasenya.setColumns(10);
 		textContrasenya.setBounds(114, 229, 209, 20);
 		getContentPane().add(textContrasenya);

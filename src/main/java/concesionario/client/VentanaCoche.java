@@ -31,7 +31,7 @@ public class VentanaCoche extends JInternalFrame {
 	private static Connection con;
 	ArrayList<Coche> listaCoches;
 	
-	private final JPanel panelCentral = new JPanel();
+	private JPanel panelCentral = new JPanel();
 
 	public VentanaCoche(String hostname, String port, String marca) {
 		
