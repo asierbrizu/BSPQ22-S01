@@ -315,7 +315,7 @@ public class BD {
 			//public Coche(String idCoche, String matricula, String color, String marca, String modelo, double precioBase,
 					//String imagen, ArrayList<Extra> extras) {
 			
-			coche = new Coche(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getDouble(6), rs.getString(7), new ArrayList<Extra>());
+			coche = new Coche(rs.getString(1), "", rs.getString(4), rs.getString(2), rs.getString(3),rs.getDouble(5), rs.getString(6), new ArrayList<Extra>());
 			listaCoches.add(coche);
 		}
 		rs.close();

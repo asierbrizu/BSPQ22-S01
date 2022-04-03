@@ -30,9 +30,7 @@ public class VentanaCoche extends JInternalFrame {
 	public static JFrame ventanaActual;
 	private static Connection con;
 	ArrayList<Coche> listaCoches;
-	/**
-	 * @wbp.nonvisual location=423,184
-	 */
+	
 	private final JPanel panelCentral = new JPanel();
 
 	public VentanaCoche(String hostname, String port, String marca) {
@@ -41,7 +39,7 @@ public class VentanaCoche extends JInternalFrame {
 		
 		ventanaActual = ventanaAdministrador.ventanaActual;
 		
-		panelCentral.setBackground(Color.RED);
+		panelCentral.setBackground(new Color(0, 0, 128));
 		panelCentral.setForeground(Color.WHITE);
 		panelCentral.setBounds(50,50,25,25);
 		panelCentral.setVisible(true);
