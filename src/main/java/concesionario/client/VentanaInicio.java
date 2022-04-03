@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 import javax.swing.ImageIcon;
@@ -36,6 +37,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -86,7 +88,7 @@ public class VentanaInicio extends JFrame {
 	public static void main(String[] args) {
 		String hostname = args[0];
 		String port = args[1];
-
+		
 		new VentanaInicio(hostname, port);
 	}
 
@@ -203,6 +205,17 @@ public class VentanaInicio extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				
+				
+				
+				//He introducido aqui la solicitud de crear compra porque todavia no tengo la ventana para comprarlos
+				clienteActual=new Cliente("Asier", "Brizuela", "16-10-1999", "Demasiado personal", "asierbrizu@opendeusto.es");
+				try {
+					comprarCoche(new Coche("2", "No la deberia usar", "Tampoco", "Esto tampoco", "No usa nada de esto", 12.12, "...", new ArrayList<>()));
+				} catch (CompraException e1) {
+					e1.printStackTrace();
+				}
+				
 				new VentanaRegistro(hostname, port);
 			}
 		});
@@ -283,7 +296,6 @@ public class VentanaInicio extends JFrame {
 		try {
 			con = BD.initBD("concesionario.db");
 		} catch (DBException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		String idCompra=String.valueOf(BD.getSiguienteIdCompra(con));
@@ -325,10 +337,17 @@ public class VentanaInicio extends JFrame {
 		Date fecha = new Date(milis);
 		String fechaActual = sdf.format(fecha);
 		Compra compra=new Compra(idCompra, clienteActual, new_matricula, fechaActual, coche.getIdCoche());
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Response response = invocationBuilder.post(Entity.entity(compra, MediaType.APPLICATION_JSON));
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			throw new CompraException("" + response.getStatus());
 		}
+		
 	}
 
 	public void run() {

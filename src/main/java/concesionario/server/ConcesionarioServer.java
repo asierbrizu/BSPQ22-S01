@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import concesionario.clases.Compra;
+import donations.serialization.DonationInfo;
 
 
 @Path("/collector")
@@ -25,5 +26,12 @@ public class ConcesionarioServer {
 	public Response comprarCoche(Compra compra) {
 		compraCollector.comprarCoche(compra);
 		return Response.ok().build();
+	}
+	
+	@GET
+	@Path("/compra")
+	public Response getCompras() {
+		
+		return Response.ok(compraCollector.getCompras()).build();
 	}
 }

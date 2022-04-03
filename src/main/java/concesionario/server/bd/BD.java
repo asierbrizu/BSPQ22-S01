@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import concesionario.clases.Cliente;
 import concesionario.clases.Coche;
+import concesionario.clases.Compra;
 import concesionario.clases.Extra;
 
 
@@ -376,7 +377,66 @@ public class BD {
     	 } catch (SQLException e) { 
              e.printStackTrace();
          }
+
          return matricula;
     }
 
+    public static ArrayList<Compra> obtenerListaCompras(Connection con) throws DBException {
+		String sentencia = "SELECT * FROM compra";
+		Statement st = null;
+		ArrayList<Compra> compras=new ArrayList<Compra>();
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(sentencia);
+			while(rs.next()) {
+				compras.add(new Compra(rs.getString("ID"),obtenerInfoCliente(con, rs.getString("usuario")),rs.getString("matricula"),rs.getString("fecha"),rs.getString("id_coche")));
+			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DBException("No se ha podido comprobar si existe el usuario");
+			
+		} finally {
+			if(st!=null) {
+				try {
+					st.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return compras;
+	}
+	
+public static void insertarCompra(Connection con, Compra compra) throws DBException {
+		
+		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Compra (ID, usuario, matricula, fecha, id_coche) VALUES (?,?,?,?,?)"); 
+				Statement stmtForId = con.createStatement()) {
+				
+				stmt.setString(1, compra.getId());
+				stmt.setString(2, compra.getCliente().getEmail());
+				stmt.setString(3, compra.getMatricula());
+				stmt.setString(4, compra.getFecha());
+				stmt.setString(5, compra.getId_coche());
+		
+		
+				stmt.executeUpdate();
+				stmt.close();
+				 
+			} catch (SQLException e) {
+			
+			e.printStackTrace();
+			throw new DBException("No se ha podido insertar la compra");
+		} finally {
+			if(con!=null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+    
 }
