@@ -4,10 +4,18 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,6 +29,8 @@ public class VentanaPanelCoche extends JPanel{
 
 	private Coche coche;
 	private static int pagina = 0;
+	private static int altoRecorte = Toolkit.getDefaultToolkit().getScreenSize().height - 233;
+	private static int anchoRecrote = Toolkit.getDefaultToolkit().getScreenSize().width - 140;
 	private JLabel lblNewLabel;
 	JLabel lblNewLabel_1;
 
@@ -69,7 +79,17 @@ public class VentanaPanelCoche extends JPanel{
 					coche = cochesMarca.get(pagina + 1);
 					pagina++;
 					lblNewLabel.setText(coche.getModelo());
-					lblNewLabel_1.setIcon(new ImageIcon("img/"+ coche.getMarca() + "-" + coche.getModelo() +".png"));
+					//
+					BufferedImage img = null;
+					try {
+					    img = ImageIO.read(new File("img/"+ coche.getMarca() + "-" + coche.getModelo() +".png"));
+					    
+					} catch (IOException e2) {
+					    e2.printStackTrace();
+					}
+					Image dimg = img.getScaledInstance(anchoRecrote, altoRecorte,  Image.SCALE_SMOOTH);
+					//
+					lblNewLabel_1.setIcon(new ImageIcon(dimg));
 					repaint();
 					validate();
 				} catch (Exception e2) {
@@ -88,7 +108,17 @@ public class VentanaPanelCoche extends JPanel{
 					coche = cochesMarca.get(pagina - 1);
 					pagina--;
 					lblNewLabel.setText(coche.getModelo());
-					lblNewLabel_1.setIcon(new ImageIcon("img/"+ coche.getMarca() + "-" + coche.getModelo() +".png"));
+					//
+					BufferedImage img = null;
+					try {
+					    img = ImageIO.read(new File("img/"+ coche.getMarca() + "-" + coche.getModelo() +".png"));
+					    
+					} catch (IOException e2) {
+					    e2.printStackTrace();
+					}
+					Image dimg = img.getScaledInstance(anchoRecrote, altoRecorte,  Image.SCALE_SMOOTH);
+					//
+					lblNewLabel_1.setIcon(new ImageIcon(dimg));
 					repaint();
 					validate();
 				} catch (Exception e2) {
@@ -109,12 +139,23 @@ public class VentanaPanelCoche extends JPanel{
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_2.add(lblNewLabel, BorderLayout.NORTH);
 
-		lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("img/"+ coche.getMarca() + "-" + coche.getModelo() +".png"));
+		lblNewLabel_1 = new JLabel();
+		//
+		BufferedImage img = null;
+		try {
+		    img = ImageIO.read(new File("img/"+ coche.getMarca() + "-" + coche.getModelo() +".png"));
+		    
+		} catch (IOException e2) {
+		    e2.printStackTrace();
+		}
+		Image dimg = img.getScaledInstance(anchoRecrote, altoRecorte,  Image.SCALE_SMOOTH);
+		//
+		lblNewLabel_1.setIcon(new ImageIcon(dimg));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_2.add(lblNewLabel_1, BorderLayout.CENTER);
 
 		setVisible(true);
 
 	}
+
 }
