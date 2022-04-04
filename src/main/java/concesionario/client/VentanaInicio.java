@@ -122,7 +122,7 @@ public class VentanaInicio extends JFrame {
 		getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("iconoAdaia.png"));
+		lblNewLabel_1.setIcon(new ImageIcon("img/iconoAdaia.png"));
 		lblNewLabel_1.setBounds(118, 67, 100, 100);
 		getContentPane().add(lblNewLabel_1);
 		
