@@ -8,7 +8,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import concesionario.clases.Compra;
-import donations.serialization.DonationInfo;
 
 
 @Path("/collector")

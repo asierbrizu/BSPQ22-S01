@@ -24,8 +24,6 @@ import javax.swing.event.ListSelectionListener;
 import concesionario.clases.Cliente;
 import concesionario.clases.Compra;
 import concesionario.util.CompraException;
-import donations.serialization.DonationInfo;
-import donations.util.DonationException;
 
 public class ConcesionarioManager extends JFrame implements ActionListener, Runnable {
 	
