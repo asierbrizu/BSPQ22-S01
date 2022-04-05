@@ -267,6 +267,7 @@ public class VentanaAdministrador extends JFrame {
 
 
 		pack();
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
 
 	/**
