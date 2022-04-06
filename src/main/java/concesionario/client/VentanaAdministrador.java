@@ -31,30 +31,11 @@ public class VentanaAdministrador extends JFrame {
 	private static JMenu menuCoches;
 	private static JMenu menuEmpleados;
 	private JMenuBar menuPrincipal;
-	private JMenuItem menuItemAudi;
-	private JMenuItem menuItemMercedes;
-	private JMenuItem menuItemHyundai;
-	private JMenuItem menuItemAlfaRomeo;
-	private JMenuItem menuItemCupra;
-	private JMenuItem menuItemDacia;
-	private JMenuItem menuItemJaguar;
-	private JMenuItem menuItemTesla;
-	private JMenuItem menuItemMazda;
-	private JMenuItem menuItemFerrari;
-	private JMenuItem menuItemHonda;
-	private JMenuItem menuItemBMW;
 	private JMenuItem menuItemCerrarSesion;
 	private JMenuItem menuItemGestionarEmpleados;
 	private JMenuItem menuItemDarPermisos;
 	private JMenuItem menuItemVentanaEmpleado;
 
-	private ImageIcon imagenAzafato;
-	private ImageIcon imagenCerrarSesion;
-	private ImageIcon imagenAniadir;
-	private ImageIcon imagenLlave;
-	private ImageIcon imagenActualizar;
-	private ImageIcon imagenUsuario;
-	private ImageIcon imagenIrAzafato;
 	
 	private ArrayList<Coche> listaCoches = new ArrayList<>();
 	private HashMap<String, ArrayList<Coche>> hashMarcas = new HashMap<String, ArrayList<Coche>>();
@@ -206,12 +187,10 @@ public class VentanaAdministrador extends JFrame {
 		
 	
 		menuEmpleados.setText("Empleados");
-		menuEmpleados.setIcon(imagenUsuario);
 
 		menuPrincipal.add(menuEmpleados);
 
 		menuItemGestionarEmpleados = new JMenuItem();
-		menuItemGestionarEmpleados.setIcon(imagenAzafato);
 		menuItemGestionarEmpleados.setText("Gestionar empleados");
 		menuEmpleados.add(menuItemGestionarEmpleados);
 		menuItemGestionarEmpleados.addActionListener(new ActionListener() {
@@ -225,7 +204,6 @@ public class VentanaAdministrador extends JFrame {
 		});
 
 		menuItemCerrarSesion = new JMenuItem();
-		menuItemCerrarSesion.setIcon(imagenCerrarSesion);
 		menuItemCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -237,7 +215,6 @@ public class VentanaAdministrador extends JFrame {
 
 		menuItemDarPermisos = new JMenuItem();
 		menuItemDarPermisos.setText("Dar permisos");
-		menuItemDarPermisos.setIcon(imagenLlave);
 		menuEmpleados.add(menuItemDarPermisos);
 		menuItemDarPermisos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -251,7 +228,6 @@ public class VentanaAdministrador extends JFrame {
 		
 		menuItemVentanaEmpleado = new JMenuItem();
 		menuItemVentanaEmpleado.setText("Ventana Empleado");
-		menuItemVentanaEmpleado.setIcon(imagenIrAzafato);
 		menuEmpleados.add(menuItemVentanaEmpleado);
 		menuItemVentanaEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
