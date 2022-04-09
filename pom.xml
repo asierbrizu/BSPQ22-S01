@@ -8,7 +8,7 @@
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>DonationREST</name>
+	<name>ConcesionarioADAIA</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>

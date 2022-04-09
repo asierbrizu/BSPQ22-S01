@@ -36,7 +36,6 @@ public class BD {
 			e.printStackTrace();
 			throw new DBException("No se pudo cargar el driver de la base de datos", e);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -85,7 +84,6 @@ public class BD {
 				try {
 					st.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -112,7 +110,6 @@ public class BD {
 				try {
 					st.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -156,7 +153,6 @@ public class BD {
 				try {
 					st.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -197,7 +193,6 @@ public class BD {
 				try {
 					st.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -230,7 +225,6 @@ public class BD {
 				try {
 					con.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -267,7 +261,6 @@ public class BD {
 				try {
 					con.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 					
 				}
@@ -287,21 +280,7 @@ public class BD {
 			rs.close();
 			return existe;
 		}
-	/*	
-	public static boolean existeCoche(Connection con, String marca) throws SQLException {
-		
-		String sent = "select * from coche where marca='"+ marca +"'";
-		Statement st = null;
-		st = con.createStatement();
-	
-		ResultSet rs = st.executeQuery(sent);
-		boolean existe = false;
-		if(rs.next())
-			existe = true;
-		rs.close();
-		return existe;
-	}
-	*/
+
 	public static ArrayList<Coche> listaCoches(Connection con, String marca) throws SQLException {
 		
 		String sent = "select * from coche where marca='"+ marca +"'";
@@ -313,9 +292,6 @@ public class BD {
 		ResultSet rs = st.executeQuery(sent);
 		
 		while(rs.next()) {
-			//public Coche(String idCoche, String matricula, String color, String marca, String modelo, double precioBase,
-					//String imagen, ArrayList<Extra> extras) {
-			
 			coche = new Coche(rs.getString(1), "", rs.getString(4), rs.getString(2), rs.getString(3),rs.getDouble(5), rs.getString(6), new ArrayList<Extra>());
 			listaCoches.add(coche);
 		}
@@ -401,7 +377,6 @@ public class BD {
 				try {
 					st.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

@@ -1,36 +1,30 @@
 package concesionario.client;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import concesionario.server.bd.BD;
-import concesionario.server.bd.DBException;
-
-import java.awt.Color;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
-import java.awt.Font;
-import java.awt.HeadlessException;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
-import javax.swing.JPasswordField;
+
+import concesionario.server.bd.BD;
+import concesionario.server.bd.DBException;
 
 
 public class VentanaRegistro extends JFrame {
@@ -103,14 +97,12 @@ public class VentanaRegistro extends JFrame {
 			con = BD.initBD("concesionario.db");
 			
 		} catch (DBException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
 			try {
 				BD.crearTablas(con);
 			} catch (DBException e3) {
-				// TODO Auto-generated catch block
 				e3.printStackTrace();
 			}
 			
@@ -118,7 +110,6 @@ public class VentanaRegistro extends JFrame {
 		try {
 			BD.closeBD(con);
 		} catch (DBException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();	
 		}
 
@@ -275,7 +266,6 @@ public class VentanaRegistro extends JFrame {
 						con = BD.initBD("concesionario.db");
 						
 					} catch (DBException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					System.out.println("3");
@@ -283,7 +273,6 @@ public class VentanaRegistro extends JFrame {
 						System.out.println("4");
 						BD.insertarUsuario(con, textCorreo.getText(), txtContrasenia.getText(), txtNombre.getText(), txtApellido.getText(), txtDni.getText(), fechaStr);
 					} catch (DBException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					System.out.println("5");
@@ -291,7 +280,6 @@ public class VentanaRegistro extends JFrame {
 						System.out.println("6");
 						BD.closeBD(con);
 					} catch (DBException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();	
 					}
 					System.out.println("7");
@@ -299,7 +287,6 @@ public class VentanaRegistro extends JFrame {
 					try {
 						VentanaInicio.clienteActual=BD.obtenerInfoCliente(con, correo);
 					} catch (DBException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					new VentanaAdministrador(hostname, port);
@@ -380,7 +367,6 @@ public static boolean existeEmail(String correo) {
 	try {
 		con = BD.initBD("concesionario.db");
 	} catch (DBException e1) {
-		// TODO Auto-generated catch block
 		e1.printStackTrace();
 	}
 
@@ -388,13 +374,11 @@ public static boolean existeEmail(String correo) {
 	try {
 		existeEmail1 = BD.existeEmail(con, correo);
 	} catch (SQLException e2) {
-		// TODO Auto-generated catch block
 		e2.printStackTrace();
 	}
 	try {
 		BD.closeBD(con);
 	} catch (DBException e2) {
-		// TODO Auto-generated catch block
 		e2.printStackTrace();
 	}
 	return existeEmail1;
@@ -404,20 +388,17 @@ public static boolean existeDni(String dni) {
 	try {
 		con = BD.initBD("concesionario.db");
 	} catch (DBException e1) {
-		// TODO Auto-generated catch block
 		e1.printStackTrace();
 	}
 	boolean existeDni1 = false;
 	try {
 		existeDni1 = BD.existeDni(con, dni);
 	} catch (SQLException e2) {
-		// TODO Auto-generated catch block
 		e2.printStackTrace();
 	}
 	try {
 		BD.closeBD(con);
 	} catch (DBException e2) {
-		// TODO Auto-generated catch block
 		e2.printStackTrace();
 	}
 	return existeDni1;

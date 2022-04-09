@@ -2,11 +2,8 @@ package concesionario.client;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +15,6 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -117,7 +113,6 @@ public class VentanaPanelCoche extends JPanel{
 					    e2.printStackTrace();
 					}
 					Image dimg = img.getScaledInstance(anchoRecrote, altoRecorte,  Image.SCALE_SMOOTH);
-					//
 					lblNewLabel_1.setIcon(new ImageIcon(dimg));
 					repaint();
 					validate();
@@ -140,7 +135,6 @@ public class VentanaPanelCoche extends JPanel{
 		panel_2.add(lblNewLabel, BorderLayout.NORTH);
 
 		lblNewLabel_1 = new JLabel();
-		//
 		BufferedImage img = null;
 		try {
 		    img = ImageIO.read(new File("img/"+ coche.getMarca() + "-" + coche.getModelo() +".png"));
@@ -149,7 +143,6 @@ public class VentanaPanelCoche extends JPanel{
 		    e2.printStackTrace();
 		}
 		Image dimg = img.getScaledInstance(anchoRecrote, altoRecorte,  Image.SCALE_SMOOTH);
-		//
 		lblNewLabel_1.setIcon(new ImageIcon(dimg));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_2.add(lblNewLabel_1, BorderLayout.CENTER);
