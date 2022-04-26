@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -53,10 +52,6 @@ public class VentanaInicio extends JFrame {
 	private JProgressBar progressBarCerrar;
 	private JProgressBar progressBarRegistarAdmin;
 
-	private JButton btnRegistrarUsuario;
-	private JButton btnIniciarSesionUsuario;
-	private JButton btnCerrar;
-
 	private Client client;
 	private static WebTarget webTarget;
 
@@ -85,12 +80,10 @@ public class VentanaInicio extends JFrame {
 			try {
 				BD.crearTablas(con);
 			} catch (DBException e3) {
-				// TODO Auto-generated catch block
 				e3.printStackTrace();
 			}
 			
 		} catch (DBException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -99,7 +92,6 @@ public class VentanaInicio extends JFrame {
 		try {
 			BD.closeBD(con);
 		} catch (DBException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();	
 		}
 
@@ -170,7 +162,6 @@ public class VentanaInicio extends JFrame {
 					try {
 						con = BD.initBD("concesionario.db");
 					} catch (DBException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 
@@ -193,16 +184,13 @@ public class VentanaInicio extends JFrame {
 
 						}
 					} catch (HeadlessException e2) {
-						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					} catch (DBException e2) {
-						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
 					try {
 						BD.closeBD(con);
 					} catch (DBException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					textEmail.setText("");
@@ -280,7 +268,6 @@ String new_matricula = "";
 		try {
 			con.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Response response = invocationBuilder.post(Entity.entity(compra, MediaType.APPLICATION_JSON));
@@ -296,11 +283,6 @@ String new_matricula = "";
 			try { 
 				Thread.sleep(2000);
 				System.out.println("Obtaining data from server...");
-
-				//Cosas
-				//DonationInfo donationInfo = getDonationInfo();
-				//this.total.setText(Integer.toString(donationInfo.getTotal()));
-
 			} catch (InterruptedException e){ 
 				Thread.currentThread().interrupt();
 				System.out.println("Thread was interrupted, Failed to complete operation");

@@ -7,8 +7,6 @@ import concesionario.clases.Compra;
 import concesionario.server.bd.BD;
 import concesionario.server.bd.DBException;
 
-	
-
 public class CompraCollector {
 	
 	private ArrayList<Compra> compras=inicializarCompras();

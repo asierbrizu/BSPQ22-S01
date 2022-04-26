@@ -2,25 +2,25 @@ package concesionario.client;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
-
-import concesionario.clases.Coche;
-import concesionario.server.bd.BD;
-import concesionario.server.bd.DBException;
-
-import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.awt.event.InputEvent;
-import java.awt.Font;
-import java.awt.GridLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+
+import concesionario.clases.Coche;
+import concesionario.server.bd.BD;
+import concesionario.server.bd.DBException;
 
 
 public class VentanaAdministrador extends JFrame {
@@ -154,31 +154,6 @@ public class VentanaAdministrador extends JFrame {
 				}
 			});
 		}
-		
-//		menuItemAudi.setText("Audi");
-//		menuItemMercedes.setText("Mercedes");
-//		menuItemHyundai.setText("Hyundai");
-//		menuItemAlfaRomeo.setText("Alfa Romeo");
-//		menuItemCupra.setText("Cupra");
-//		menuItemDacia.setText("Dacia");
-//		menuItemJaguar.setText("Jaguar");
-//		menuItemTesla.setText("Tesla");
-//		menuItemMazda.setText("Mazda");
-//		menuItemFerrari.setText("Ferrari");
-//		menuItemHonda.setText("Honda");
-//		menuItemBMW.setText("BMW");
-//
-//		menuCoches.add(menuItemAudi);
-//		menuCoches.add(menuItemMercedes);
-//		menuCoches.add(menuItemHyundai);
-//		menuCoches.add(menuItemAlfaRomeo);
-//		menuCoches.add(menuItemCupra);
-//		menuCoches.add(menuItemDacia);
-//		menuCoches.add(menuItemJaguar);
-//		menuCoches.add(menuItemTesla);
-//		menuCoches.add(menuItemMazda);
-//		menuCoches.add(menuItemFerrari);
-//		menuCoches.add(menuItemHonda);
 
 		menuPrincipal.add(menuCoches);
 
