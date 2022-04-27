@@ -38,12 +38,12 @@ public class CompraTest {
 	}
 	@Test
 	public void testGetMatricula() {
-		assertEquals("123AAA", c2.getId());
+		assertEquals("123AAA", c2.getMatricula());
 	}
 	@Test
 	public void testSetMatricula() {
 		c1.setMatricula("567JJJ");
-		assertEquals("567JJJ", c1.getId());
+		assertEquals("567JJJ", c1.getMatricula());
 	}
 	@Test
 	public void testGetFecha() {
