@@ -66,6 +66,14 @@ public class CompraTest {
 	
 	@Test
 	public void testEquals() {
+		
+		assertTrue(c1.equals(c1));
+		
+		assertFalse(c1.equals(null));
+		
+		assertFalse(c1.equals("Alpargata"));
+		
+		
 		c1.setId("1");
 		boolean cierto= c1.equals(c2);
 		assertTrue(cierto);

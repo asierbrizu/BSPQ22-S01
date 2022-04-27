@@ -106,4 +106,28 @@ public class CocheTest {
 		c2.setIdCoche("id2");
 		assertEquals("id2", c2.getIdCoche());
 	}
+
+	@Test
+	public void testEquals() {
+		
+		assertTrue(c1.equals(c1));
+		
+		assertFalse(c1.equals(null));
+		
+		assertFalse(c1.equals("Alpargata"));
+		
+		c2.setMatricula("A");
+		boolean cierto= c1.equals(c2);
+		assertTrue(cierto);
+		
+		c2.setMatricula("Z");
+		boolean falso=c1.equals(c2);
+		assertFalse(falso);
+	}
+	
+	
+
+
+
+
 }

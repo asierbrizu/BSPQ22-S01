@@ -67,6 +67,13 @@ public class ClienteTest {
 	
 	@Test
 	public void testEquals() {
+		
+		assertTrue(c1.equals(c1));
+		
+		assertFalse(c1.equals(null));
+		
+		assertFalse(c1.equals("Alpargata"));
+		
 		c2.setDni("1111111A");
 		boolean cierto= c1.equals(c2);
 		assertTrue(cierto);
