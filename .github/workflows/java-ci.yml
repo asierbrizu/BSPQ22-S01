@@ -12,17 +12,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.11
-      - name: Codecov
-        uses: codecov/codecov-action@v3.1.0
-      - uses: actions/checkout@master
       - uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.4895ce8a-9a4b-4e0b-b1ad-678ff1342f39 }} # not required for public repos
-          files: ./coverage1.xml,./coverage2.xml # optional
-          flags: unittests # optional
-          name: codecov-umbrella # optional
-          fail_ci_if_error: true # optional (default = false)
-          verbose: true # optional (default = false)
 
       - name: Build with Maven including only unit testing (with SonarCloud)
         env:
