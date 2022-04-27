@@ -92,8 +92,7 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.4.19.v20190610</version>
             </plugin>
-		</plugins>
-		<plugin>
+					<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.3</version>
@@ -137,6 +136,8 @@
 					</execution>
 				</executions>
 			</plugin>
+
+		</plugins>
 	</build>
 
 	<profiles>
