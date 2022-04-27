@@ -37,7 +37,7 @@ import concesionario.clases.Compra;
 import concesionario.server.bd.BD;
 import concesionario.server.bd.DBException;
 import concesionario.util.CompraException;
-
+import static org.mockito.Mockito.*;
 
 public class VentanaInicio extends JFrame {
 

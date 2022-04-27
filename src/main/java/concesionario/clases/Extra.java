@@ -5,6 +5,9 @@ public class Extra {
 	private String descripcion;
 	private float precio;
 	
+	public Extra() {
+		
+	}
 	
 	public Extra(String nombre, String descripcion, float precio) {
 		super();
