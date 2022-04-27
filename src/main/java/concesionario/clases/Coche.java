@@ -14,6 +14,10 @@ public class Coche {
 	private double precioBase;
 	private String imagen;
 	private ArrayList<Extra> extras = new ArrayList();
+	
+	public Coche() {
+		
+	}
 	 
 	public Coche(String idCoche, String matricula, String color, String marca, String modelo, double precioBase,
 			String imagen, ArrayList<Extra> extras) {
@@ -99,6 +103,8 @@ public class Coche {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
+	
+	
 
 
 
