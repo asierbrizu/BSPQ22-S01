@@ -1,0 +1,1 @@
+ALTER TABLE coche ADD  Instrucciones VARCHAR(40) 
