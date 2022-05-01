@@ -3,13 +3,13 @@ package concesionario.clases;
 public class Extra {
 	private String nombre;
 	private String descripcion;
-	private float precio;
+	private double precio;
 	
 	public Extra() {
 		
 	}
 	
-	public Extra(String nombre, String descripcion, float precio) {
+	public Extra(String nombre, String descripcion, double precio) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -28,10 +28,10 @@ public class Extra {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public float getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
-	public void setPrecio(float precio) {
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 	
