@@ -15,7 +15,7 @@ public class CocheTest {
 	
 	ArrayList<Extra> extras2 = new ArrayList<Extra>();
 	
-	Coche c1=new Coche("1", "A","Rojo", "Renault","Scenic 12", 20199.99f,"imagen", extras);
+	Coche c1=new Coche("1", "A","Rojo", "Renault","Scenic 12", 20199.99f,"imagen","combustible1","instrucciones1", extras);
 	Coche c2=new Coche();
 
 	@Test
@@ -56,6 +56,16 @@ public class CocheTest {
 	@Test
 	public void testGetExtras() {
 		assertEquals(extras, c1.getExtras());
+	}
+	
+	@Test
+	public void testGetCombustible() {
+		assertEquals("combustible1", c1.getCombustible());
+	}
+	
+	@Test
+	public void testGetInstrucciones() {
+		assertEquals("instrucciones1", c1.getInstrucciones());
 	}
 	
 	//setters
@@ -105,6 +115,18 @@ public class CocheTest {
 	public void testSetIdCoche() {
 		c2.setIdCoche("id2");
 		assertEquals("id2", c2.getIdCoche());
+	}
+	
+	@Test
+	public void testSetCombustible() {
+		c2.setCombustible("combustible2");
+		assertEquals("combustible2", c2.getCombustible());
+	}
+	
+	@Test
+	public void testSetInstrucciones() {
+		c2.setInstrucciones("instrucciones2");
+		assertEquals("instrucciones2", c2.getInstrucciones());
 	}
 
 	@Test

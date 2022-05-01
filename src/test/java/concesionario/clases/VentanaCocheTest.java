@@ -1,4 +1,4 @@
-package concesionario.clases;
+/*package concesionario.clases;
 
 import static org.junit.Assert.*;
 
@@ -22,3 +22,4 @@ public class VentanaCocheTest {
 	
 
 }
+*/

@@ -6,13 +6,14 @@ import java.util.Objects;
 public class Coche {
 	
 	private String idCoche;
-	
 	private String matricula;
 	private String color;
 	private String marca;
 	private String modelo;
 	private double precioBase;
 	private String imagen;
+	private String combustible;
+	private String instrucciones;
 	private ArrayList<Extra> extras = new ArrayList();
 	
 	public Coche() {
@@ -20,7 +21,7 @@ public class Coche {
 	}
 	 
 	public Coche(String idCoche, String matricula, String color, String marca, String modelo, double precioBase,
-			String imagen, ArrayList<Extra> extras) {
+			String imagen,String combustible,String instrucciones, ArrayList<Extra> extras) {
 		super();
 		this.idCoche = idCoche;
 		this.matricula = matricula;
@@ -29,6 +30,8 @@ public class Coche {
 		this.modelo = modelo;
 		this.precioBase = precioBase;
 		this.imagen = imagen;
+		this.combustible = combustible;
+		this.instrucciones = instrucciones;
 		this.extras = extras;
 	}
 
@@ -104,7 +107,21 @@ public class Coche {
 		this.imagen = imagen;
 	}
 	
+	public String getCombustible() {
+		return combustible;
+	}
 
+	public void setCombustible(String combustible) {
+		this.combustible=combustible;
+	}
+
+	public String getInstrucciones() {
+		return instrucciones;
+	}
+
+	public void setInstrucciones(String instrucciones) {
+		this.instrucciones=instrucciones;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
