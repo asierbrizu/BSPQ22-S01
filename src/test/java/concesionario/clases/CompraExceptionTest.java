@@ -1,6 +1,6 @@
 package concesionario.clases;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.*; 
 
 import org.junit.Test;
 
@@ -12,5 +12,14 @@ public class CompraExceptionTest {
 	public void compraExceptionTest() {
 		CompraException cE = new CompraException("Error");
 	}
+	
+	@Test
+	public void toStringTest() {
+		CompraException cE = new CompraException("Error");
+		assertEquals("concesionario.util.CompraException: Error", cE.toString());
+	}
+	
+	
+	
 
 }
