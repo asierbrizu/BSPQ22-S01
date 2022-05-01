@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import concesionario.client.VentanaAdministrador;
-import concesionario.client.VentanaCoche;
 import concesionario.client.VentanaPanelCoche;
 
 public class VentanaPanelCocheTest {
