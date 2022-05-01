@@ -25,6 +25,7 @@ public class ExtraTest {
 		assertEquals(extra1.getPrecio(), 320.00, 0);
 	}
 	
+	@Test
 	public void setNombre() {
 		extra2.setNombre("Pintura mate");
 		assertEquals(extra2.getNombre(), "Pintura mate");
