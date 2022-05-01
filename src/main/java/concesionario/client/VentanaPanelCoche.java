@@ -150,15 +150,6 @@ public class VentanaPanelCoche extends JPanel{
 		setVisible(true);
 
 	}
-
-	public Coche getCoche() {
-		return coche;
-	}
-
-	public void setCoche(Coche coche) {
-		this.coche = coche;
-	}
-	
 	
 	
 
