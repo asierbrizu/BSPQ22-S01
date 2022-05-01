@@ -1,6 +1,8 @@
 **Concesionario ADAIA**
 =======================
 
+![java ci workflow](https://github.com/asierbrizu/BSPQ22-S01/actions/workflows/java-ci.yml/badge.svg)
+
 Compilar el proyecto
 --------------------
 
