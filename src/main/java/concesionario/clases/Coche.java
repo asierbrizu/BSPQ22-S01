@@ -104,8 +104,6 @@ public class Coche {
 		this.imagen = imagen;
 	}
 	
-	
-
 
 
 	@Override

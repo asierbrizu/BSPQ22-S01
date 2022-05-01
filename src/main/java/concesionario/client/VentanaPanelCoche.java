@@ -151,4 +151,15 @@ public class VentanaPanelCoche extends JPanel{
 
 	}
 
+	public Coche getCoche() {
+		return coche;
+	}
+
+	public void setCoche(Coche coche) {
+		this.coche = coche;
+	}
+	
+	
+	
+
 }
