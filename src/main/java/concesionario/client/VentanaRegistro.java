@@ -59,7 +59,7 @@ public class VentanaRegistro extends JFrame {
 	private static String correo;
 	private static Connection con;
 	
-	public VentanaRegistro(String hostname, String port) {
+	public VentanaRegistro() {
 		
 		panelIzquierda_1 = new JPanel();
 		con=null;
@@ -289,7 +289,7 @@ public class VentanaRegistro extends JFrame {
 					} catch (DBException e1) {
 						e1.printStackTrace();
 					}
-					new VentanaAdministrador(hostname, port);
+					new VentanaAdministrador();
 				
 			//}else {
 				//JOptionPane.showMessageDialog(null, "Quedan campos vacios o incorrectos.", "Error", JOptionPane.WARNING_MESSAGE);
@@ -310,7 +310,7 @@ public class VentanaRegistro extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				
-				new VentanaInicio(hostname, port);
+				new VentanaInicio();
 			}
 		});
 		btnCancelar.setText("Cancelar");

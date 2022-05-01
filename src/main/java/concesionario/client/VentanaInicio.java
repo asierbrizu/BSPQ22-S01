@@ -62,16 +62,16 @@ public class VentanaInicio extends JFrame {
 	public static Cliente clienteActual=null;
 
 	public static void main(String[] args) {
-		String hostname = args[0];
-		String port = args[1];
+		String hostname = "127.0.0.1";
+		String port = "8080";
 		
-		new VentanaInicio(hostname, port);
+		new VentanaInicio();
 	}
 
-	public VentanaInicio(String hostname, String port) {
+	public VentanaInicio() {
 		
 		client = ClientBuilder.newClient();
-		webTarget = client.target(String.format("http://%s:%s/rest", hostname, port));
+		webTarget = client.target(String.format("http://%s:%s/rest", "127.0.0.1","8080"));
 
 		
 		try {
@@ -144,7 +144,7 @@ public class VentanaInicio extends JFrame {
 		btnRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				new VentanaRegistro(hostname, port);
+				new VentanaRegistro();
 			}
 		});
 		btnRegistro.setBounds(10, 90, 151, 39);
@@ -176,7 +176,7 @@ public class VentanaInicio extends JFrame {
 						case 2:
 							dispose();
 							clienteActual=BD.obtenerInfoCliente(con, textEmail.getText());
-							new VentanaAdministrador(hostname, port);
+							new VentanaAdministrador();
 
 							break;
 						default:

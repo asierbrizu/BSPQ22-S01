@@ -33,9 +33,9 @@ public class VentanaCoche extends JPanel {
 	
 	private JPanel panelCentral = new JPanel();
 
-	public VentanaCoche(String hostname, String port, String marca) {
+	public VentanaCoche(String marca) {
 		
-		VentanaAdministrador ventanaAdministrador = new VentanaAdministrador(hostname, port);
+		VentanaAdministrador ventanaAdministrador = new VentanaAdministrador();
 				
 		panelCentral.setBackground(new Color(0, 0, 128));
 		panelCentral.setForeground(Color.WHITE);

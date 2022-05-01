@@ -41,7 +41,7 @@ public class VentanaAdministrador extends JFrame {
 	private HashMap<String, ArrayList<Coche>> hashMarcas = new HashMap<String, ArrayList<Coche>>();
  
 
-	public VentanaAdministrador(String hostname, String port) {
+	public VentanaAdministrador() {
 		
 		setLayout(new GridLayout(1,1));
 	
@@ -182,7 +182,7 @@ public class VentanaAdministrador extends JFrame {
 		menuItemCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				new VentanaInicio(hostname, port);
+				new VentanaInicio();
 			}
 		});
 		menuItemCerrarSesion.setText("Cerrar sesion");
