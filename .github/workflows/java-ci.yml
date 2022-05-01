@@ -9,9 +9,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 1.11
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
           java-version: 1.11
+          
+      - name: Build with Maven including integration tests
+        run: mvn --batch-mode --update-snapshots verify -Pintegracion
+        
       - uses: codecov/codecov-action@v2
 
       - name: Build with Maven including only unit testing (with SonarCloud)
@@ -19,10 +23,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Valky17_BSPQ22-S01
-
-      - uses: codecov/codecov-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Prepare database for integration tests
         run: | 
@@ -32,9 +32,6 @@ jobs:
           mvn --batch-mode --update-snapshots datanucleus:enhance
           mvn --batch-mode --update-snapshots datanucleus:schema-create
           mvn --batch-mode --update-snapshots exec:java -Pdatos
-
-      - name: Build with Maven including integration tests
-        run: mvn --batch-mode --update-snapshots verify -Pintegracion
 
       - name: Retrieve version
         run: echo "::set-output name=TAG_NAME::$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.version -q -DforceStdout)"
