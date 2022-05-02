@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -90,6 +91,8 @@ public class BDTest {
 		
 	}
 	
+	
+	
 	@Test
 	public void BDTest() throws DBException, SQLException{
 		BD b = new BD();
@@ -115,8 +118,24 @@ public class BDTest {
 	}
 	
 	@Test
-	public void testInsertarAdministrador() throws DBException, SQLException{
-		
+	public void existeEmailTest() throws SQLException, DBException{
+		try {
+			Class.forName("org.sqlite.JDBC");
+			con = DriverManager.getConnection("jdbc:sqlite:pruebas.db");
+			
+					
+		} catch (ClassNotFoundException e) {
+			
+			e.printStackTrace();
+			throw new DBException("No se pudo cargar el driver de la base de datos", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		bd.existeEmail(con, adBD.getEmail());
+	}
+	
+	@Test
+	public void testgetUltimaMatricula() throws DBException {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			con = DriverManager.getConnection("jdbc:sqlite:pruebas.db");
@@ -130,20 +149,46 @@ public class BDTest {
 			e.printStackTrace();
 		}
 		
-		bd.insertarUsuario(con, adBD.getEmail(), "1234", adBD.getNombre(), adBD.getApellido(), adBD.getDni(), adBD.getFechaNacimiento());
-		
-		
-		adTest.setNombre(adBD.getNombre());
-		assertEquals(adTest.getNombre(), adBD.getNombre());
-		adTest.setApellido(adBD.getApellido());
-		assertEquals(adTest.getApellido(), adBD.getApellido());
-		adTest.setDni(adBD.getDni());
-		assertEquals(adTest.getDni(), adBD.getDni());
-		adTest.setFechaNacimiento(adBD.getFechaNacimiento());
-		assertEquals(adTest.getFechaNacimiento(), adBD.getFechaNacimiento());
-		adTest.setEmail(adBD.getEmail());
-		assertEquals(adTest.getEmail(), adBD.getEmail());
+		String matricula = bd.getUltimaMatricula(con);
 	}
+	
+	@Test
+	public void testObtenerUsuario() throws DBException {
+		try {
+			Class.forName("org.sqlite.JDBC");
+			con = DriverManager.getConnection("jdbc:sqlite:pruebas.db");
+			
+					
+		} catch (ClassNotFoundException e) {
+			
+			e.printStackTrace();
+			throw new DBException("No se pudo cargar el driver de la base de datos", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		int numUsuario = bd.obtenerUsuario(con, "as", "1234");
+	}
+	
+	@Test
+	public void testObtenerAdministrador() throws DBException {
+		try {
+			Class.forName("org.sqlite.JDBC");
+			con = DriverManager.getConnection("jdbc:sqlite:pruebas.db");
+			
+					
+		} catch (ClassNotFoundException e) {
+			
+			e.printStackTrace();
+			throw new DBException("No se pudo cargar el driver de la base de datos", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		int numAdmin = bd.obtenerAdministrador(con, "as", "1234");
+	}
+	
+	
 	
 	@Test
 	public void testCloseBD() throws DBException {
@@ -164,7 +209,5 @@ public class BDTest {
 		
 		bd.closeBD(con);
 	}
-	
-	
 	
 }
