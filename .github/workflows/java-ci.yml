@@ -18,14 +18,14 @@ jobs:
         run: mvn --batch-mode --update-snapshots verify
       - uses: codecov/codecov-action@v2      
 
-      - name: Prepare database for integration tests
-        run: | 
-          sudo /etc/init.d/mysql start
-          mysql -uroot -proot < pruebas.db
-          mvn --batch-mode --update-snapshots compile 
-          mvn --batch-mode --update-snapshots datanucleus:enhance
-          mvn --batch-mode --update-snapshots datanucleus:schema-create
-          mvn --batch-mode --update-snapshots exec:java -Pdatos
+     # - name: Prepare database for integration tests
+      #  run: | 
+       #   sudo /etc/init.d/mysql start
+        #  mysql -uroot -proot < pruebas.db
+         # mvn --batch-mode --update-snapshots compile 
+         # mvn --batch-mode --update-snapshots datanucleus:enhance
+         # mvn --batch-mode --update-snapshots datanucleus:schema-create
+         # mvn --batch-mode --update-snapshots exec:java -Pdatos
 
       - name: Retrieve version
         run: echo "::set-output name=TAG_NAME::$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.version -q -DforceStdout)"
