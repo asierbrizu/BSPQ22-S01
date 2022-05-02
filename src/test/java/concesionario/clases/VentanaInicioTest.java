@@ -1,4 +1,4 @@
-/*package concesionario.clases;
+package concesionario.clases;
 
 import static org.junit.Assert.*;
 
@@ -9,13 +9,13 @@ import concesionario.util.CompraException;
 
 public class VentanaInicioTest {
 
-
-
-
 		@Test
 		public void test() {
-			VentanaInicio vI = new VentanaInicio();
+			try {
+				VentanaInicio vI = new VentanaInicio();
+			} catch (Exception e) {
+				// TODO: handle exception
+			}	
 		}
-
 	
-}*/
+}
