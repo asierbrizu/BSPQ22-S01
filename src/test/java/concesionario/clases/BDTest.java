@@ -2,7 +2,7 @@ package concesionario.clases;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
+import static org.mockito.Mockito.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,7 +18,9 @@ import concesionario.server.bd.DBException;
 public class BDTest {
 
 	Cliente clBD = new Cliente("Emiliano", "Sierra", "28/05/1978", "12345678P", "emiliano@gmail.com");
+	Cliente adBD = new Cliente("Manu", "Ortega", "18/11/1998", "12345678D", "manu@gmail.com");
 	Cliente clTest = new Cliente();
+	Cliente adTest = new Cliente();
 	Connection con = null;
 	
 	BD bd;
@@ -94,6 +96,55 @@ public class BDTest {
 		
 	}
 	
+
+	@Test
+	public void existeDNITest() throws SQLException, DBException{
+		try {
+			Class.forName("org.sqlite.JDBC");
+			con = DriverManager.getConnection("jdbc:sqlite:pruebas.db");
+			
+					
+		} catch (ClassNotFoundException e) {
+			
+			e.printStackTrace();
+			throw new DBException("No se pudo cargar el driver de la base de datos", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		bd.existeDni(con, "1111111A");
+	}
+	
+	@Test
+	public void testInsertarAdministrador() throws DBException, SQLException{
+		
+		try {
+			Class.forName("org.sqlite.JDBC");
+			con = DriverManager.getConnection("jdbc:sqlite:pruebas.db");
+			
+					
+		} catch (ClassNotFoundException e) {
+			
+			e.printStackTrace();
+			throw new DBException("No se pudo cargar el driver de la base de datos", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		bd.insertarUsuario(con, adBD.getEmail(), "1234", adBD.getNombre(), adBD.getApellido(), adBD.getDni(), adBD.getFechaNacimiento());
+		
+		
+		adTest.setNombre(adBD.getNombre());
+		assertEquals(adTest.getNombre(), adBD.getNombre());
+		adTest.setApellido(adBD.getApellido());
+		assertEquals(adTest.getApellido(), adBD.getApellido());
+		adTest.setDni(adBD.getDni());
+		assertEquals(adTest.getDni(), adBD.getDni());
+		adTest.setFechaNacimiento(adBD.getFechaNacimiento());
+		assertEquals(adTest.getFechaNacimiento(), adBD.getFechaNacimiento());
+		adTest.setEmail(adBD.getEmail());
+		assertEquals(adTest.getEmail(), adBD.getEmail());
+	}
+	
 	@Test
 	public void testCloseBD() throws DBException {
 		
@@ -113,4 +164,7 @@ public class BDTest {
 		
 		bd.closeBD(con);
 	}
+	
+	
+	
 }
