@@ -10,7 +10,14 @@ public class VentanaRegistroTest {
 
 	@Test
 	public void test() {
-		VentanaRegistro vr = new VentanaRegistro();
+		try {
+			VentanaRegistro vr = new VentanaRegistro();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 	}
 
 }
+
+
