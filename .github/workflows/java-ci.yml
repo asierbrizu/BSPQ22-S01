@@ -16,24 +16,16 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots verify
-      - uses: codecov/codecov-action@v2
-      - name: Build and analyze
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Valky17_BSPQ22-S01
-        
+      - uses: codecov/codecov-action@v2      
 
-
-
-      - name: Prepare database for integration tests
-        run: | 
-          sudo /etc/init.d/mysql start
-          mysql -uroot -proot < pruebas.sql
-          mvn --batch-mode --update-snapshots compile 
-          mvn --batch-mode --update-snapshots datanucleus:enhance
-          mvn --batch-mode --update-snapshots datanucleus:schema-create
-          mvn --batch-mode --update-snapshots exec:java -Pdatos
+     # - name: Prepare database for integration tests
+      #  run: | 
+       #   sudo /etc/init.d/mysql start
+        #  mysql -uroot -proot < pruebas.db
+         # mvn --batch-mode --update-snapshots compile 
+         # mvn --batch-mode --update-snapshots datanucleus:enhance
+         # mvn --batch-mode --update-snapshots datanucleus:schema-create
+         # mvn --batch-mode --update-snapshots exec:java -Pdatos
 
       - name: Retrieve version
         run: echo "::set-output name=TAG_NAME::$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.version -q -DforceStdout)"
@@ -45,13 +37,3 @@ jobs:
           tag_name: ${{ steps.version.outputs.TAG_NAME }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: target/simple-service-${{ steps.version.outputs.TAG_NAME }}.jar
-          asset_name: simple-service-${{ steps.version.outputs.TAG_NAME }}.jar
-          tag: ${{ steps.version.outputs.TAG_NAME }}
-          release_name: ${{ steps.version.outputs.TAG_NAME }}
-          overwrite: true
