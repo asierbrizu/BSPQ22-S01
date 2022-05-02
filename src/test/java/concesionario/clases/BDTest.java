@@ -19,18 +19,17 @@ public class BDTest {
 
 	Cliente clBD = new Cliente("Emiliano", "Sierra", "28/05/1978", "12345678P", "emiliano@gmail.com");
 	Cliente clTest = new Cliente();
+	Connection con = null;
 	
-	static BD bd;
+	BD bd;
 
 	@Test 
 	public void testInitBD() throws DBException, SQLException {
 		bd.initBD("pruebas.db");
 	}
 	
-	@Test
-	public void testCloseBD() throws DBException {
+	public void testCrearTablas() throws DBException {
 		
-		Connection con = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
 			con = DriverManager.getConnection("jdbc:sqlite:pruebas.db");
@@ -44,14 +43,38 @@ public class BDTest {
 			e.printStackTrace();
 		}
 		
-		bd.closeBD(con);
+		bd.crearTablas(con);
 	}
 	
 	@Test
 	public void testInsertarUsuario() throws DBException, SQLException{
 		
+		try {
+			Class.forName("org.sqlite.JDBC");
+			con = DriverManager.getConnection("jdbc:sqlite:pruebas.db");
+			
+					
+		} catch (ClassNotFoundException e) {
+			
+			e.printStackTrace();
+			throw new DBException("No se pudo cargar el driver de la base de datos", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		bd.insertarUsuario(con, clBD.getEmail(), "1234", clBD.getNombre(), clBD.getApellido(), clBD.getDni(), clBD.getFechaNacimiento());
 		
 		
+		clTest.setNombre(clBD.getNombre());
+		assertEquals(clTest.getNombre(), clBD.getNombre());
+		clTest.setApellido(clBD.getApellido());
+		assertEquals(clTest.getApellido(), clBD.getApellido());
+		clTest.setDni(clBD.getDni());
+		assertEquals(clTest.getDni(), clBD.getDni());
+		clTest.setFechaNacimiento(clBD.getFechaNacimiento());
+		assertEquals(clTest.getFechaNacimiento(), clBD.getFechaNacimiento());
+		clTest.setEmail(clBD.getEmail());
+		assertEquals(clTest.getEmail(), clBD.getEmail());
 	}
 	
 	@Test
@@ -69,5 +92,25 @@ public class BDTest {
 	public void BDTest() throws DBException, SQLException{
 		BD b = new BD();
 		
+	}
+	
+	@Test
+	public void testCloseBD() throws DBException {
+		
+		
+		try {
+			Class.forName("org.sqlite.JDBC");
+			con = DriverManager.getConnection("jdbc:sqlite:pruebas.db");
+			
+					
+		} catch (ClassNotFoundException e) {
+			
+			e.printStackTrace();
+			throw new DBException("No se pudo cargar el driver de la base de datos", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		bd.closeBD(con);
 	}
 }
