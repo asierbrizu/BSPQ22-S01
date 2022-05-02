@@ -23,7 +23,7 @@ jobs:
         env:
           GITHUB_TOKEN: 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  
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Valky17_BSPQ22-S01
+        run: mvn verify sonar:sonar -Dsonar.projectKey=asierbrizu_BSPQ22-S01
 
       - name: Prepare database for integration tests
         run: | 
