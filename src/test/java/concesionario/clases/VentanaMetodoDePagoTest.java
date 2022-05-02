@@ -4,11 +4,13 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import concesionario.client.VentanaMetodoDePago;
+
 public class VentanaMetodoDePagoTest {
 
 	@Test
 	public void test() {
-		VentanaMetodoDePagoTest pago = new VentanaMetodoDePagoTest();
+		VentanaMetodoDePago pago = new VentanaMetodoDePago(new Coche("1", "A","Rojo", "Renault","Scenic 12", 20199.99f,"imagen","combustible1","instrucciones1", null));
 	}
 
 }
