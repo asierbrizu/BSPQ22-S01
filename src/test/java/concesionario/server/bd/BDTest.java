@@ -1,4 +1,4 @@
-package concesionario.clases;
+package concesionario.server.bd;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import concesionario.clases.Cliente;
 import concesionario.server.bd.BD;
 import concesionario.server.bd.DBException;
 

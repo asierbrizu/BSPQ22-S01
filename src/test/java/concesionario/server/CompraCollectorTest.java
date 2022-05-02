@@ -1,9 +1,11 @@
-/*package concesionario.clases;
+package concesionario.server;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import concesionario.clases.Cliente;
+import concesionario.clases.Compra;
 import concesionario.server.CompraCollector;
 import concesionario.server.bd.BD;
 
@@ -32,4 +34,3 @@ public class CompraCollectorTest {
 	}
 
 }
-*/

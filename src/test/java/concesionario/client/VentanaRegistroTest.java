@@ -1,4 +1,4 @@
-package concesionario.clases;
+package concesionario.client;
 
 import static org.junit.Assert.*;
 

@@ -1,4 +1,4 @@
-package concesionario.clases;
+package concesionario.server;
 
 import static org.junit.Assert.*;
 
@@ -6,6 +6,8 @@ import javax.ws.rs.core.Response;
 
 import org.junit.Test;
 
+import concesionario.clases.Cliente;
+import concesionario.clases.Compra;
 import concesionario.server.ConcesionarioServer;
 
 public class ConcesionarioServerTest {

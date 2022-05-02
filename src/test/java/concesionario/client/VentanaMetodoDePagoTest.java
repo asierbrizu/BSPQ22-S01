@@ -1,9 +1,10 @@
-package concesionario.clases;
+package concesionario.client;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import concesionario.clases.Coche;
 import concesionario.client.VentanaMetodoDePago;
 
 public class VentanaMetodoDePagoTest {
