@@ -2,6 +2,7 @@
 =======================
 
 ![java ci workflow](https://github.com/asierbrizu/BSPQ22-S01/actions/workflows/java-ci.yml/badge.svg)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=asierbrizu_BSPQ22-S01&metric=coverage)](https://sonarcloud.io/summary/new_code?id=asierbrizu_BSPQ22-S01)
 
 Compilar el proyecto
 --------------------
