@@ -16,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import concesionario.clases.Coche;
 import concesionario.util.CompraException;
@@ -24,6 +26,7 @@ public class VentanaMetodoDePago extends JFrame{
 
 	private JTextField textField;
 	private JTextField textField_1;
+	private JButton btnPagar;
 
 
 
@@ -53,7 +56,7 @@ public class VentanaMetodoDePago extends JFrame{
 			}
 		});
 		
-		JButton btnPagar = new JButton("Pagar");
+		btnPagar = new JButton("Pagar");
 		btnPagar.setBackground(Color.BLACK);
 		btnPagar.setForeground(Color.WHITE);
 		btnPagar.addActionListener(new ActionListener() {
@@ -70,6 +73,7 @@ public class VentanaMetodoDePago extends JFrame{
 			}
 		});
 		btnPagar.setBounds(144, 311, 112, 23);
+		btnPagar.setEnabled(false);
 		getContentPane().add(btnPagar);
 		
 		Component horizontalStrut = Box.createHorizontalStrut(20);
@@ -125,7 +129,37 @@ public class VentanaMetodoDePago extends JFrame{
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
+		textField.getDocument().addDocumentListener(new DocumentListener() {
+			
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				checkTarjeta();
+				
+			}
+			
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				checkTarjeta();
+				
+			}
+			
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				checkTarjeta();
+				
+			}
+		});
+		
 		setVisible(true);
+	}
+	
+	
+	public void checkTarjeta(){
+		if(textField.getText().length() == 16 && textField_1.getText().length() == 3){
+			btnPagar.setEnabled(true);
+		} else {
+			btnPagar.setEnabled(false);
+		}
 	}
 	
 }
