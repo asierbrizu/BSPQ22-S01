@@ -45,6 +45,8 @@ public class VentanaAdministrador extends JFrame {
 		
 		setLayout(new GridLayout(1,1));
 	
+		
+
 		panelPrincipal = new JPanel();
 		panelPrincipal.setBackground(Color.WHITE);
 		add(panelPrincipal);
@@ -168,7 +170,10 @@ public class VentanaAdministrador extends JFrame {
 		menuEmpleados.add(menuItemGestionarEmpleados);
 		menuItemGestionarEmpleados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+
+
 				
+
 			}
 
 		});
@@ -202,9 +207,10 @@ public class VentanaAdministrador extends JFrame {
 		menuItemVentanaEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				dispose();
-				new VentanaRRHH();
 
-			}
+
+			
+		}
 		});
 
 		setJMenuBar(menuPrincipal);
