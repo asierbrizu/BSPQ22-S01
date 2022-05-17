@@ -107,7 +107,6 @@ public class VentanaAdministrador extends JFrame {
 				e1.printStackTrace();	
 			}
 			
-			
 		}
 		
 		

@@ -100,6 +100,8 @@ public class VentanaEmpleado extends JFrame{
 
 		listaEmpleados.setText("Lista Empleados");
 		menuPrincipal.add(listaEmpleados);
+		
+		
 
 		volverInicio.setText("Volver");
 		menuPrincipal.add(volverInicio);

@@ -90,15 +90,15 @@ public class BD {
 		}
 		return resul;
 	}
-	public static Cliente obtenerInfoCliente(Connection con, String email) throws DBException {
-		String sentencia = "SELECT nombre,apellido,dni,fecha_ncto FROM Usuario WHERE email = '"+email+"'";
+	public static Cliente obtenerInfoCliente(Connection con, String tipo) throws DBException {
+		String sentencia = "SELECT nombre,apellido,dni,email,fecha_ncto FROM Usuario WHERE tipo = '"+tipo+"'";
 		Statement st = null;
 		Cliente cliente= new Cliente();
 		try {
 			st = con.createStatement();
 			ResultSet rs = st.executeQuery(sentencia);
 			if(rs.next()) {
-				cliente=new Cliente(rs.getString("nombre"), rs.getString("apellido"), rs.getString("fecha_ncto"), rs.getString("dni"), email, rs.getString("tipo"));
+				cliente=new Cliente(rs.getString("nombre"), rs.getString("apellido"), rs.getString("fecha_ncto"), rs.getString("dni"), rs.getString("email"), null);
 			}
 			rs.close();
 		} catch (SQLException e) {
@@ -166,7 +166,7 @@ public class BD {
 	 * @throws DBException
 	 */
 	public static void crearTablas(Connection con) throws DBException {
-		String sentencia1 = "CREATE TABLE IF NOT EXISTS Usuario (email String, contrasenya String, nombre String, apellido String, dni String, fecha_ncto String)";
+		String sentencia1 = "CREATE TABLE IF NOT EXISTS Usuario (email String, contrasenya String, nombre String, apellido String, dni String, fecha_ncto String, tipo String)";
 		String sentencia2 = "CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)";
 		String sentencia3 = "CREATE TABLE IF NOT EXISTS Compra (ID String, usuario String, matricula String, fecha String)";
 		String sentencia4 = "CREATE TABLE IF NOT EXISTS Coche(matricula String , marca String ,modelo String, color String, precio double)";
@@ -202,7 +202,7 @@ public class BD {
 	
 	public static void insertarUsuario(Connection con, String email, String contra, String nombre, String apellido, String dni, String fecha_ncto, String tipo) throws DBException {
 		
-		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Usuario (email, contrasenya , nombre , apellido , dni , fecha_ncto, tipo) VALUES (?,?,?,?,?,?,?)"); 
+		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO usuario (email, contrasenya , nombre , apellido , dni , fecha_ncto, tipo) VALUES (?,?,?,?,?,?,?)"); 
 				Statement stmtForId = con.createStatement()) {
 				
 				stmt.setString(1, email);
@@ -212,7 +212,6 @@ public class BD {
 				stmt.setString(5, dni);
 				stmt.setString(6, fecha_ncto);
 				stmt.setString(7, tipo);
-
 		
 				stmt.executeUpdate();
 				stmt.close();
