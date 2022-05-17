@@ -207,7 +207,7 @@ public class VentanaAdministrador extends JFrame {
 		menuItemVentanaEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				dispose();
-
+				new VentanaEmpleado();
 
 			
 		}
