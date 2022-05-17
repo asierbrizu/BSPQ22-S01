@@ -86,22 +86,40 @@ public class VentanaMetodoDePago extends JFrame{
 		btnPayPal.setForeground(Color.WHITE);
 		btnPayPal.setBounds(10, 86, 124, 23);
 		getContentPane().add(btnPayPal);
-		
-		JButton btnBizum = new JButton("Bizum Pay");
-		btnBizum.addActionListener(new ActionListener() {
+		btnPayPal.addActionListener(new ActionListener() {
+			
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new VentanaPayPal(coche);
+				
 			}
 		});
+		
+		JButton btnBizum = new JButton("Bizum Pay");
 		btnBizum.setForeground(Color.WHITE);
 		btnBizum.setBackground(new Color(60, 179, 113));
 		btnBizum.setBounds(144, 86, 125, 23);
 		getContentPane().add(btnBizum);
+		btnBizum.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		
 		JButton btnApplePay = new JButton("Apple Pay");
 		btnApplePay.setForeground(SystemColor.infoText);
 		btnApplePay.setBackground(SystemColor.window);
 		btnApplePay.setBounds(10, 120, 124, 23);
 		getContentPane().add(btnApplePay);
+		btnApplePay.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Tarjeta de credito: ", TitledBorder.LEADING, TitledBorder.TOP, null, null));
