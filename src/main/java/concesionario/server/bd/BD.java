@@ -169,7 +169,7 @@ public class BD {
 		String sentencia1 = "CREATE TABLE IF NOT EXISTS Usuario (email String, contrasenya String, nombre String, apellido String, dni String, fecha_ncto String)";
 		String sentencia2 = "CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)";
 		String sentencia3 = "CREATE TABLE IF NOT EXISTS Compra (ID String, usuario String, matricula String, fecha String)";
-		String sentencia4 = "CREATE TABLE IF NOT EXISTS Coche(matricula String , marca String ,modelo String, color String, precio doubñe)";
+		String sentencia4 = "CREATE TABLE IF NOT EXISTS Coche(matricula String , marca String ,modelo String, color String, precio double)";
 		
 
 		Statement st = null;
