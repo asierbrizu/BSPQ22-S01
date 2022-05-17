@@ -9,17 +9,20 @@ public class Cliente {
 	private String fechaNacimiento;
 	private String dni;
 	private String email;
+	private String tipo;
+	
 	public Cliente() {
 		
 	}
 
-	public Cliente(String nombre, String apellido, String fechaNacimiento, String dni, String email) {
+	public Cliente(String nombre, String apellido, String fechaNacimiento, String dni, String email, String tipo) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.fechaNacimiento = fechaNacimiento;
 		this.dni = dni;
 		this.email = email;
+		this.tipo = tipo;
 	}
 
 	public String getNombre() {
@@ -62,6 +65,14 @@ public class Cliente {
 		this.email = email;
 	}
 
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -98,7 +98,7 @@ public class BD {
 			st = con.createStatement();
 			ResultSet rs = st.executeQuery(sentencia);
 			if(rs.next()) {
-				cliente=new Cliente(rs.getString("nombre"), rs.getString("apellido"), rs.getString("fecha_ncto"), rs.getString("dni"), email);
+				cliente=new Cliente(rs.getString("nombre"), rs.getString("apellido"), rs.getString("fecha_ncto"), rs.getString("dni"), email, rs.getString("tipo"));
 			}
 			rs.close();
 		} catch (SQLException e) {
@@ -128,7 +128,7 @@ public class BD {
 	 * @throws DBException 
 	 */
 	public static int obtenerAdministrador(Connection con, String usuario, String contra) throws DBException {
-		String sentencia = "SELECT contrasenya FROM Administrador WHERE usuario = '"+usuario+"'";
+		String sentencia = "SELECT contrasenya FROM usuario WHERE usuario = '"+usuario+"' AND tipo = 'administrador'";
 		Statement st = null;
 		int resul = 0;
 		try {
@@ -200,9 +200,9 @@ public class BD {
 		
 	}
 	
-	public static void insertarUsuario(Connection con, String email, String contra, String nombre, String apellido, String dni, String fecha_ncto ) throws DBException {
+	public static void insertarUsuario(Connection con, String email, String contra, String nombre, String apellido, String dni, String fecha_ncto, String tipo) throws DBException {
 		
-		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Usuario (email, contrasenya , nombre , apellido , dni , fecha_ncto) VALUES (?,?,?,?,?,?)"); 
+		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Usuario (email, contrasenya , nombre , apellido , dni , fecha_ncto, tipo) VALUES (?,?,?,?,?,?,?)"); 
 				Statement stmtForId = con.createStatement()) {
 				
 				stmt.setString(1, email);
@@ -211,6 +211,7 @@ public class BD {
 				stmt.setString(4, apellido);
 				stmt.setString(5, dni);
 				stmt.setString(6, fecha_ncto);
+				stmt.setString(7, tipo);
 
 		
 				stmt.executeUpdate();
@@ -243,7 +244,7 @@ public class BD {
 	 */
 	public static void insertarAdministrador(Connection con, String usuario, String contra) throws DBException {
 	
-		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Administrador (usuario, contrasenya) VALUES (?,?)"); 
+		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO usuario (usuario, contrasenya) VALUES (?,?)"); 
 				Statement stmtForId = con.createStatement()) {
 				
 				stmt.setString(1, usuario);
