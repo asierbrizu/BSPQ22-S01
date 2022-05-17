@@ -7,7 +7,7 @@ import concesionario.clases.Cliente;
 
 public class ClienteTest {
 	
-	Cliente c1=new Cliente("Jon","Fernandez", "01-01-2000","1111111A","j@gmail.com");
+	Cliente c1=new Cliente("Jon","Fernandez", "01-01-2000","1111111A","j@gmail.com", null);
 	Cliente c2= new Cliente();
 
 	@Test

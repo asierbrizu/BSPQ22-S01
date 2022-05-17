@@ -12,7 +12,7 @@ import concesionario.server.bd.BD;
 public class CompraCollectorTest {
 
 	CompraCollector cc = new CompraCollector();
-	Compra c1 = new Compra("1", new Cliente("Asier", "Martinez", "31-12-2000", "12345678A", "pato@gmail.com"), "5143LMV", "01-05-2022", "70");
+	Compra c1 = new Compra("1", new Cliente("Asier", "Martinez", "31-12-2000", "12345678A", "pato@gmail.com", null), "5143LMV", "01-05-2022", "70");
 
 	
 	@Test

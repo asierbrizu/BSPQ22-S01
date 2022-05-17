@@ -16,7 +16,7 @@ public class CompraTest {
  * */
 	
 	Compra c1 = new Compra();
-	Compra c2 = new Compra("1", new Cliente("Asier", "Brizuela", "01-01-1999", "12345678A", "asierbrizu@opendeusto.es"), "123AAA", "27-04-2022", "70");
+	Compra c2 = new Compra("1", new Cliente("Asier", "Brizuela", "01-01-1999", "12345678A", "asierbrizu@opendeusto.es", null), "123AAA", "27-04-2022", "70");
 	
 	@Test
 	public void testGetId() {
@@ -33,7 +33,7 @@ public class CompraTest {
 	}
 	@Test
 	public void testSetCliente() {
-		c1.setCliente(new Cliente("David", "Herrero", "02-02-2000", "23423423B", "davidherrero@opendeusto.es"));
+		c1.setCliente(new Cliente("David", "Herrero", "02-02-2000", "23423423B", "davidherrero@opendeusto.es", null));
 		assertEquals("23423423B", c1.getCliente().getDni());
 	}
 	@Test

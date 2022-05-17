@@ -271,7 +271,7 @@ public class VentanaRegistro extends JFrame {
 					System.out.println("3");
 					try {
 						System.out.println("4");
-						BD.insertarUsuario(con, textCorreo.getText(), txtContrasenia.getText(), txtNombre.getText(), txtApellido.getText(), txtDni.getText(), fechaStr);
+						BD.insertarUsuario(con, textCorreo.getText(), txtContrasenia.getText(), txtNombre.getText(), txtApellido.getText(), txtDni.getText(), fechaStr, null);
 					} catch (DBException e1) {
 						e1.printStackTrace();
 					}

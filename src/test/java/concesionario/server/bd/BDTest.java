@@ -19,8 +19,8 @@ import concesionario.server.bd.DBException;
 
 public class BDTest {
 
-	Cliente clBD = new Cliente("Emiliano", "Sierra", "28/05/1978", "12345678P", "emiliano@gmail.com");
-	Cliente adBD = new Cliente("Manu", "Ortega", "18/11/1998", "12345678D", "manu@gmail.com");
+	Cliente clBD = new Cliente("Emiliano", "Sierra", "28/05/1978", "12345678P", "emiliano@gmail.com", null);
+	Cliente adBD = new Cliente("Manu", "Ortega", "18/11/1998", "12345678D", "manu@gmail.com", null);
 	Cliente clTest = new Cliente();
 	Cliente adTest = new Cliente();
 	Connection con = null;
@@ -66,7 +66,7 @@ public class BDTest {
 			e.printStackTrace();
 		}
 		
-		bd.insertarUsuario(con, clBD.getEmail(), "1234", clBD.getNombre(), clBD.getApellido(), clBD.getDni(), clBD.getFechaNacimiento());
+		bd.insertarUsuario(con, clBD.getEmail(), "1234", clBD.getNombre(), clBD.getApellido(), clBD.getDni(), clBD.getFechaNacimiento(), null);
 		
 		
 		clTest.setNombre(clBD.getNombre());

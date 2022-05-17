@@ -6,12 +6,20 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+
+import concesionario.clases.Coche;
+import concesionario.server.bd.BD;
+import concesionario.server.bd.DBException;
 
 public class VentanaEmpleado extends JFrame{
 	static JPanel panelPrincipal;
@@ -20,6 +28,9 @@ public class VentanaEmpleado extends JFrame{
 	private static JMenu volverInicio;
 	private static JMenu listaMecanicos;
 	private static JMenu listaEmpleados;
+	private JMenuItem menuItemVolverInicio;
+	private JMenuItem menuItemCerrarSesion;
+	
 
 	public VentanaEmpleado(){
 		setLayout(new GridLayout(1,1));
@@ -32,6 +43,43 @@ public class VentanaEmpleado extends JFrame{
 		menuPrincipal.setBackground(Color.LIGHT_GRAY);
 		listaMecanicos = new JMenu();
 		listaMecanicos.setMnemonic('C');
+		
+		ArrayList<String> marcas = new ArrayList<>();
+		
+		for (String  marca : marcas) {
+
+			Connection con =null;
+			try {
+				con = BD.initBD("concesionario.db");
+
+				try {
+					BD.crearTablas(con);
+				} catch (DBException e3) {
+					e3.printStackTrace();
+				}
+				
+				try {
+					ArrayList<Coche> temp = new ArrayList<>();
+					temp = BD.listaCoches(con, marca);
+					for (Coche c : temp) {
+						//listaCoches.add(c);
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+			} catch (DBException e1) {
+				e1.printStackTrace();
+			}
+			
+			try {
+				BD.closeBD(con);
+			} catch (DBException e1) {
+				e1.printStackTrace();	
+			}
+			
+			
+		}
 
 		listaEmpleados = new JMenu();
 		listaEmpleados.setMnemonic('U');
@@ -53,19 +101,35 @@ public class VentanaEmpleado extends JFrame{
 		listaEmpleados.setText("Lista Empleados");
 		menuPrincipal.add(listaEmpleados);
 
-		volverInicio.setText("Volver Inicio");
+		volverInicio.setText("Volver");
 		menuPrincipal.add(volverInicio);
 
-		volverInicio.addActionListener(new ActionListener() {
+		menuItemVolverInicio = new JMenuItem();
+		menuItemVolverInicio.setText("Ventana Inicio");
+		volverInicio.add(menuItemVolverInicio);
+		menuItemVolverInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				dispose();
-				//new VentanaRRHH();
+				new VentanaAdministrador();
 
 			}
+
+		});
+		
+		menuItemCerrarSesion = new JMenuItem();
+		menuItemCerrarSesion.setText("Cerrar Sesion");
+		volverInicio.add(menuItemCerrarSesion);
+		menuItemCerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				dispose();
+				new VentanaInicio();
+
+			}
+
 		});
 
 		setJMenuBar(menuPrincipal);
-		setTitle("VENTANA RRHH");
+		setTitle("VENTANA EMPLEADO");
 
 
 		pack();
