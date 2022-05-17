@@ -171,7 +171,7 @@ public class BDTest {
 		int numUsuario = bd.obtenerUsuario(con, "as", "1234");
 	}
 	
-	@Test
+	/*@Test
 	public void testObtenerAdministrador() throws DBException {
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -187,7 +187,7 @@ public class BDTest {
 		}
 		
 		int numAdmin = bd.obtenerAdministrador(con, "as", "1234");
-	}
+	}*/
 	
 	
 	

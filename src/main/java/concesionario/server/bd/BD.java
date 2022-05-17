@@ -127,7 +127,7 @@ public class BD {
 	 * 		   2 si el administrador esta  registrado y la contrasenia es correcta
 	 * @throws DBException 
 	 */
-	public static int obtenerAdministrador(Connection con, String usuario, String contra) throws DBException {
+	/*public static int obtenerAdministrador(Connection con, String usuario, String contra) throws DBException {
 		String sentencia = "SELECT contrasenya FROM usuario WHERE usuario = '"+usuario+"' AND tipo = 'administrador'";
 		Statement st = null;
 		int resul = 0;
@@ -158,7 +158,7 @@ public class BD {
 			}
 		}
 		return resul;
-	}
+	}*/
 	
 	/**
 	 * Método que crea las tablas en la BBDD si no existen
