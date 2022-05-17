@@ -150,8 +150,31 @@ public class VentanaMetodoDePago extends JFrame{
 			}
 		});
 		
+		textField_1.getDocument().addDocumentListener(new DocumentListener() {
+			
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				checkTarjeta();
+				
+			}
+			
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				checkTarjeta();
+				
+			}
+			
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				checkTarjeta();
+				
+			}
+		});
+		
 		setVisible(true);
 	}
+	
+	
 	
 	
 	public void checkTarjeta(){
