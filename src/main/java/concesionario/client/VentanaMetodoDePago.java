@@ -103,7 +103,8 @@ public class VentanaMetodoDePago extends JFrame{
 		getContentPane().add(btnBizum);
 		btnBizum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				new VentanaBizum(coche);
+				dispose();
 			}
 		});
 		
