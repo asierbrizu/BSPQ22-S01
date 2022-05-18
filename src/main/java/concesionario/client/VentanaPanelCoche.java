@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -76,13 +78,8 @@ public class VentanaPanelCoche extends JPanel{
 					pagina++;
 					lblNewLabel.setText(coche.getModelo());
 					//
-					BufferedImage img = null;
-					try {
-					    img = ImageIO.read(new File("img/"+ coche.getMarca() + "-" + coche.getModelo() +".png"));
-					    
-					} catch (IOException e2) {
-					    e2.printStackTrace();
-					}
+					URL urlImagen=getClass().getResource("/img/"+ coche.getMarca() + "-" + coche.getModelo() +".png");
+					Image img = new ImageIcon(urlImagen).getImage();
 					Image dimg = img.getScaledInstance(anchoRecrote, altoRecorte,  Image.SCALE_SMOOTH);
 					//
 					lblNewLabel_1.setIcon(new ImageIcon(dimg));
@@ -105,13 +102,9 @@ public class VentanaPanelCoche extends JPanel{
 					pagina--;
 					lblNewLabel.setText(coche.getModelo());
 					//
-					BufferedImage img = null;
-					try {
-					    img = ImageIO.read(new File("img/"+ coche.getMarca() + "-" + coche.getModelo() +".png"));
+					URL urlImagen=getClass().getResource("/img/"+ coche.getMarca() + "-" + coche.getModelo() +".png");
+					Image img = new ImageIcon(urlImagen).getImage();
 					    
-					} catch (IOException e2) {
-					    e2.printStackTrace();
-					}
 					Image dimg = img.getScaledInstance(anchoRecrote, altoRecorte,  Image.SCALE_SMOOTH);
 					lblNewLabel_1.setIcon(new ImageIcon(dimg));
 					repaint();
@@ -135,13 +128,8 @@ public class VentanaPanelCoche extends JPanel{
 		panel_2.add(lblNewLabel, BorderLayout.NORTH);
 
 		lblNewLabel_1 = new JLabel();
-		BufferedImage img = null;
-		try {
-		    img = ImageIO.read(new File("img/"+ coche.getMarca() + "-" + coche.getModelo() +".png"));
-		    
-		} catch (IOException e2) {
-		    e2.printStackTrace();
-		}
+		URL urlImagen=getClass().getResource("/img/"+ coche.getMarca() + "-" + coche.getModelo() +".png");
+		Image img = new ImageIcon(urlImagen).getImage();
 		Image dimg = img.getScaledInstance(anchoRecrote, altoRecorte,  Image.SCALE_SMOOTH);
 		lblNewLabel_1.setIcon(new ImageIcon(dimg));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);

@@ -3,9 +3,11 @@ package concesionario.client;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.HeadlessException;
+import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -114,7 +116,8 @@ public class VentanaInicio extends JFrame {
 		getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("img/iconoAdaia.png"));
+		URL urlImagen=getClass().getResource("/img/iconoAdaia.png");
+		lblNewLabel_1.setIcon(new ImageIcon(urlImagen));
 		lblNewLabel_1.setBounds(118, 67, 100, 100);
 		getContentPane().add(lblNewLabel_1);
 		
