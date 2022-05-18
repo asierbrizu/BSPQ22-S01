@@ -268,7 +268,7 @@ public class VentanaRegistro extends JFrame{
 
 		boolean existeEmail1 = false;
 		try {
-			existeEmail1 = BD.existeEmail(con, correo);
+			existeEmail1 = bd.existeEmail(con, correo);
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}

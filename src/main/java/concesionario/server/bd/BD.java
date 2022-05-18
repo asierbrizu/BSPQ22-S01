@@ -60,7 +60,7 @@ public class BD {
 
 
 	
-	public static int obtenerUsuario(Connection con, String usuario, String contra) throws DBException {
+	public int obtenerUsuario(Connection con, String usuario, String contra) throws DBException {
 		String sentencia = "SELECT contrasenya FROM Usuario WHERE email = '"+usuario+"'";
 		Statement st = null;
 		int resul = 0;
@@ -263,7 +263,7 @@ public class BD {
 			}
 		}
 	}
-	public static boolean existeDni(Connection con, String dni) throws SQLException {
+	public boolean existeDni(Connection con, String dni) throws SQLException {
 			
 			String sent = "select * from Usuario where dni='"+dni+"'";
 			Statement st = null;
@@ -295,7 +295,7 @@ public class BD {
 		return listaCoches;
 	}
 	
-	public static boolean existeEmail(Connection con, String email) throws SQLException {
+	public boolean existeEmail(Connection con, String email) throws SQLException {
 		
 		String sent = "select * from Usuario where email='"+email+"'";
 		Statement st = null;
@@ -334,7 +334,7 @@ public class BD {
 
     }
     
-    public static String getUltimaMatricula(Connection con) {
+    public String getUltimaMatricula(Connection con) {
     	int id = BD.getSiguienteIdCompra(con);
     	int id_old = id -1; 
     	String matricula = "";

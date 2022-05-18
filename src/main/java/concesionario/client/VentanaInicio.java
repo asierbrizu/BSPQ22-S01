@@ -171,7 +171,7 @@ public class VentanaInicio extends JFrame {
 					}
 
 					try {
-						switch (BD.obtenerUsuario(con,n,c)) {
+						switch (bd.obtenerUsuario(con,n,c)) {
 						case 0:
 							JOptionPane.showMessageDialog(null, "Ese usuario no se encuentra registrado", "Error", JOptionPane.ERROR_MESSAGE);
 							break;
@@ -223,7 +223,7 @@ public class VentanaInicio extends JFrame {
 			e1.printStackTrace();
 		}
 		String idCompra=String.valueOf(BD.getSiguienteIdCompra(con));
-		String matricula = BD.getUltimaMatricula(con);
+		String matricula = bd.getUltimaMatricula(con);
 String new_matricula = "";
 		
 		char[] charMatricula = matricula.toCharArray();

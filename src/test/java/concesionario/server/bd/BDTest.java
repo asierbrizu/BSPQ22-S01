@@ -1,17 +1,10 @@
 package concesionario.server.bd;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,8 +12,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
 import concesionario.clases.Cliente;
-import concesionario.server.bd.BD;
-import concesionario.server.bd.DBException;
 
 @RunWith(org.mockito.runners.MockitoJUnitRunner.class)
 public class BDTest {
@@ -68,7 +59,7 @@ public class BDTest {
 		
 		BD.insertarUsuario(con, "test", "1234", "test", "test", "11111111P", "01-01-2000", "cliente");
 		
-		when(BD.existeDni(con, "11111111P")).thenReturn(true);
+		when(bd.existeDni(con, "11111111P")).thenReturn(true);
 	}
 	
 	@Test
@@ -105,7 +96,7 @@ public class BDTest {
 		when(clTest.getEmail()).thenReturn(clBD.getEmail());
 		//assertEquals(clTest.getEmail(), clBD.getEmail());
 	}
-	/*
+	
 	@Test
 	public void testEquals() {
 		
@@ -114,14 +105,6 @@ public class BDTest {
 		assertTrue(clBD.getEmail() == clBD.getEmail());
 		assertTrue(clBD.getDni() == clBD.getDni());
 		assertTrue(clBD.getFechaNacimiento() == clBD.getFechaNacimiento());
-		
-	}
-	
-	
-	
-	@Test
-	public void BDTest() throws DBException, SQLException{
-		BD b = new BD();
 		
 	}
 	
@@ -140,7 +123,8 @@ public class BDTest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		bd.existeDni(con, "1111111A");
+		
+		when(bd.existeDni(con, "1111111P")).thenReturn(true);
 	}
 	
 	@Test
@@ -157,7 +141,8 @@ public class BDTest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		bd.existeEmail(con, adBD.getEmail());
+		
+		when(bd.existeDni(con, adBD.getEmail())).thenReturn(true);
 	}
 	
 	@Test
@@ -176,6 +161,7 @@ public class BDTest {
 		}
 		
 		String matricula = bd.getUltimaMatricula(con);
+		when(bd.getUltimaMatricula(con)).thenReturn(matricula);
 	}
 	
 	@Test
@@ -194,7 +180,8 @@ public class BDTest {
 		}
 		
 		int numUsuario = bd.obtenerUsuario(con, "as", "1234");
-	}*/
+		when(bd.obtenerUsuario(con, "as", "1234")).thenReturn(numUsuario);
+	}
 	
 	/*NO HACER  @Test
 	public void testObtenerAdministrador() throws DBException {
@@ -215,7 +202,7 @@ public class BDTest {
 	}*/
 	
 	
-	/*
+	
 	@Test
 	public void testCloseBD() throws DBException {
 		
@@ -234,6 +221,7 @@ public class BDTest {
 		}
 		
 		bd.closeBD(con);
+		
 	}
-	*/
+	
 }
