@@ -17,6 +17,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import concesionario.clases.Cliente;
 import concesionario.clases.Coche;
 import concesionario.server.bd.BD;
 import concesionario.server.bd.DBException;
@@ -31,8 +32,11 @@ public class VentanaEmpleado extends JFrame{
 	private JMenuItem menuItemVolverInicio;
 	private JMenuItem menuItemCerrarSesion;
 	
+	public BD bd;
 
 	public VentanaEmpleado(){
+		bd = new BD();
+		
 		setLayout(new GridLayout(1,1));
 
 		panelPrincipal = new JPanel();
@@ -44,13 +48,14 @@ public class VentanaEmpleado extends JFrame{
 		listaMecanicos = new JMenu();
 		listaMecanicos.setMnemonic('C');
 		
-		ArrayList<String> marcas = new ArrayList<>();
+		ArrayList<String> empleados = new ArrayList<>();
+		ArrayList<Cliente> infoEmpleados = new ArrayList<>();
 		
-		for (String  marca : marcas) {
+		for (String  empleado : empleados) {
 
 			Connection con =null;
 			try {
-				con = BD.initBD("concesionario.db");
+				con = bd.initBD("concesionario.db");
 
 				try {
 					BD.crearTablas(con);
@@ -58,15 +63,9 @@ public class VentanaEmpleado extends JFrame{
 					e3.printStackTrace();
 				}
 				
-				try {
-					ArrayList<Coche> temp = new ArrayList<>();
-					temp = BD.listaCoches(con, marca);
-					for (Coche c : temp) {
-						//listaCoches.add(c);
-					}
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				Cliente temp = new Cliente();
+				temp = BD.obtenerInfoCliente(con, empleado);
+				infoEmpleados.add(temp);
 				
 			} catch (DBException e1) {
 				e1.printStackTrace();
@@ -78,9 +77,12 @@ public class VentanaEmpleado extends JFrame{
 				e1.printStackTrace();	
 			}
 			
-			
 		}
 
+		for(int i = 0; i < infoEmpleados.size(); i++) {
+			
+		}
+		
 		listaEmpleados = new JMenu();
 		listaEmpleados.setMnemonic('U');
 

@@ -24,7 +24,7 @@ public class BD {
 	 * @return El objeto Conexión con
 	 * @throws DBException 
 	 */
-	public static Connection initBD(String nombreBD) throws DBException {
+	public Connection initBD(String nombreBD) throws DBException {
 		Connection con = null;
 		try {
 			Class.forName("org.sqlite.JDBC");

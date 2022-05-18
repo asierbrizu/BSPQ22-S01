@@ -52,9 +52,10 @@ public class VentanaRegistro extends JFrame{
 	private static String apellido;
 	private static String correo;
 	private static Connection con;
-
-
+	public static BD bd;
+	
 	public VentanaRegistro() {
+		bd = new BD();
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setLayout(null);
 		
@@ -64,7 +65,7 @@ public class VentanaRegistro extends JFrame{
 		
 		Connection con = null;
 		try {
-			con = BD.initBD("concesionario.db");
+			con = bd.initBD("concesionario.db");
 			
 		} catch (DBException e1) {
 			e1.printStackTrace();
@@ -211,7 +212,7 @@ public class VentanaRegistro extends JFrame{
 					}
 					Connection con = null;
 					try {
-						con = BD.initBD("concesionario.db");
+						con = bd.initBD("concesionario.db");
 						
 					} catch (DBException e1) {
 						e1.printStackTrace();
@@ -260,7 +261,7 @@ public class VentanaRegistro extends JFrame{
 
 	public static boolean existeEmail(String correo) {
 		try {
-			con = BD.initBD("concesionario.db");
+			con = bd.initBD("concesionario.db");
 		} catch (DBException e1) {
 			e1.printStackTrace();
 		}
@@ -281,13 +282,13 @@ public class VentanaRegistro extends JFrame{
 
 	public static boolean existeDni(String dni) {
 		try {
-			con = BD.initBD("concesionario.db");
+			con = bd.initBD("concesionario.db");
 		} catch (DBException e1) {
 			e1.printStackTrace();
 		}
 		boolean existeDni1 = false;
 		try {
-			existeDni1 = BD.existeDni(con, dni);
+			existeDni1 = bd.existeDni(con, dni);
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}

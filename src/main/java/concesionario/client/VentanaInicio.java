@@ -60,6 +60,7 @@ public class VentanaInicio extends JFrame {
 	private static Connection con =null;
 	private Thread thread;
 	private final AtomicBoolean running = new AtomicBoolean(false);
+	public static BD bd;
 
 	public static Cliente clienteActual=null;
 
@@ -71,13 +72,14 @@ public class VentanaInicio extends JFrame {
 	}
 
 	public VentanaInicio() {
+		bd = new BD();
 		
 		client = ClientBuilder.newClient();
 		webTarget = client.target(String.format("http://%s:%s/rest", "127.0.0.1","8080"));
 
 		
 		try {
-			con = BD.initBD("concesionario.db");
+			con = bd.initBD("concesionario.db");
 
 			try {
 				BD.crearTablas(con);
@@ -163,7 +165,7 @@ public class VentanaInicio extends JFrame {
 					String c= textContrasenya.getText();
 					Connection con = null;
 					try {
-						con = BD.initBD("concesionario.db");
+						con = bd.initBD("concesionario.db");
 					} catch (DBException e1) {
 						e1.printStackTrace();
 					}
@@ -216,7 +218,7 @@ public class VentanaInicio extends JFrame {
 		WebTarget donationsWebTarget = webTarget.path("collector/compra");
 		Invocation.Builder invocationBuilder = donationsWebTarget.request(MediaType.APPLICATION_JSON);
 		try {
-			con = BD.initBD("concesionario.db");
+			con = bd.initBD("concesionario.db");
 		} catch (DBException e1) {
 			e1.printStackTrace();
 		}

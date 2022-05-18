@@ -8,13 +8,14 @@ import concesionario.server.bd.BD;
 import concesionario.server.bd.DBException;
 
 public class CompraCollector {
-	
+	public BD bd;
 	private ArrayList<Compra> compras=inicializarCompras();
 	
 	private ArrayList<Compra> inicializarCompras(){
+		bd = new BD();
 		Connection con = null;
 		try {
-			con = BD.initBD("concesionario.db");
+			con = bd.initBD("concesionario.db");
 			compras=BD.obtenerListaCompras(con);
 		} catch (DBException e1) {
 			e1.printStackTrace();
@@ -34,7 +35,7 @@ public class CompraCollector {
             //Cosas para comprar coche
         	Connection con = null;
     		try {
-    			con = BD.initBD("concesionario.db");
+    			con = bd.initBD("concesionario.db");
     			BD.insertarCompra(con,compra);
             	compras.add(compra);
     		} catch (DBException e1) {

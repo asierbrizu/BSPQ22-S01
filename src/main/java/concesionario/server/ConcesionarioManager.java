@@ -54,7 +54,10 @@ public class ConcesionarioManager extends JFrame implements ActionListener, Runn
 	private Thread thread;
 	private final AtomicBoolean running = new AtomicBoolean(false);
 
+	public BD bd;
+	
 	public ConcesionarioManager(String hostname, String port) {
+		bd = new BD();
 		client = ClientBuilder.newClient();
 		webTarget = client.target(String.format("http://%s:%s/rest", hostname, port));
 
@@ -171,7 +174,7 @@ public class ConcesionarioManager extends JFrame implements ActionListener, Runn
 		while(running.get()) {
 			try {
 
-				Connection con = BD.initBD("concesionario.db");
+				Connection con = bd.initBD("concesionario.db");
 				compras = BD.obtenerListaCompras(con);
 
 				Thread.sleep(5000);

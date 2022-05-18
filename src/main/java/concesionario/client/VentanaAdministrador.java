@@ -41,7 +41,11 @@ public class VentanaAdministrador extends JFrame {
 	private HashMap<String, ArrayList<Coche>> hashMarcas = new HashMap<String, ArrayList<Coche>>();
  
 
+	public BD bd;
+	
 	public VentanaAdministrador() {
+		
+		bd = new BD();
 		
 		setLayout(new GridLayout(1,1));
 	
@@ -79,7 +83,7 @@ public class VentanaAdministrador extends JFrame {
 
 			Connection con =null;
 			try {
-				con = BD.initBD("concesionario.db");
+				con = bd.initBD("concesionario.db");
 
 				try {
 					BD.crearTablas(con);
