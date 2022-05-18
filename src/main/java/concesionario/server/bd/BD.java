@@ -166,10 +166,9 @@ public class BD {
 	 * @throws DBException
 	 */
 	public static void crearTablas(Connection con) throws DBException {
-		String sentencia1 = "CREATE TABLE IF NOT EXISTS Usuario (email String, contrasenya String, nombre String, apellido String, dni String, fecha_ncto String, tipo String)";
-		String sentencia2 = "CREATE TABLE IF NOT EXISTS Administrador (usuario String, contrasenya String)";
-		String sentencia3 = "CREATE TABLE IF NOT EXISTS Compra (ID String, usuario String, matricula String, fecha String)";
-		String sentencia4 = "CREATE TABLE IF NOT EXISTS Coche(matricula String , marca String ,modelo String, color String, precio double)";
+		String sentencia1 = "CREATE TABLE IF NOT EXISTS Usuario (email VARCHAR(100), contrasenya VARCHAR(100), nombre VARCHAR(100), apellido VARCHAR(100), dni VARCHAR(9), fecha_ncto VARCHAR(10), tipo VARCHAR(60))";
+		String sentencia2 = "CREATE TABLE IF NOT EXISTS Compra (ID VARCHAR(10), usuario VARCHAR(100), matricula VARCHAR(7), fecha VARCHAR(40)), id_coche VARCHAR(10)";
+		String sentencia3 = "CREATE TABLE IF NOT EXISTS Coche(id VARCHAR(10), marca VARCHAR(100), modelo VARCHAR(100), color VARCHAR(100), precio VARCHAR(100), imagen VARCHAR(100), Combustible VARCHAR(100), Instrucciones VARCHAR(100))";
 		
 
 		Statement st = null;
@@ -177,10 +176,7 @@ public class BD {
 			st = con.createStatement();
 			st.executeUpdate(sentencia1);
 			st.executeUpdate(sentencia2);
-			st.executeUpdate(sentencia3);
-			st.executeUpdate(sentencia4);
-			
-			
+			st.executeUpdate(sentencia3);			
 		
 			st.close();
 		} catch (SQLException e) {
