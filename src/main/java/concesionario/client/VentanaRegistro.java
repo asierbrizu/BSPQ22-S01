@@ -261,7 +261,7 @@ public class VentanaRegistro extends JFrame{
 
 	public static boolean existeEmail(String correo) {
 		try {
-			con = bd.initBD("concesionario.db");
+			con = bd.initBD("bd_bspq");
 		} catch (DBException e1) {
 			e1.printStackTrace();
 		}

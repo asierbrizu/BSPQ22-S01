@@ -79,7 +79,7 @@ public class VentanaInicio extends JFrame {
 
 		
 		try {
-			con = bd.initBD("concesionario.db");
+			con = bd.initBD("bd_bspq");
 
 			try {
 				BD.crearTablas(con);
@@ -165,7 +165,7 @@ public class VentanaInicio extends JFrame {
 					String c= textContrasenya.getText();
 					Connection con = null;
 					try {
-						con = bd.initBD("concesionario.db");
+						con = bd.initBD("bd_bspq");
 					} catch (DBException e1) {
 						e1.printStackTrace();
 					}
@@ -218,7 +218,7 @@ public class VentanaInicio extends JFrame {
 		WebTarget donationsWebTarget = webTarget.path("collector/compra");
 		Invocation.Builder invocationBuilder = donationsWebTarget.request(MediaType.APPLICATION_JSON);
 		try {
-			con = bd.initBD("concesionario.db");
+			con = bd.initBD("bd_bspq");
 		} catch (DBException e1) {
 			e1.printStackTrace();
 		}
