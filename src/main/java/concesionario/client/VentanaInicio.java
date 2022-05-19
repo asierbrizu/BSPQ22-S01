@@ -82,7 +82,7 @@ public class VentanaInicio extends JFrame {
 			con = bd.initBD("bd_bspq");
 
 			try {
-				BD.crearTablas(con);
+				bd.crearTablas(con);
 			} catch (DBException e3) {
 				e3.printStackTrace();
 			}
@@ -94,7 +94,7 @@ public class VentanaInicio extends JFrame {
 
 
 		try {
-			BD.closeBD(con);
+			bd.closeBD(con);
 		} catch (DBException e1) {
 			e1.printStackTrace();	
 		}

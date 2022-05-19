@@ -72,14 +72,14 @@ public class VentanaRegistro extends JFrame{
 		}
 		
 			try {
-				BD.crearTablas(con);
+				bd.crearTablas(con);
 			} catch (DBException e3) {
 				e3.printStackTrace();
 			}
 			
 			
 		try {
-			BD.closeBD(con);
+			bd.closeBD(con);
 		} catch (DBException e1) {
 			e1.printStackTrace();	
 		}

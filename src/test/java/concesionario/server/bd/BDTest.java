@@ -45,7 +45,7 @@ public class BDTest {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/bd_bspq", "root", "Asierm17");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/bd_bspq", "root", "root");
 			
 					
 		} catch (ClassNotFoundException e) {
@@ -112,7 +112,7 @@ public class BDTest {
 	public void existeDNITest() throws SQLException, DBException{
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/bd_bspq", "root", "Asierm17");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/bd_bspq", "root", "root");
 			
 					
 		} catch (ClassNotFoundException e) {
@@ -130,7 +130,7 @@ public class BDTest {
 	public void existeEmailTest() throws SQLException, DBException{
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/bd_bspq", "root", "Asierm17");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/bd_bspq", "root", "root");
 			
 					
 		} catch (ClassNotFoundException e) {
@@ -148,7 +148,7 @@ public class BDTest {
 	public void testgetUltimaMatricula() throws DBException {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/bd_bspq", "root", "Asierm17");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/bd_bspq", "root", "root");
 					
 		} catch (ClassNotFoundException e) {
 			
@@ -166,7 +166,7 @@ public class BDTest {
 	public void testObtenerUsuario() throws DBException {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/bd_bspq", "root", "Asierm17");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/bd_bspq", "root", "root");
 			
 					
 		} catch (ClassNotFoundException e) {
@@ -206,8 +206,8 @@ public class BDTest {
 		
 		
 		try {
-			Class.forName("org.sqlite.JDBC");
-			con = DriverManager.getConnection("jdbc:sqlite:pruebas.db");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/bd_bspq", "root", "root");
 			
 					
 		} catch (ClassNotFoundException e) {

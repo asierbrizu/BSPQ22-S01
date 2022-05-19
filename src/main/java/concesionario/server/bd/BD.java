@@ -29,7 +29,7 @@ public class BD {
 		try {
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/"+nombreBD, "root", "Asierm17");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/"+nombreBD, "root", "root");
 			
 					
 		} catch (ClassNotFoundException e) {
@@ -383,14 +383,13 @@ public class BD {
 	
 public static void insertarCompra(Connection con, Compra compra) throws DBException {
 		
-		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Compra (ID, usuario, matricula, fecha, id_coche) VALUES (?,?,?,?,?)"); 
+		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Compra (usuario, matricula, fecha, id_coche) VALUES (?,?,?,?)"); 
 				Statement stmtForId = con.createStatement()) {
-				
-				stmt.setString(1, compra.getId());
-				stmt.setString(2, compra.getCliente().getEmail());
-				stmt.setString(3, compra.getMatricula());
-				stmt.setString(4, compra.getFecha());
-				stmt.setString(5, compra.getId_coche());
+
+				stmt.setString(1, compra.getCliente().getEmail());
+				stmt.setString(2, compra.getMatricula());
+				stmt.setString(3, compra.getFecha());
+				stmt.setString(4, compra.getId_coche());
 		
 		
 				stmt.executeUpdate();
