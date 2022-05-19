@@ -174,7 +174,7 @@ public class ConcesionarioManager extends JFrame implements ActionListener, Runn
 		while(running.get()) {
 			try {
 
-				Connection con = bd.initBD("concesionario.db");
+				Connection con = bd.initBD("bd_bspq");
 				compras = BD.obtenerListaCompras(con);
 
 				Thread.sleep(5000);

@@ -15,7 +15,7 @@ public class CompraCollector {
 		bd = new BD();
 		Connection con = null;
 		try {
-			con = bd.initBD("concesionario.db");
+			con = bd.initBD("bd_bspq");
 			compras=BD.obtenerListaCompras(con);
 		} catch (DBException e1) {
 			e1.printStackTrace();
@@ -35,7 +35,7 @@ public class CompraCollector {
             //Cosas para comprar coche
         	Connection con = null;
     		try {
-    			con = bd.initBD("concesionario.db");
+    			con = bd.initBD("bd_bspq");
     			BD.insertarCompra(con,compra);
             	compras.add(compra);
     		} catch (DBException e1) {

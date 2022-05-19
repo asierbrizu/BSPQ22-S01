@@ -27,8 +27,9 @@ public class BD {
 	public Connection initBD(String nombreBD) throws DBException {
 		Connection con = null;
 		try {
-			Class.forName("org.sqlite.JDBC");
-			con = DriverManager.getConnection("jdbc:sqlite:"+nombreBD);
+			
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/"+nombreBD, "david", "david");
 			
 					
 		} catch (ClassNotFoundException e) {

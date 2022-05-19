@@ -65,7 +65,7 @@ public class VentanaRegistro extends JFrame{
 		
 		Connection con = null;
 		try {
-			con = bd.initBD("concesionario.db");
+			con = bd.initBD("bd_bspq");
 			
 		} catch (DBException e1) {
 			e1.printStackTrace();
@@ -212,7 +212,7 @@ public class VentanaRegistro extends JFrame{
 					}
 					Connection con = null;
 					try {
-						con = bd.initBD("concesionario.db");
+						con = bd.initBD("bd_bspq");
 						
 					} catch (DBException e1) {
 						e1.printStackTrace();
@@ -282,7 +282,7 @@ public class VentanaRegistro extends JFrame{
 
 	public static boolean existeDni(String dni) {
 		try {
-			con = bd.initBD("concesionario.db");
+			con = bd.initBD("bd_bspq");
 		} catch (DBException e1) {
 			e1.printStackTrace();
 		}

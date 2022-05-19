@@ -83,7 +83,7 @@ public class VentanaAdministrador extends JFrame {
 
 			Connection con =null;
 			try {
-				con = bd.initBD("concesionario.db");
+				con = bd.initBD("bd_bspq");
 
 				try {
 					BD.crearTablas(con);
