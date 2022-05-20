@@ -31,7 +31,7 @@ jobs:
         uses: shogo82148/actions-setup-mysql@v1
         with:
           mysql-version: '8.0'
-      - run: mysql -uroot -h127.0.0.1 < src/sql/i
+      - run: mysql -uroot -h127.0.0.1 < sql/bd_bspq.sql
 
       - name: Retrieve version
         run: echo "::set-output name=TAG_NAME::$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.version -q -DforceStdout)"
