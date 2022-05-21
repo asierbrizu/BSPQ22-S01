@@ -187,6 +187,15 @@ public class VentanaRegistro extends JFrame{
 		JButton btnCancelar = new JButton("Volver");
 		btnCancelar.setBounds(10, 451, 135, 30);
 		getContentPane().add(btnCancelar);
+		btnCancelar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new VentanaInicio();
+				dispose();
+				
+			}
+		});
 
 		JButton btnRegistrar = new JButton("Registrarse");
 		btnRegistrar.setForeground(Color.WHITE);
@@ -220,28 +229,25 @@ public class VentanaRegistro extends JFrame{
 					try {
 						if(checkEmpleado.isSelected() && textAutorizacion.getText().matches("adaiaADMIN_2022")) {
 						BD.insertarUsuario(con, textEmail.getText(), textPassword.getText(), textNombre.getText(), textApellido.getText(), textDNI.getText(), fechaStr, "empleado");
-						System.out.println("e");
-						} else if(!checkEmpleado.isSelected()){
+						JOptionPane.showMessageDialog(null, "Empleado registrado.");
+						iniciarAdmin();
+						} else if(checkEmpleado.isSelected() && !textAutorizacion.getText().matches("adaiaADMIN_2022")) {
+							JOptionPane.showMessageDialog(null, "Autorización incorrecta.");
+						} else  if(!checkEmpleado.isSelected()){
 						BD.insertarUsuario(con, textEmail.getText(), textPassword.getText(), textNombre.getText(), textApellido.getText(), textDNI.getText(), fechaStr, "cliente");
-						System.out.println("u");
+						JOptionPane.showMessageDialog(null, "Usuario registrado.");
+						iniciarAdmin();	
 						}
 					} catch (DBException e1) {
 						e1.printStackTrace();
 					}
-					try {
-						System.out.println("6");
-						BD.closeBD(con);
-					} catch (DBException e1) {
-						e1.printStackTrace();	
-					}
-					dispose();
-					try {
-						VentanaInicio.clienteActual=BD.obtenerInfoCliente(con, correo);
-					} catch (DBException e1) {
-						e1.printStackTrace();
-					}
-					new VentanaAdministrador();
-
+//					try {
+//						System.out.println("6");
+//						BD.closeBD(con);
+//					} catch (DBException e1) {
+//						e1.printStackTrace();	
+//					}
+					
 				}else {
 					JOptionPane.showMessageDialog(null, "Ya existe un usuario con esos datos", "Error", JOptionPane.WARNING_MESSAGE);
 
@@ -272,11 +278,11 @@ public class VentanaRegistro extends JFrame{
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
-		try {
-			BD.closeBD(con);
-		} catch (DBException e2) {
-			e2.printStackTrace();
-		}
+//		try {
+//			BD.closeBD(con);
+//		} catch (DBException e2) {
+//			e2.printStackTrace();
+//		}
 		return existeEmail1;
 	}
 
@@ -292,14 +298,25 @@ public class VentanaRegistro extends JFrame{
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
-		try {
-			BD.closeBD(con);
-		} catch (DBException e2) {
-			e2.printStackTrace();
-		}
+//		try {
+//			BD.closeBD(con);
+//		} catch (DBException e2) {
+//			e2.printStackTrace();
+//		}
 		return existeDni1;
 
 	}
+	
+	public void iniciarAdmin(){
+		try {
+			VentanaInicio.clienteActual=BD.obtenerInfoCliente(con, correo);
+			new VentanaAdministrador();
+			dispose();
+		} catch (DBException e1) {
+			e1.printStackTrace();
+		}
+	}
+	
 }
 
 

@@ -16,10 +16,6 @@ public class ConcesionarioServerTest {
 	Compra c1 = new Compra("1", new Cliente("Asier", "Martinez", "31-12-2000", "12345678A", "pato@gmail.com", null), "5143LMV", "01-05-2022", "70");
 
 //	@Test
-//	public void concesionarioServerTest() {
-//	}
-//
-//	@Test
 //	public void comprarCocheTest() {
 //		c.comprarCoche(c1);
 //	}
