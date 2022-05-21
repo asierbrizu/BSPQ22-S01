@@ -119,7 +119,7 @@ public class VentanaPrueba {
 		JCheckBox checkEmpleado = new JCheckBox("");
 		checkEmpleado.setForeground(new Color(255, 140, 0));
 		checkEmpleado.setBackground(Color.WHITE);
-		checkEmpleado.setBounds(65, 361, 99, 23);
+		checkEmpleado.setBounds(78, 361, 99, 23);
 		frame.getContentPane().add(checkEmpleado);
 		
 		textAutorizacion = new JPasswordField();
