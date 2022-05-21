@@ -8,6 +8,7 @@ Compilar el proyecto
 --------------------
 
 Esto compila el programa usando maven.
+
 	mvn compile 
 	
 Crear BD
