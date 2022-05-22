@@ -49,8 +49,6 @@ public class VentanaAdministrador extends JFrame {
 		
 		setLayout(new GridLayout(1,1));
 	
-		
-
 		panelPrincipal = new JPanel();
 		panelPrincipal.setBackground(Color.WHITE);
 		add(panelPrincipal);

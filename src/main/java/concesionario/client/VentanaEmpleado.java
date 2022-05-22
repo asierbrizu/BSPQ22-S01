@@ -31,6 +31,8 @@ public class VentanaEmpleado extends JFrame{
 	private static JMenu listaEmpleados;
 	private JMenuItem menuItemVolverInicio;
 	private JMenuItem menuItemCerrarSesion;
+	private JMenuItem menuItemListarMecanicos;
+	private JMenuItem menuItemListarEmpleados;
 	
 	public BD bd;
 
@@ -97,12 +99,39 @@ public class VentanaEmpleado extends JFrame{
 		setPreferredSize(new Dimension(1366, 815));
 		setVisible(true);
 
-		listaMecanicos.setText("Lista Mecanicos");
+		listaMecanicos.setText("Mecanicos");
 		menuPrincipal.add(listaMecanicos);
+		
+		menuItemListarMecanicos = new JMenuItem();
+		menuItemListarMecanicos.setText("Lista de Mecanicos");
+		listaMecanicos.add(menuItemListarMecanicos);
+		menuItemListarMecanicos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				panelPrincipal.removeAll();
+				panelPrincipal.add(new VentanaAdministrador());
+				repaint();
+				validate();
 
-		listaEmpleados.setText("Lista Empleados");
+			}
+
+		});
+
+		listaEmpleados.setText("Empleados");
 		menuPrincipal.add(listaEmpleados);
 		
+		menuItemListarEmpleados = new JMenuItem();
+		menuItemListarEmpleados.setText("Lista de Empleados");
+		listaEmpleados.add(menuItemListarEmpleados);
+		menuItemListarEmpleados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				panelPrincipal.removeAll();
+				panelPrincipal.add(new VentanaAdministrador());
+				repaint();
+				validate();
+
+			}
+
+		});
 		
 
 		volverInicio.setText("Volver");
