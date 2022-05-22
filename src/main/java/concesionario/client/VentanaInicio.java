@@ -180,7 +180,7 @@ public class VentanaInicio extends JFrame {
 							break;
 						case 2:
 							clienteActual = BD.getCliente(con, n, c);
-							JOptionPane.showMessageDialog(null, clienteActual.getEmail());
+//							JOptionPane.showMessageDialog(null, clienteActual.getEmail());
 							dispose();
 							new VentanaAdministrador();
 
@@ -287,7 +287,7 @@ public class VentanaInicio extends JFrame {
 			e.printStackTrace();
 		}
 		
-		JOptionPane.showMessageDialog(null, compra);
+//		JOptionPane.showMessageDialog(null, compra);
 		
 		Response response = invocationBuilder.post(Entity.entity(compra, MediaType.APPLICATION_JSON));
 		if (response.getStatus() != Status.OK.getStatusCode()) {

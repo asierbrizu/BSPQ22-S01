@@ -10,9 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import javax.swing.JOptionPane;
-
 import concesionario.clases.Cliente;
 import concesionario.clases.Coche;
 import concesionario.clases.Compra;
