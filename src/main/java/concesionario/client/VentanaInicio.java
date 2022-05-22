@@ -224,47 +224,57 @@ public class VentanaInicio extends JFrame {
 		}
 		String idCompra=String.valueOf(BD.getSiguienteIdCompra(con));
 		String matricula = bd.getUltimaMatricula(con);
-String new_matricula = "";
+		String new_matricula = "";
 		
 		char[] charMatricula = matricula.toCharArray();
-		int intUltima = charMatricula[charMatricula.length-1];
-		int intAnteUltima = charMatricula[charMatricula.length-2];
-		int intTercera = charMatricula[charMatricula.length-3];
 		
-		int n = (int) (Math.random()*9000)+1000;
-		new_matricula = ""+n;
-		
-		if (intUltima < 90) {
-			int asciiUltima = intUltima+1;	
-			char nuevaUltima = (char) asciiUltima;
-			char anteUltima = (char) intAnteUltima;
-			char tercera = (char) intTercera;
-			new_matricula = new_matricula + ""+ tercera + ""+ anteUltima + "" + nuevaUltima;
-			
-		}else if(intUltima == 90) {
-			int asciiUltima = 65;
-			char nuevaUltima = (char) asciiUltima;
-			
-			if (intAnteUltima < 90) {
-				int asciiAnteUltima = intAnteUltima+1;
-				char nuevaAnteUltima = (char) asciiAnteUltima;
-				char tercera = (char) intTercera;
-				
-				new_matricula = new_matricula + "" + tercera + "" + nuevaAnteUltima + "" + nuevaUltima;
-				
-			} else if (intAnteUltima == 90) {
-				int asciiAnteUltima = 65;
-				char nuevaAnteUltima = (char) asciiAnteUltima;
+		if(charMatricula.length <= 0){
+			new_matricula = "0000AAA"; //Primera matricula
 
-				if(intTercera < 90) {
-					int asciiTercera = intTercera+1;
-					char nuevaTercera = (char) asciiTercera;
+		} else {	
+			int intUltima = charMatricula[charMatricula.length-1];
+			int intAnteUltima = charMatricula[charMatricula.length-2];
+			int intTercera = charMatricula[charMatricula.length-3];
+			
+			int n = (int) (Math.random()*9000)+1000;
+			new_matricula = ""+n;
+			
+			if (intUltima < 90) {
+				int asciiUltima = intUltima+1;	
+				char nuevaUltima = (char) asciiUltima;
+				char anteUltima = (char) intAnteUltima;
+				char tercera = (char) intTercera;
+				new_matricula = new_matricula + ""+ tercera + ""+ anteUltima + "" + nuevaUltima;
+				
+			}else if(intUltima == 90) {
+				int asciiUltima = 65;
+				char nuevaUltima = (char) asciiUltima;
+				
+				if (intAnteUltima < 90) {
+					int asciiAnteUltima = intAnteUltima+1;
+					char nuevaAnteUltima = (char) asciiAnteUltima;
+					char tercera = (char) intTercera;
 					
-					new_matricula = new_matricula + "" + nuevaTercera + "" + nuevaAnteUltima + "" + nuevaUltima;
+					new_matricula = new_matricula + "" + tercera + "" + nuevaAnteUltima + "" + nuevaUltima;
+					
+				} else if (intAnteUltima == 90) {
+					int asciiAnteUltima = 65;
+					char nuevaAnteUltima = (char) asciiAnteUltima;
+
+					if(intTercera < 90) {
+						int asciiTercera = intTercera+1;
+						char nuevaTercera = (char) asciiTercera;
+						
+						new_matricula = new_matricula + "" + nuevaTercera + "" + nuevaAnteUltima + "" + nuevaUltima;
+					}
 				}
+				
 			}
 			
 		}
+		
+		
+		
 		long milis = System.currentTimeMillis();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss:SSS");
 		Date fecha = new Date(milis);
