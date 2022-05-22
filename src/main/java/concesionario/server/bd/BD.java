@@ -2,13 +2,16 @@ package concesionario.server.bd;
 
 
 
-import java.sql.Connection; 
+import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import concesionario.clases.Cliente;
 import concesionario.clases.Coche;
@@ -60,8 +63,7 @@ public class BD {
 	}
 
 
-	
-	public int obtenerUsuario(Connection con, String usuario, String contra) throws DBException {
+	public static int obtenerUsuario(Connection con, String usuario, String contra) throws DBException {
 		String sentencia = "SELECT contrasenya FROM Usuario WHERE email = '"+usuario+"'";
 		Statement st = null;
 		int resul = 0;
@@ -119,53 +121,6 @@ public class BD {
 	}
 	
 	
-	/**
-	 * Método que recibe los datos de un Administrador y comprueba que est� registrado en la BBDD
-	 * @param String usuario Nombre de usuario del administrador
-	 * @param String contra contrasenia del administrador
-	 * @return 0 si el administrador no esta registrado
-	 * 		   1 si el administrador esta registrado pero la contrasenia no es correcta
-	 * 		   2 si el administrador esta  registrado y la contrasenia es correcta
-	 * @throws DBException 
-	 */
-	/*public static int obtenerAdministrador(Connection con, String usuario, String contra) throws DBException {
-		String sentencia = "SELECT contrasenya FROM usuario WHERE usuario = '"+usuario+"' AND tipo = 'administrador'";
-		Statement st = null;
-		int resul = 0;
-		try {
-			st = con.createStatement();
-			ResultSet rs = st.executeQuery(sentencia);
-			//Si la sentencia nos ha devuelto al menos un valor, rs estar� apuntando a una tupla
-			if(rs.next()) {
-				if(rs.getString("contrasenya").equals(contra)) {
-					resul = 2;
-				}else {
-					resul = 1;
-				}
-			}
-			rs.close();
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-			throw new DBException("No se ha podido comprobar si existe el administrador");
-
-		} finally {
-			if(st!=null) {
-				try {
-					st.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return resul;
-	}*/
-	
-	/**
-	 * Método que crea las tablas en la BBDD si no existen
-	 * @param Connection con
-	 * @throws DBException
-	 */
 	public static void crearTablas(Connection con) throws DBException {
 		String sentencia1 = "CREATE TABLE IF NOT EXISTS Usuario (email VARCHAR(100) PRIMARY KEY, contrasenya VARCHAR(100) DEFAULT NULL, nombre VARCHAR(100), apellido VARCHAR(100), dni VARCHAR(9), fecha_ncto VARCHAR(10), tipo VARCHAR(60));";
 		String sentencia2 = "CREATE TABLE IF NOT EXISTS Compra (id int (11) AUTO_INCREMENT PRIMARY KEY, usuario VARCHAR(100), matricula VARCHAR(7), fecha VARCHAR(40), id_coche VARCHAR(10));";
@@ -230,14 +185,6 @@ public class BD {
 	
 	
 
-	
-	/**
-	 * Metodo que inserta los datos de un Administrador (si no esta  repetido) en la BBDD 
-	 * @param Connection con Conexión con la BBDD
-	 * @param String usuario Nombre de usuario del administrador
-	 * @param String contra Contraseña del administrador
-	 * @throws DBException 
-	 */
 	public static void insertarAdministrador(Connection con, String usuario, String contra) throws DBException {
 	
 		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO usuario (usuario, contrasenya) VALUES (?,?)"); 
@@ -310,11 +257,7 @@ public class BD {
 		return existe;
 	}
 	
-	/**
-     * Obtiene el numero de ticket mas alto que haya en la BBDD.Se usa para calcular en otro metodo el numero siguiente, y autoincrementarlo de forma manual
-     * @param Connection con
-     * @return int ultimoTicketNum 
-     */
+
     public static int getSiguienteIdCompra(Connection con) {
         String sent = "select MAX(ID) from Compra";
         Statement st = null;
@@ -362,7 +305,14 @@ public class BD {
 			st = con.createStatement();
 			ResultSet rs = st.executeQuery(sentencia);
 			while(rs.next()) {
-				compras.add(new Compra(rs.getString("ID"),obtenerInfoCliente(con, rs.getString("usuario")),rs.getString("matricula"),rs.getString("fecha"),rs.getString("id_coche")));
+				//compras.add(new Compra(rs.getString("ID"),obtenerInfoCliente(con, rs.getString("usuario")),rs.getString("matricula"),rs.getString("fecha"),rs.getString("id_coche")));
+				Compra c = new Compra();
+				c.setId(rs.getString("ID"));
+				c.setCliente(rs.getString("usuario"));
+				c.setFecha(rs.getString("fecha"));
+				c.setMatricula(rs.getString("matricula"));
+				c.setId_coche(rs.getString("id_coche"));
+				compras.add(c);
 			}
 			rs.close();
 		} catch (SQLException e) {
@@ -386,7 +336,7 @@ public static void insertarCompra(Connection con, Compra compra) throws DBExcept
 		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Compra (usuario, matricula, fecha, id_coche) VALUES (?,?,?,?)"); 
 				Statement stmtForId = con.createStatement()) {
 
-				stmt.setString(1, compra.getCliente().getEmail());
+				stmt.setString(1, compra.getCliente());
 				stmt.setString(2, compra.getMatricula());
 				stmt.setString(3, compra.getFecha());
 				stmt.setString(4, compra.getId_coche());
@@ -409,5 +359,55 @@ public static void insertarCompra(Connection con, Compra compra) throws DBExcept
 			}
 		}
 	}
-    
+
+public static Cliente getCliente(Connection con, String usuario, String contra) {
+	Cliente resultado = null;
+	String nombre;
+	String apellido;
+	String email;
+	String contrasenya;
+	String fecha;
+	String dni;
+	String tipo;
+	
+	try {
+		if(obtenerUsuario(con, usuario, contra) == 2) {
+			resultado = new Cliente();
+			
+			String sent = "select * from usuario where email = '" + usuario + "' AND contrasenya = '" + contra + "';";
+			
+			Statement st = null;
+	    	 try {
+	             st = con.createStatement();
+	             ResultSet rs=st.executeQuery(sent);
+	             if (rs.next()) {
+	            	email = rs.getString(1);
+	            	contrasenya = rs.getString(2);
+	            	nombre = rs.getString(3);
+	            	apellido = rs.getString(4);
+	            	dni = rs.getString(5);
+	            	fecha = rs.getString(6);
+	            	tipo = rs.getString(7);
+	            	
+	            	resultado.setApellido(apellido);
+	            	resultado.setDni(dni);
+	            	resultado.setEmail(email);
+	            	resultado.setFechaNacimiento(sent);
+	            	resultado.setNombre(nombre);
+	            	resultado.setTipo(tipo);
+	            	
+	             }
+	    	 } catch (SQLException e) { 
+	             e.printStackTrace();
+	         }
+		}
+	} catch (DBException e) {
+		
+	}
+	return resultado;
+		
 }
+	
+	
+}
+    

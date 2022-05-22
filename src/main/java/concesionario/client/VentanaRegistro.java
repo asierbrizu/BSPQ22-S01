@@ -46,13 +46,14 @@ public class VentanaRegistro extends JFrame{
 	public static String imagenes;
 	
     private static String fechaStr;
-	private static boolean correctoNombre ,correctoApellido ,  correctoDni  ;
+	private static boolean correctoNombre ,correctoApellido ,  correctoDni ;
 	private static String dni;
 	private static String nom;
 	private static String apellido;
 	private static String correo;
 	private static Connection con;
 	public static BD bd;
+	
 	
 	public VentanaRegistro() {
 		bd = new BD();

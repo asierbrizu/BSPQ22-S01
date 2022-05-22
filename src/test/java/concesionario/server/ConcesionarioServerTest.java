@@ -13,7 +13,7 @@ import concesionario.server.ConcesionarioServer;
 public class ConcesionarioServerTest {
 
 	ConcesionarioServer c = new ConcesionarioServer();
-	Compra c1 = new Compra("1", new Cliente("Asier", "Martinez", "31-12-2000", "12345678A", "pato@gmail.com", null), "5143LMV", "01-05-2022", "70");
+	Compra c1 = new Compra("1", "12345678A", "5143LMV", "01-05-2022", "70");
 
 //	@Test
 //	public void comprarCocheTest() {

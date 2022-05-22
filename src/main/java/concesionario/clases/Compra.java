@@ -5,21 +5,27 @@ import java.util.Objects;
 public class Compra {
 	
 	private String id;
-	private Cliente cliente;
+	private String cliente;
 	private String matricula;
 	private String fecha;
 	private String id_coche;
 	
-	public Compra() {	
-	}
-	
-	public Compra(String id, Cliente cliente, String matricula, String fecha, String id_coche) {
+	public Compra(String id, String cliente, String matricula, String fecha, String id_coche) {
 		super();
 		this.id = id;
 		this.cliente = cliente;
 		this.matricula = matricula;
 		this.fecha = fecha;
 		this.id_coche = id_coche;
+	}
+	
+	public Compra() {
+		super();
+		this.id = null;
+		this.cliente = null;
+		this.matricula = null;
+		this.fecha = null;
+		this.id_coche = null;
 	}
 	
 	public String getId() {
@@ -30,11 +36,11 @@ public class Compra {
 		this.id = id;
 	}
 
-	public Cliente getCliente() {
+	public String getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(Cliente cliente) {
+	public void setCliente(String cliente) {
 		this.cliente = cliente;
 	}
 
@@ -72,6 +78,12 @@ public class Compra {
 			return false;
 		Compra other = (Compra) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		return "Compra [id=" + id + ", cliente=" + cliente + ", matricula=" + matricula + ", fecha=" + fecha
+				+ ", id_coche=" + id_coche + "]";
 	}
 
 	

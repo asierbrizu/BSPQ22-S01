@@ -179,8 +179,9 @@ public class VentanaInicio extends JFrame {
 							JOptionPane.showMessageDialog(null, "Contrasenia incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
 							break;
 						case 2:
+							clienteActual = BD.getCliente(con, n, c);
+							JOptionPane.showMessageDialog(null, clienteActual.getEmail());
 							dispose();
-							clienteActual=BD.obtenerInfoCliente(con, textEmail.getText());
 							new VentanaAdministrador();
 
 							break;
@@ -279,12 +280,15 @@ public class VentanaInicio extends JFrame {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss:SSS");
 		Date fecha = new Date(milis);
 		String fechaActual = sdf.format(fecha);
-		Compra compra=new Compra(idCompra, clienteActual, new_matricula, fechaActual, coche.getIdCoche());
+		Compra compra=new Compra(idCompra, clienteActual.getDni(), new_matricula, fechaActual, coche.getIdCoche());
 		try {
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		JOptionPane.showMessageDialog(null, compra);
+		
 		Response response = invocationBuilder.post(Entity.entity(compra, MediaType.APPLICATION_JSON));
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			throw new CompraException("" + response.getStatus());

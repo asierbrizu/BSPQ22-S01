@@ -30,6 +30,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import concesionario.clases.Cliente;
 import concesionario.clases.Compra;
 import concesionario.server.bd.BD;
 import concesionario.server.bd.DBException;
@@ -199,7 +200,7 @@ public class ConcesionarioManager extends JFrame implements ActionListener, Runn
 							if (!e.getValueIsAdjusting()) {
 								textField.setText(hashCompras.get(listaCompras.getSelectedValue()).getId());
 								textField_1.setText(hashCompras.get(listaCompras.getSelectedValue()).getMatricula());
-								textField_2.setText(hashCompras.get(listaCompras.getSelectedValue()).getCliente().getNombre() + " " + hashCompras.get(listaCompras.getSelectedValue()).getCliente().getApellido());
+								textField_2.setText(hashCompras.get(listaCompras.getSelectedValue()).getCliente());
 								textField_3.setText(hashCompras.get(listaCompras.getSelectedValue()).getFecha());
 								textField_4.setText(hashCompras.get(listaCompras.getSelectedValue()).getId_coche());
 								repaint();
