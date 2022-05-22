@@ -41,6 +41,7 @@ public class BDTest {
 		when(bd.initBD("bd_bspq")).thenReturn(con);
 	}
 	
+	@Test
 	public void testCrearTablas() throws DBException, SQLException {
 		
 		try {
