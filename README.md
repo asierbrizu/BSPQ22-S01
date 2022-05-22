@@ -14,11 +14,24 @@ Esto compila el programa usando maven.
 Crear BD
 --------------------	
 	
-Ejecutar estas sentencias para crear BD y tablas en caso de no haberlas	
+Crear base de datos si no existe
+
 	CREATE DATABASE IF NOT EXISTS bd_bspq;
+	
+Usar base de datos para crear las tablas
+	
 	USE bd_bspq;
+	
+Crear tabla Usuario
+	
 	CREATE TABLE IF NOT EXISTS Usuario (email VARCHAR(100) PRIMARY KEY, contrasenya VARCHAR(100) DEFAULT NULL, nombre VARCHAR(100), apellido VARCHAR(100), dni VARCHAR(9), fecha_ncto VARCHAR(10), tipo VARCHAR(60));
+	
+Crear tabla Compra
+	
 	CREATE TABLE IF NOT EXISTS Compra (id int (11) AUTO_INCREMENT PRIMARY KEY, usuario VARCHAR(100), matricula VARCHAR(7), fecha VARCHAR(40), id_coche VARCHAR(10));
+	
+Crear tabla Coche
+	
 	CREATE TABLE IF NOT EXISTS Coche (id int (11) AUTO_INCREMENT PRIMARY KEY, marca VARCHAR(100), modelo VARCHAR(100), color VARCHAR(100), precio VARCHAR(100), imagen VARCHAR(100), Combustible VARCHAR(100), Instrucciones VARCHAR(100));
 
 Ejecutar la aplicación
