@@ -144,7 +144,7 @@ public class BDTest {
 			e.printStackTrace();
 		}
 		
-		int numUsuario = bd.obtenerUsuario(con, "as", "1234");
+//		int numUsuario = bd.obtenerUsuario(con, "as", "1234");
 //		when(bd.obtenerUsuario(con, "as", "1234")).thenReturn(numUsuario);
 //		He comentando esto, pero antes funcionaba no se que pasa :()
 	}
