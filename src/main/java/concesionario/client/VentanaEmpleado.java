@@ -1,6 +1,6 @@
 package concesionario.client;
 
-import java.awt.Color;
+import java.awt.Color; 
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -35,7 +35,7 @@ public class VentanaEmpleado extends JInternalFrame{
 	private JMenuItem menuItemListarMecanicos;
 	private JMenuItem menuItemListarEmpleados;
 	
-	public VentanaEmpleado(BD bd){
+	public VentanaEmpleado(BD bd, Connection con){
 
 		
 		setLayout(new GridLayout(1,1));
@@ -86,7 +86,15 @@ public class VentanaEmpleado extends JInternalFrame{
 		listaEmpleados.add(menuItemListarEmpleados);
 		menuItemListarEmpleados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				
+				panelPrincipal.removeAll();
+				repaint();
+				validate();
+				ArrayList<Cliente> empleados = bd.getEmpleados(con);
+				for (Cliente empleado : empleados) {
+					JPanel panelEmpleado = new JPanel();
+					panelEmpleado.add(new JLabel(empleado.toString()));
+					panelPrincipal.add(panelEmpleado);
+				}
 
 			}
 

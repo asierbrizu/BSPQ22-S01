@@ -83,13 +83,6 @@ public class VentanaRegistro extends JFrame{
 			e3.printStackTrace();
 		}
 
-
-		try {
-			bd.closeBD(con);
-		} catch (DBException e1) {
-			e1.printStackTrace();	
-		}
-
 		textNombre = new JTextField();
 		textNombre.setBounds(10, 104, 281, 20);
 		getContentPane().add(textNombre);
@@ -258,13 +251,13 @@ public class VentanaRegistro extends JFrame{
 						if(checkEmpleado.isSelected() && textAutorizacion.getText().matches("adaiaADMIN_2022")) {
 							BD.insertarUsuario(con, textEmail.getText(), textPassword.getText(), textNombre.getText(), textApellido.getText(), textDNI.getText(), fechaStr, "empleado");
 							JOptionPane.showMessageDialog(null, "Empleado registrado.");
-							iniciarAdmin(BD.getCliente(con, textEmail.getText(), textPassword.getText()));
+							iniciarAdmin(BD.getCliente(con, textEmail.getText(), textPassword.getText()), bd, con);
 						} else if(checkEmpleado.isSelected() && !textAutorizacion.getText().matches("adaiaADMIN_2022")) {
 							JOptionPane.showMessageDialog(null, "Autorización incorrecta.");
 						} else  if(!checkEmpleado.isSelected()){
 							BD.insertarUsuario(con, textEmail.getText(), textPassword.getText(), textNombre.getText(), textApellido.getText(), textDNI.getText(), fechaStr, "cliente");
 							JOptionPane.showMessageDialog(null, "Usuario registrado.");
-							iniciarAdmin(BD.getCliente(con, textEmail.getText(), textPassword.getText()));	
+							iniciarAdmin(BD.getCliente(con, textEmail.getText(), textPassword.getText()), bd, con);	
 						}
 					} catch (DBException e1) {
 						e1.printStackTrace();
@@ -319,10 +312,10 @@ public class VentanaRegistro extends JFrame{
 
 	}
 
-	public void iniciarAdmin(Cliente clienteActual){
+	public void iniciarAdmin(Cliente clienteActual, BD bd, Connection con){
 		try {
 			VentanaInicio.clienteActual=BD.obtenerInfoCliente(con, correo);
-			new VentanaAdministrador(clienteActual);
+			new VentanaAdministrador(clienteActual,bd, con);
 			dispose();
 		} catch (DBException e1) {
 			e1.printStackTrace();

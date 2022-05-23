@@ -37,16 +37,10 @@ public class VentanaAdministrador extends JFrame {
 	private JMenuItem menuItemDarPermisos;
 	private JMenuItem menuItemVentanaEmpleado;
 
-
 	private ArrayList<Coche> listaCoches = new ArrayList<>();
 	private HashMap<String, ArrayList<Coche>> hashMarcas = new HashMap<String, ArrayList<Coche>>();
 
-
-	public BD bd;
-
-	public VentanaAdministrador(Cliente clienteActual) {
-
-		bd = new BD();
+	public VentanaAdministrador(Cliente clienteActual, BD bd) {
 
 		setLayout(new GridLayout(1,1));
 
@@ -80,19 +74,18 @@ public class VentanaAdministrador extends JFrame {
 
 		for (String  marca : marcas) {
 
-			Connection con =null;
 			try {
-				con = bd.initBD("bd_bspq");
+				conn = bd.initBD("bd_bspq");
 
 				try {
-					BD.crearTablas(con);
+					BD.crearTablas(conn);
 				} catch (DBException e3) {
 					e3.printStackTrace();
 				}
 
 				try {
 					ArrayList<Coche> temp = new ArrayList<>();
-					temp = BD.listaCoches(con, marca);
+					temp = BD.listaCoches(conn, marca);
 					for (Coche c : temp) {
 						listaCoches.add(c);
 					}
@@ -102,12 +95,6 @@ public class VentanaAdministrador extends JFrame {
 
 			} catch (DBException e1) {
 				e1.printStackTrace();
-			}
-
-			try {
-				BD.closeBD(con);
-			} catch (DBException e1) {
-				e1.printStackTrace();	
 			}
 
 		}
@@ -196,7 +183,7 @@ public class VentanaAdministrador extends JFrame {
 			menuEmpleados.add(menuItemVentanaEmpleado);
 			menuItemVentanaEmpleado.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					panelPrincipal.add(new VentanaEmpleado(bd));
+					panelPrincipal.add(new VentanaEmpleado(bd, conn));
 				}
 			});
 		}
