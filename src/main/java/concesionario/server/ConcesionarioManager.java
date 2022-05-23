@@ -181,7 +181,7 @@ public class ConcesionarioManager extends JFrame implements ActionListener, Runn
 			try {
 
 				Connection con = bd.initBD("bd_bspq");
-				compras = BD.obtenerListaCompras(con);
+				compras = BD.obtenerListaCompras();
 
 				Thread.sleep(5000);
 				System.out.println("Obtaining data from server...");
@@ -220,9 +220,9 @@ public class ConcesionarioManager extends JFrame implements ActionListener, Runn
 					repaint();
 					validate();
 
-					BD.closeBD(con);
+//					BD.closeBD();
 
-				} catch (DBException | NullPointerException e1) {
+				} catch (NullPointerException e1) {
 				}
 			} catch (NullPointerException e) {
 			} catch (InterruptedException | DBException e) {

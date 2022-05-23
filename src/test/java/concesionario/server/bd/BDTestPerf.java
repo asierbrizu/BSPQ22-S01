@@ -62,11 +62,11 @@ public class BDTestPerf {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		bd.crearTablas(con);
+		bd.crearTablas();
 		
-		bd.insertarUsuario(con, "test", "1234", "test", "test", "11111111P", "01-01-2000", "cliente");
+		bd.insertarUsuario("test", "1234", "test", "test", "11111111P", "01-01-2000", "cliente");
 		
-		when(bd.existeDni(con, "11111111P")).thenReturn(true);
+		when(bd.existeDni("11111111P")).thenReturn(true);
 	}
 	
 	@Test
@@ -96,7 +96,7 @@ public class BDTestPerf {
 			e.printStackTrace();
 		}
 		
-		when(bd.existeDni(con, "1111111P")).thenReturn(true);
+		when(bd.existeDni("1111111P")).thenReturn(true);
 	}
 	
 	@Test
@@ -114,7 +114,7 @@ public class BDTestPerf {
 			e.printStackTrace();
 		}
 		
-		when(bd.existeDni(con, adBD.getEmail())).thenReturn(true);
+		when(bd.existeDni( adBD.getEmail())).thenReturn(true);
 	}
 	
 	@Test
@@ -131,8 +131,8 @@ public class BDTestPerf {
 			e.printStackTrace();
 		}
 		
-		String matricula = bd.getUltimaMatricula(con);
-		when(bd.getUltimaMatricula(con)).thenReturn(matricula);
+		String matricula = bd.getUltimaMatricula();
+		when(bd.getUltimaMatricula()).thenReturn(matricula);
 	}
 	
 	@Test
@@ -150,8 +150,8 @@ public class BDTestPerf {
 			e.printStackTrace();
 		}
 		
-		int numUsuario = bd.obtenerUsuario(con, "as", "1234");
-		when(bd.obtenerUsuario(con, "as", "1234")).thenReturn(numUsuario);
+		int numUsuario = bd.obtenerUsuario( "as", "1234");
+		when(bd.obtenerUsuario( "as", "1234")).thenReturn(numUsuario);
 	}
 		
 	@Test
@@ -171,7 +171,7 @@ public class BDTestPerf {
 			e.printStackTrace();
 		}
 		
-		bd.closeBD(con);
+		bd.closeBD();
 		
 	}
 }

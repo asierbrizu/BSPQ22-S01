@@ -75,17 +75,17 @@ public class VentanaAdministrador extends JFrame {
 		for (String  marca : marcas) {
 
 			try {
-				conn = bd.initBD("bd_bspq");
+				bd.initBD("bd_bspq");
 
 				try {
-					BD.crearTablas(conn);
+					BD.crearTablas();
 				} catch (DBException e3) {
 					e3.printStackTrace();
 				}
 
 				try {
 					ArrayList<Coche> temp = new ArrayList<>();
-					temp = BD.listaCoches(conn, marca);
+					temp = BD.listaCoches(marca);
 					for (Coche c : temp) {
 						listaCoches.add(c);
 					}
@@ -183,7 +183,7 @@ public class VentanaAdministrador extends JFrame {
 			menuEmpleados.add(menuItemVentanaEmpleado);
 			menuItemVentanaEmpleado.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					panelPrincipal.add(new VentanaEmpleado(bd, conn));
+					panelPrincipal.add(new VentanaEmpleado(bd));
 				}
 			});
 		}

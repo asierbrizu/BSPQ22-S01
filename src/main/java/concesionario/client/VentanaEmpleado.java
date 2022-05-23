@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import concesionario.clases.Cliente;
@@ -35,11 +36,11 @@ public class VentanaEmpleado extends JInternalFrame{
 	private JMenuItem menuItemListarMecanicos;
 	private JMenuItem menuItemListarEmpleados;
 	
-	public VentanaEmpleado(BD bd, Connection con){
+	public VentanaEmpleado(BD bd){
 
 		
 		setLayout(new GridLayout(1,1));
-		setSize(new Dimension(600,450));
+		setPreferredSize(new Dimension(600,450));
 
 		panelPrincipal = new JPanel();
 		panelPrincipal.setBackground(Color.WHITE);
@@ -89,12 +90,15 @@ public class VentanaEmpleado extends JInternalFrame{
 				panelPrincipal.removeAll();
 				repaint();
 				validate();
-				ArrayList<Cliente> empleados = bd.getEmpleados(con);
+				ArrayList<Cliente> empleados = bd.getEmpleados();
+				JOptionPane.showMessageDialog(null, bd.getEmpleados().size());
 				for (Cliente empleado : empleados) {
 					JPanel panelEmpleado = new JPanel();
 					panelEmpleado.add(new JLabel(empleado.toString()));
 					panelPrincipal.add(panelEmpleado);
 				}
+				repaint();
+				validate();
 
 			}
 

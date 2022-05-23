@@ -20,7 +20,7 @@ public class CompraCollector {
 		Connection con = null;
 		try {
 			con = bd.initBD("bd_bspq");
-			compras=bd.obtenerListaCompras(con);
+			compras=bd.obtenerListaCompras();
 		} catch (DBException e1) {
 			e1.printStackTrace();
 		}
@@ -48,7 +48,7 @@ public class CompraCollector {
         	Connection con = null;
     		try {
     			con = bd.initBD("bd_bspq");
-    			bd.insertarCompra(con,compra);
+    			bd.insertarCompra(compra);
             	compras.add(compra);
     		} catch (DBException e1) {
     			e1.printStackTrace();

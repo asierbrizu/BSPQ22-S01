@@ -78,7 +78,7 @@ public class VentanaRegistro extends JFrame{
 		}
 
 		try {
-			bd.crearTablas(con);
+			bd.crearTablas();
 		} catch (DBException e3) {
 			e3.printStackTrace();
 		}
@@ -249,18 +249,19 @@ public class VentanaRegistro extends JFrame{
 					}
 					try {
 						if(checkEmpleado.isSelected() && textAutorizacion.getText().matches("adaiaADMIN_2022")) {
-							BD.insertarUsuario(con, textEmail.getText(), textPassword.getText(), textNombre.getText(), textApellido.getText(), textDNI.getText(), fechaStr, "empleado");
+							BD.insertarUsuario(textEmail.getText(), textPassword.getText(), textNombre.getText(), textApellido.getText(), textDNI.getText(), fechaStr, "empleado");
 							JOptionPane.showMessageDialog(null, "Empleado registrado.");
-							iniciarAdmin(BD.getCliente(con, textEmail.getText(), textPassword.getText()), bd, con);
+							iniciarInicioDeSesion();
 						} else if(checkEmpleado.isSelected() && !textAutorizacion.getText().matches("adaiaADMIN_2022")) {
 							JOptionPane.showMessageDialog(null, "Autorización incorrecta.");
 						} else  if(!checkEmpleado.isSelected()){
-							BD.insertarUsuario(con, textEmail.getText(), textPassword.getText(), textNombre.getText(), textApellido.getText(), textDNI.getText(), fechaStr, "cliente");
+							BD.insertarUsuario(textEmail.getText(), textPassword.getText(), textNombre.getText(), textApellido.getText(), textDNI.getText(), fechaStr, "cliente");
 							JOptionPane.showMessageDialog(null, "Usuario registrado.");
-							iniciarAdmin(BD.getCliente(con, textEmail.getText(), textPassword.getText()), bd, con);	
+							iniciarInicioDeSesion();	
 						}
 					} catch (DBException e1) {
 						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Error en el registro.");
 					}
 
 				}else {
@@ -289,7 +290,7 @@ public class VentanaRegistro extends JFrame{
 
 		boolean existeEmail1 = false;
 		try {
-			existeEmail1 = bd.existeEmail(con, correo);
+			existeEmail1 = bd.existeEmail(correo);
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
@@ -304,7 +305,7 @@ public class VentanaRegistro extends JFrame{
 		}
 		boolean existeDni1 = false;
 		try {
-			existeDni1 = bd.existeDni(con, dni);
+			existeDni1 = bd.existeDni(dni);
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
@@ -312,14 +313,9 @@ public class VentanaRegistro extends JFrame{
 
 	}
 
-	public void iniciarAdmin(Cliente clienteActual, BD bd, Connection con){
-		try {
-			VentanaInicio.clienteActual=BD.obtenerInfoCliente(con, correo);
-			new VentanaAdministrador(clienteActual,bd, con);
+	public void iniciarInicioDeSesion(){
+			new VentanaInicio();
 			dispose();
-		} catch (DBException e1) {
-			e1.printStackTrace();
-		}
 	}
 	
 	public void checkTarjeta(){

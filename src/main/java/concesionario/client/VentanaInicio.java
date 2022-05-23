@@ -91,7 +91,7 @@ public class VentanaInicio extends JFrame {
 			con = bd.initBD("bd_bspq");
 
 			try {
-				bd.crearTablas(con);
+				bd.crearTablas();
 			} catch (DBException e3) {
 				e3.printStackTrace();
 			}
@@ -102,11 +102,11 @@ public class VentanaInicio extends JFrame {
 
 
 
-		try {
-			bd.closeBD(con);
-		} catch (DBException e1) {
-			e1.printStackTrace();	
-		}
+//		try {
+//			bd.closeBD();
+//		} catch (DBException e1) {
+//			e1.printStackTrace();	
+//		}
 
 		
 		
@@ -180,7 +180,7 @@ public class VentanaInicio extends JFrame {
 					}
 
 					try {
-						switch (bd.obtenerUsuario(con,n,c)) {
+						switch (bd.obtenerUsuario(n,c)) {
 						case 0:
 							JOptionPane.showMessageDialog(null, "Ese usuario no se encuentra registrado", "Error", JOptionPane.ERROR_MESSAGE);
 							break;
@@ -188,8 +188,8 @@ public class VentanaInicio extends JFrame {
 							JOptionPane.showMessageDialog(null, "Contrasenia incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
 							break;
 						case 2:
-							clienteActual = BD.getCliente(con, n, c);
-							new VentanaAdministrador(clienteActual, bd, con);
+							clienteActual = BD.getCliente(n, c);
+							new VentanaAdministrador(clienteActual, bd);
 							dispose();
 
 							break;
@@ -202,11 +202,11 @@ public class VentanaInicio extends JFrame {
 					} catch (DBException e2) {
 						e2.printStackTrace();
 					}
-					try {
-						BD.closeBD(con);
-					} catch (DBException e1) {
-						e1.printStackTrace();
-					}
+//					try {
+//						BD.closeBD();
+//					} catch (DBException e1) {
+//						e1.printStackTrace();
+//					}
 					textEmail.setText("");
 					textContrasenya.setText("");
 
@@ -231,8 +231,8 @@ public class VentanaInicio extends JFrame {
 		} catch (DBException e1) {
 			e1.printStackTrace();
 		}
-		String idCompra=String.valueOf(BD.getSiguienteIdCompra(con));
-		String matricula = bd.getUltimaMatricula(con);
+		String idCompra=String.valueOf(BD.getSiguienteIdCompra());
+		String matricula = bd.getUltimaMatricula();
 		String new_matricula = "";
 		
 		char[] charMatricula = matricula.toCharArray();
