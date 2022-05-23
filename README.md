@@ -12,6 +12,7 @@ Esto compila el programa usando maven.
 	mvn compile 
 	
 Crear BD
+En la carpeta sql>crear.sql se encuentra la base de datos con los datos básicos para el funcionamiento correcto.
 --------------------	
 	
 Crear base de datos si no existe
