@@ -1,5 +1,6 @@
 package concesionario.client;
 
+import java.io.File;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.HeadlessException;
@@ -9,7 +10,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -322,6 +327,16 @@ public class VentanaInicio extends JFrame {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH_mm_ss");
 			Date fecha = new Date(milis);
 			String f = sdf.format(fecha);
+			
+			Path path=Paths.get(System.getProperty("user.dir") +"\\factura\\");
+            if (!Files.exists(path)) {
+                try {
+                    Files.createDirectory(path);
+                } catch (IOException e) {
+                   
+                    e.printStackTrace();
+                }
+            }
 			String pw = System.getProperty("user.dir") +"\\factura\\" +f + ".pdf";
 			Document documento = new Document();
 			PdfWriter writer = null;
