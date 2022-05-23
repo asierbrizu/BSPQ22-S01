@@ -11,6 +11,10 @@ public class CompraCollector {
 	public BD bd;
 	private ArrayList<Compra> compras=inicializarCompras();
 	
+	/**
+	 * Metodo inicializa la compra
+	 * @return Lista de compras 
+	 */
 	private ArrayList<Compra> inicializarCompras(){
 		bd = new BD();
 		Connection con = null;
@@ -24,12 +28,20 @@ public class CompraCollector {
 		return compras;
 	}
 	
+	/**
+	 * Metodo para obtener la compra
+	 * @return La lista de compras 
+	 */
 	public ArrayList<Compra> getCompras() {
 		synchronized(this) {
 			return compras;
 		}
 	}
     
+	/**
+	 * Metodo para comprar un coche
+	 * @param Compra compra
+	 */
 	public void comprarCoche(Compra compra) {
         synchronized(this) {
             //Cosas para comprar coche

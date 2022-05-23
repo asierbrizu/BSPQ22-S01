@@ -22,7 +22,6 @@ import org.databene.contiperf.PerfTest;
 import org.databene.contiperf.junit.ContiPerfRule;
 import org.databene.contiperf.report.EmptyReportModule;
 
-
 @PerfTest(invocations = 1000, threads = 20)
 @Required(max = 80, average = 60)
 public class BDTestPerf {
