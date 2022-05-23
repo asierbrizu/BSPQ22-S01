@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -22,22 +23,23 @@ import concesionario.clases.Coche;
 import concesionario.server.bd.BD;
 import concesionario.server.bd.DBException;
 
-public class VentanaEmpleado extends JFrame{
+public class VentanaEmpleado extends JInternalFrame{
 	static JPanel panelPrincipal;
 	private JMenuBar menuPrincipal;
 	public static JLabel lblDeustoAuto;
-	private static JMenu volverInicio;
+	private static JMenu cerrar;
 	private static JMenu listaMecanicos;
 	private static JMenu listaEmpleados;
-	private JMenuItem menuItemVolverInicio;
+	private JMenuItem menuItemCerrarVentana;
 	private JMenuItem menuItemCerrarSesion;
+	private JMenuItem menuItemListarMecanicos;
+	private JMenuItem menuItemListarEmpleados;
 	
-	public BD bd;
+	public VentanaEmpleado(BD bd){
 
-	public VentanaEmpleado(){
-		bd = new BD();
 		
 		setLayout(new GridLayout(1,1));
+		setSize(new Dimension(600,450));
 
 		panelPrincipal = new JPanel();
 		panelPrincipal.setBackground(Color.WHITE);
@@ -48,46 +50,11 @@ public class VentanaEmpleado extends JFrame{
 		listaMecanicos = new JMenu();
 		listaMecanicos.setMnemonic('C');
 		
-		ArrayList<String> empleados = new ArrayList<>();
-		ArrayList<Cliente> infoEmpleados = new ArrayList<>();
-		
-		for (String  empleado : empleados) {
-
-			Connection con =null;
-			try {
-				con = bd.initBD("bd_bspq");
-
-				try {
-					BD.crearTablas(con);
-				} catch (DBException e3) {
-					e3.printStackTrace();
-				}
-				
-				Cliente temp = new Cliente();
-				temp = BD.obtenerInfoCliente(con, empleado);
-				infoEmpleados.add(temp);
-				
-			} catch (DBException e1) {
-				e1.printStackTrace();
-			}
-			
-			try {
-				BD.closeBD(con);
-			} catch (DBException e1) {
-				e1.printStackTrace();	
-			}
-			
-		}
-
-		for(int i = 0; i < infoEmpleados.size(); i++) {
-			
-		}
-		
 		listaEmpleados = new JMenu();
 		listaEmpleados.setMnemonic('U');
 
-		volverInicio = new JMenu();
-		volverInicio.setMnemonic('I');
+		cerrar = new JMenu();
+		cerrar.setMnemonic('I');
 
 		lblDeustoAuto = new JLabel("CONCESIONARIO ADAIA");
 		lblDeustoAuto.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 36));
@@ -97,36 +64,44 @@ public class VentanaEmpleado extends JFrame{
 		setPreferredSize(new Dimension(1366, 815));
 		setVisible(true);
 
-		listaMecanicos.setText("Lista Mecanicos");
+		listaMecanicos.setText("Mecanicos");
 		menuPrincipal.add(listaMecanicos);
+		
+		menuItemListarMecanicos = new JMenuItem();
+		menuItemListarMecanicos.setText("Lista de Mecanicos");
+		listaMecanicos.add(menuItemListarMecanicos);
+		menuItemListarMecanicos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				
 
-		listaEmpleados.setText("Lista Empleados");
+			}
+
+		});
+
+		listaEmpleados.setText("Empleados");
 		menuPrincipal.add(listaEmpleados);
 		
-		
-
-		volverInicio.setText("Volver");
-		menuPrincipal.add(volverInicio);
-
-		menuItemVolverInicio = new JMenuItem();
-		menuItemVolverInicio.setText("Ventana Inicio");
-		volverInicio.add(menuItemVolverInicio);
-		menuItemVolverInicio.addActionListener(new ActionListener() {
+		menuItemListarEmpleados = new JMenuItem();
+		menuItemListarEmpleados.setText("Lista de Empleados");
+		listaEmpleados.add(menuItemListarEmpleados);
+		menuItemListarEmpleados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				dispose();
-				new VentanaAdministrador();
+				
 
 			}
 
 		});
 		
-		menuItemCerrarSesion = new JMenuItem();
-		menuItemCerrarSesion.setText("Cerrar Sesion");
-		volverInicio.add(menuItemCerrarSesion);
-		menuItemCerrarSesion.addActionListener(new ActionListener() {
+
+		cerrar.setText("Cerrar");
+		menuPrincipal.add(cerrar);
+
+		menuItemCerrarVentana = new JMenuItem();
+		menuItemCerrarVentana.setText("Cerrar Ventana");
+		cerrar.add(menuItemCerrarVentana);
+		menuItemCerrarVentana.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				dispose();
-				new VentanaInicio();
 
 			}
 
@@ -134,10 +109,6 @@ public class VentanaEmpleado extends JFrame{
 
 		setJMenuBar(menuPrincipal);
 		setTitle("VENTANA EMPLEADO");
-
-
-		pack();
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 	}
 }

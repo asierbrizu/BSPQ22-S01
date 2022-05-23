@@ -8,10 +8,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
 
+import concesionario.clases.Cliente;
 import concesionario.server.bd.BD;
 import concesionario.server.bd.DBException;
 
@@ -39,13 +43,14 @@ public class VentanaRegistro extends JFrame{
 	private JPasswordField passwordField;
 	private JPasswordField textAutorizacion;
 	private JDateChooser dateChooser;
-	
+	private JButton btnRegistrar;
+
 	public static String database;
 	public static String milisegundos;
 	public static String columnas;
 	public static String imagenes;
-	
-    private static String fechaStr;
+
+	private static String fechaStr;
 	private static boolean correctoNombre ,correctoApellido ,  correctoDni ;
 	private static String dni;
 	private static String nom;
@@ -53,32 +58,32 @@ public class VentanaRegistro extends JFrame{
 	private static String correo;
 	private static Connection con;
 	public static BD bd;
-	
-	
+
+
 	public VentanaRegistro() {
 		bd = new BD();
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setLayout(null);
-		
+
 		correctoNombre=false;
 		correctoApellido=false;
 		correctoDni=false;
-		
+
 		Connection con = null;
 		try {
 			con = bd.initBD("bd_bspq");
-			
+
 		} catch (DBException e1) {
 			e1.printStackTrace();
 		}
-		
-			try {
-				bd.crearTablas(con);
-			} catch (DBException e3) {
-				e3.printStackTrace();
-			}
-			
-			
+
+		try {
+			bd.crearTablas(con);
+		} catch (DBException e3) {
+			e3.printStackTrace();
+		}
+
+
 		try {
 			bd.closeBD(con);
 		} catch (DBException e1) {
@@ -122,6 +127,27 @@ public class VentanaRegistro extends JFrame{
 		textDNI.setColumns(10);
 		textDNI.setBounds(10, 196, 281, 20);
 		getContentPane().add(textDNI);
+
+		textDNI.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				checkTarjeta();
+
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				checkTarjeta();
+
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				checkTarjeta();
+
+			}
+		});
 
 		JLabel lblNewLabel_1_2 = new JLabel("DNI");
 		lblNewLabel_1_2.setBounds(10, 181, 77, 14);
@@ -168,20 +194,20 @@ public class VentanaRegistro extends JFrame{
 		lblNewLabel_1_1_1_1_2.setEnabled(false);
 		lblNewLabel_1_1_1_1_2.setBounds(10, 390, 184, 14);
 		getContentPane().add(lblNewLabel_1_1_1_1_2);
-		
+
 		checkEmpleado.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(checkEmpleado.isSelected()) {
 					textAutorizacion.setEnabled(true);
 					lblNewLabel_1_1_1_1_2.setEnabled(true);
-					
+
 				} else {
 					textAutorizacion.setEnabled(false);
 					lblNewLabel_1_1_1_1_2.setEnabled(false);
 				}
-				
+
 			}
 		});
 
@@ -189,16 +215,17 @@ public class VentanaRegistro extends JFrame{
 		btnCancelar.setBounds(10, 451, 135, 30);
 		getContentPane().add(btnCancelar);
 		btnCancelar.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new VentanaInicio();
 				dispose();
-				
+
 			}
 		});
 
-		JButton btnRegistrar = new JButton("Registrarse");
+		btnRegistrar = new JButton("Registrarse");
+		btnRegistrar.setEnabled(false);
 		btnRegistrar.setForeground(Color.WHITE);
 		btnRegistrar.setBackground(new Color(255, 127, 80));
 		btnRegistrar.setBounds(156, 451, 135, 30);
@@ -212,54 +239,48 @@ public class VentanaRegistro extends JFrame{
 				boolean m= existeEmail(correo);
 				if( !d && !m ) {
 					java.util.Date fecha=dateChooser.getDate();
-	        		if (!(fecha == null)) {
-	        			
-	        			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-	            		fechaStr = sdf.format(fecha);
-	           
+					if (!(fecha == null)) {
+
+						SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+						fechaStr = sdf.format(fecha);
+
 					}else {
 						fechaStr="01-01-1970";
 					}
 					Connection con = null;
 					try {
 						con = bd.initBD("bd_bspq");
-						
+
 					} catch (DBException e1) {
 						e1.printStackTrace();
 					}
 					try {
 						if(checkEmpleado.isSelected() && textAutorizacion.getText().matches("adaiaADMIN_2022")) {
-						BD.insertarUsuario(con, textEmail.getText(), textPassword.getText(), textNombre.getText(), textApellido.getText(), textDNI.getText(), fechaStr, "empleado");
-						JOptionPane.showMessageDialog(null, "Empleado registrado.");
-						iniciarAdmin();
+							BD.insertarUsuario(con, textEmail.getText(), textPassword.getText(), textNombre.getText(), textApellido.getText(), textDNI.getText(), fechaStr, "empleado");
+							JOptionPane.showMessageDialog(null, "Empleado registrado.");
+							iniciarAdmin(BD.getCliente(con, textEmail.getText(), textPassword.getText()));
 						} else if(checkEmpleado.isSelected() && !textAutorizacion.getText().matches("adaiaADMIN_2022")) {
 							JOptionPane.showMessageDialog(null, "Autorización incorrecta.");
 						} else  if(!checkEmpleado.isSelected()){
-						BD.insertarUsuario(con, textEmail.getText(), textPassword.getText(), textNombre.getText(), textApellido.getText(), textDNI.getText(), fechaStr, "cliente");
-						JOptionPane.showMessageDialog(null, "Usuario registrado.");
-						iniciarAdmin();	
+							BD.insertarUsuario(con, textEmail.getText(), textPassword.getText(), textNombre.getText(), textApellido.getText(), textDNI.getText(), fechaStr, "cliente");
+							JOptionPane.showMessageDialog(null, "Usuario registrado.");
+							iniciarAdmin(BD.getCliente(con, textEmail.getText(), textPassword.getText()));	
 						}
 					} catch (DBException e1) {
 						e1.printStackTrace();
 					}
-//					try {
-//						System.out.println("6");
-//						BD.closeBD(con);
-//					} catch (DBException e1) {
-//						e1.printStackTrace();	
-//					}
-					
+
 				}else {
 					JOptionPane.showMessageDialog(null, "Ya existe un usuario con esos datos", "Error", JOptionPane.WARNING_MESSAGE);
 
 				}	
-				
+
 
 			}
 		});
-		
-		
-		
+
+
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -279,11 +300,6 @@ public class VentanaRegistro extends JFrame{
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
-//		try {
-//			BD.closeBD(con);
-//		} catch (DBException e2) {
-//			e2.printStackTrace();
-//		}
 		return existeEmail1;
 	}
 
@@ -299,25 +315,30 @@ public class VentanaRegistro extends JFrame{
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
-//		try {
-//			BD.closeBD(con);
-//		} catch (DBException e2) {
-//			e2.printStackTrace();
-//		}
 		return existeDni1;
 
 	}
-	
-	public void iniciarAdmin(){
+
+	public void iniciarAdmin(Cliente clienteActual){
 		try {
 			VentanaInicio.clienteActual=BD.obtenerInfoCliente(con, correo);
-			new VentanaAdministrador();
+			new VentanaAdministrador(clienteActual);
 			dispose();
 		} catch (DBException e1) {
 			e1.printStackTrace();
 		}
 	}
 	
+	public void checkTarjeta(){
+		if(textDNI.getText().length() == 9){
+			btnRegistrar.setEnabled(true);
+			textDNI.setBorder(new LineBorder(Color.green));
+		} else {
+			btnRegistrar.setEnabled(false);
+			textDNI.setBorder(new LineBorder(Color.red));
+		}
+	}
+
 }
 
 
