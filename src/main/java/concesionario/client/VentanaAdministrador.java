@@ -33,7 +33,7 @@ public class VentanaAdministrador extends JFrame {
 	private static JMenu menuEmpleados;
 	private static JMenu menuCerrar;
 	private JMenuBar menuPrincipal;
-	private JMenuItem menuItemCerrarSesion;
+	private JMenuItem menuItemCerrarSesion=new JMenuItem();
 	private JMenuItem menuItemDarPermisos;
 	private JMenuItem menuItemVentanaEmpleado;
 

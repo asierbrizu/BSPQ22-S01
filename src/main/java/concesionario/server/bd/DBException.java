@@ -9,7 +9,7 @@ public class DBException extends Exception {
 	private String mensaje;
 	
 	/**
-	 * Construye la excepci�n con le mensaje indicado
+	 * Construye la excepcion con le mensaje indicado
 	 * @param message mensaje contenido en la excepci�n
 	 */
 	public DBException(String message) throws DBException{
@@ -18,10 +18,10 @@ public class DBException extends Exception {
 	}
 
 	/**
-	 * Construye la excepci�n con el mensaje y la excepci�n
+	 * Construye la excepcion con el mensaje y la excepcion
 	 * interna anidada.
-	 * @param message mensaje de la excepci�n
-	 * @param t excepci�n interna anidada
+	 * @param message mensaje de la excepcion
+	 * @param t excepcion interna anidada
 	 */
 	public DBException(String message, Throwable t) throws DBException{
 		super(message, t);

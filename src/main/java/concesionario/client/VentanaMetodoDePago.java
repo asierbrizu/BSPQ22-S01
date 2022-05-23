@@ -6,6 +6,10 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -18,6 +22,13 @@ import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import concesionario.clases.Coche;
 import concesionario.util.CompraException;
@@ -66,7 +77,7 @@ public class VentanaMetodoDePago extends JFrame{
 					JOptionPane.showMessageDialog( null, "Coche comprado.  Revisa tu cuenta bancaria.", 
 	                        "Compra realizada", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
-				} catch (CompraException e1) {
+					} catch (CompraException e1) {
 					e1.printStackTrace();
 				}
 				
@@ -193,9 +204,6 @@ public class VentanaMetodoDePago extends JFrame{
 		
 		setVisible(true);
 	}
-	
-	
-	
 	
 	public void checkTarjeta(){
 		if(textField.getText().length() == 16 && textField_1.getText().length() == 3){

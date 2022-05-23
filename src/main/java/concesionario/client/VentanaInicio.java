@@ -7,6 +7,8 @@ import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -32,6 +34,13 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import concesionario.clases.Cliente;
 import concesionario.clases.Coche;
@@ -280,6 +289,7 @@ public class VentanaInicio extends JFrame {
 		Date fecha = new Date(milis);
 		String fechaActual = sdf.format(fecha);
 		Compra compra=new Compra(idCompra, clienteActual.getDni(), new_matricula, fechaActual, coche.getIdCoche());
+		generarPDF(coche);
 		try {
 			con.close();
 		} catch (SQLException e) {
@@ -292,6 +302,61 @@ public class VentanaInicio extends JFrame {
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			throw new CompraException("" + response.getStatus());
 		}
+		
+	}
+	
+	public static void generarPDF(Coche coche){
+		
+		String color=coche.getColor();
+		String combustible=coche.getCombustible();
+		String marca=coche.getMarca();
+		String modelo=coche.getModelo();
+		Double precio=coche.getPrecioBase();
+		
+	
+		
+		//generar PDF
+		
+		try {
+			long milis=System.currentTimeMillis();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH_mm_ss");
+			Date fecha = new Date(milis);
+			String f = sdf.format(fecha);
+			String pw = System.getProperty("user.dir") +"\\factura\\" +f + ".pdf";
+			Document documento = new Document();
+			PdfWriter writer = null;
+			try {
+				writer = PdfWriter.getInstance(documento, new FileOutputStream(pw));
+			} catch (DocumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			documento.open();
+			
+			Paragraph marcaDeAgua=new Paragraph();
+			marcaDeAgua.setAlignment(marcaDeAgua.ALIGN_TOP);
+			marcaDeAgua.setFont(FontFactory.getFont("Sans", 30, Font.ITALIC, BaseColor.ORANGE));
+			marcaDeAgua.add("Concesionario ADAIA");
+			Paragraph parrafo=new Paragraph();
+			parrafo.setAlignment(Paragraph.ALIGN_CENTER);
+			parrafo.setFont(FontFactory.getFont("Sans", 20, Font.BOLD, BaseColor.BLUE));
+			parrafo.add("COLOR: "+color+"\n"+"COMBUSTIBLE: "+combustible+"\n"+"MARCA: "+marca+"\n"+"MODELO: "+modelo+"\n"+"PRECIO BASE: "+precio.toString());
+			try {
+				documento.add(marcaDeAgua);
+				documento.add(parrafo);
+			} catch (DocumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			documento.close();
+			writer.close();
+		
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
 		
 	}
 
