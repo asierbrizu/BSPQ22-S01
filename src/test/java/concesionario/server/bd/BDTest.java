@@ -135,7 +135,6 @@ public class BDTest {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/bd_bspq", "root", "root");
 			
-					
 		} catch (ClassNotFoundException e) {
 			
 			e.printStackTrace();

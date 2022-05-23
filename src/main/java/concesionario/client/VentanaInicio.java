@@ -180,7 +180,6 @@ public class VentanaInicio extends JFrame {
 							break;
 						case 2:
 							clienteActual = BD.getCliente(con, n, c);
-//							JOptionPane.showMessageDialog(null, clienteActual.getEmail());
 							dispose();
 							new VentanaAdministrador();
 

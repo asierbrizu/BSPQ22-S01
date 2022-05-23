@@ -30,9 +30,9 @@ public class VentanaAdministrador extends JFrame {
 	public static JLabel lblDeustoAuto;
 	private static JMenu menuCoches;
 	private static JMenu menuEmpleados;
+	private static JMenu menuCerrar;
 	private JMenuBar menuPrincipal;
 	private JMenuItem menuItemCerrarSesion;
-	private JMenuItem menuItemGestionarEmpleados;
 	private JMenuItem menuItemDarPermisos;
 	private JMenuItem menuItemVentanaEmpleado;
 
@@ -166,19 +166,7 @@ public class VentanaAdministrador extends JFrame {
 
 		menuPrincipal.add(menuEmpleados);
 
-		menuItemGestionarEmpleados = new JMenuItem();
-		menuItemGestionarEmpleados.setText("Gestionar empleados");
-		menuEmpleados.add(menuItemGestionarEmpleados);
-		menuItemGestionarEmpleados.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-
-
-				
-
-			}
-
-		});
-
+		menuCerrar = new JMenu("Cerrar");
 		menuItemCerrarSesion = new JMenuItem();
 		menuItemCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -187,16 +175,23 @@ public class VentanaAdministrador extends JFrame {
 			}
 		});
 		menuItemCerrarSesion.setText("Cerrar sesion");
-		menuEmpleados.add(menuItemCerrarSesion);
+		menuCerrar.add(menuItemCerrarSesion);
+		menuItemCerrarSesion.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new VentanaInicio();
+				
+			}
+		});
+		menuPrincipal.add(menuCerrar);
 
 		menuItemDarPermisos = new JMenuItem();
 		menuItemDarPermisos.setText("Dar permisos");
 		menuEmpleados.add(menuItemDarPermisos);
 		menuItemDarPermisos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-
-
-				
 
 			}
 
@@ -207,8 +202,7 @@ public class VentanaAdministrador extends JFrame {
 		menuEmpleados.add(menuItemVentanaEmpleado);
 		menuItemVentanaEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				dispose();
-				new VentanaEmpleado();
+				panelPrincipal.add(new VentanaEmpleado(bd));
 
 			
 		}

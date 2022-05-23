@@ -17,7 +17,7 @@ import concesionario.clases.Extra;
 
 
 public class BD {
-	
+
 	/**
 	 * Método que crea la conexion con la BBD
 	 * @param String nombreBD El nombre de la BBDD
@@ -27,19 +27,19 @@ public class BD {
 	public Connection initBD(String nombreBD) throws DBException {
 		Connection con = null;
 		try {
-			
+
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/"+nombreBD, "root", "root");
-			
-					
+
+
 		} catch (ClassNotFoundException e) {
-			
+
 			e.printStackTrace();
 			throw new DBException("No se pudo cargar el driver de la base de datos", e);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return con;
 	}
 	/**
@@ -54,7 +54,7 @@ public class BD {
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new DBException("No se pudo desconectar correctamente de la base de datos", e);
-				
+
 			}
 		}
 	}
@@ -78,7 +78,7 @@ public class BD {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DBException("No se ha podido comprobar si existe el usuario");
-			
+
 		} finally {
 			if(st!=null) {
 				try {
@@ -104,7 +104,7 @@ public class BD {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DBException("No se ha podido comprobar si existe el usuario");
-			
+
 		} finally {
 			if(st!=null) {
 				try {
@@ -116,13 +116,13 @@ public class BD {
 		}
 		return cliente;
 	}
-	
-	
+
+
 	public static void crearTablas(Connection con) throws DBException {
 		String sentencia1 = "CREATE TABLE IF NOT EXISTS Usuario (email VARCHAR(100) PRIMARY KEY, contrasenya VARCHAR(100) DEFAULT NULL, nombre VARCHAR(100), apellido VARCHAR(100), dni VARCHAR(9), fecha_ncto VARCHAR(10), tipo VARCHAR(60));";
 		String sentencia2 = "CREATE TABLE IF NOT EXISTS Compra (id int (11) AUTO_INCREMENT PRIMARY KEY, usuario VARCHAR(100), matricula VARCHAR(7), fecha VARCHAR(40), id_coche VARCHAR(10));";
 		String sentencia3 = "CREATE TABLE IF NOT EXISTS Coche (id int (11) AUTO_INCREMENT PRIMARY KEY, marca VARCHAR(100), modelo VARCHAR(100), color VARCHAR(100), precio VARCHAR(100), imagen VARCHAR(100), Combustible VARCHAR(100), Instrucciones VARCHAR(100));";
-		
+
 
 		Statement st = null;
 		try {
@@ -130,13 +130,13 @@ public class BD {
 			st.executeUpdate(sentencia1);
 			st.executeUpdate(sentencia2);
 			st.executeUpdate(sentencia3);			
-		
+
 			st.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DBException("No se han podido crear las tablas", e);
-			
-	
+
+
 		} finally {
 			if(st!=null) {
 				try {
@@ -146,27 +146,27 @@ public class BD {
 				}
 			}
 		}
-		
+
 	}
-	
+
 	public static void insertarUsuario(Connection con, String email, String contra, String nombre, String apellido, String dni, String fecha_ncto, String tipo) throws DBException {
-		
+
 		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Usuario (email, contrasenya, nombre, apellido, dni, fecha_ncto, tipo) VALUES (?,?,?,?,?,?,?)"); 
 				Statement stmtForId = con.createStatement()) {
-				
-				stmt.setString(1, email);
-				stmt.setString(2, contra);
-				stmt.setString(3, nombre);
-				stmt.setString(4, apellido);
-				stmt.setString(5, dni);
-				stmt.setString(6, fecha_ncto);
-				stmt.setString(7, tipo);
-		
-				stmt.executeUpdate();
-				stmt.close();
-				 
-			} catch (SQLException e) {
-			
+
+			stmt.setString(1, email);
+			stmt.setString(2, contra);
+			stmt.setString(3, nombre);
+			stmt.setString(4, apellido);
+			stmt.setString(5, dni);
+			stmt.setString(6, fecha_ncto);
+			stmt.setString(7, tipo);
+
+			stmt.executeUpdate();
+			stmt.close();
+
+		} catch (SQLException e) {
+
 			e.printStackTrace();
 			throw new DBException("No se ha podido insertar el usuario");
 		} finally {
@@ -179,73 +179,41 @@ public class BD {
 			}
 		}
 	}
-	
-	
+
+
 
 	public static void insertarAdministrador(Connection con, String usuario, String contra) throws DBException {
-	
+
 		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO usuario (usuario, contrasenya) VALUES (?,?)"); 
 				Statement stmtForId = con.createStatement()) {
-				
-				stmt.setString(1, usuario);
-				stmt.setString(2, contra);
-				
-			 stmt.executeUpdate();
+
+			stmt.setString(1, usuario);
+			stmt.setString(2, contra);
+
+			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DBException("No se ha podido insertar el administrador en la BBDD");
-			
-			
+
+
 		} finally {
 			if(con!=null) {
 				try {
 					con.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
-					
+
 				}
 			}
 		}
 	}
 	public boolean existeDni(Connection con, String dni) throws SQLException {
-			
-			String sent = "select * from Usuario where dni='"+dni+"'";
-			Statement st = null;
-			st = con.createStatement();
-	
-			ResultSet rs = st.executeQuery(sent);
-			boolean existe = false;
-			if(rs.next())
-				existe = true;
-			rs.close();
-			return existe;
-		}
 
-	public static ArrayList<Coche> listaCoches(Connection con, String marca) throws SQLException {
-		
-		String sent = "select * from coche where marca='"+ marca +"'";
+		String sent = "select * from Usuario where dni='"+dni+"'";
 		Statement st = null;
 		st = con.createStatement();
-		
-		ArrayList<Coche> listaCoches = new ArrayList<Coche>();
-		Coche coche = null;
-		ResultSet rs = st.executeQuery(sent);
-		
-		while(rs.next()) {
-			coche = new Coche(rs.getString(1), "", rs.getString(4), rs.getString(2), rs.getString(3),rs.getDouble(5), rs.getString(6),rs.getString(7),rs.getString(8), new ArrayList<Extra>());
-			listaCoches.add(coche);
-		}
-		rs.close();
-		return listaCoches;
-	}
-	
-	public boolean existeEmail(Connection con, String email) throws SQLException {
-		
-		String sent = "select * from Usuario where email='"+email+"'";
-		Statement st = null;
-		st = con.createStatement();
-	
+
 		ResultSet rs = st.executeQuery(sent);
 		boolean existe = false;
 		if(rs.next())
@@ -253,48 +221,80 @@ public class BD {
 		rs.close();
 		return existe;
 	}
-	
 
-    public static int getSiguienteIdCompra(Connection con) {
-        String sent = "select MAX(ID) from Compra";
-        Statement st = null;
-        int ultimoIDCompra=0;
-        try {
-            st = con.createStatement();
-            ResultSet rs=st.executeQuery(sent);
+	public static ArrayList<Coche> listaCoches(Connection con, String marca) throws SQLException {
 
-            if (rs.next()) {
-            	ultimoIDCompra=rs.getInt(1);
-            	ultimoIDCompra++;
-            }
-        } catch (SQLException e) { 
-            e.printStackTrace();
-        }
-        return ultimoIDCompra;
+		String sent = "select * from coche where marca='"+ marca +"'";
+		Statement st = null;
+		st = con.createStatement();
+
+		ArrayList<Coche> listaCoches = new ArrayList<Coche>();
+		Coche coche = null;
+		ResultSet rs = st.executeQuery(sent);
+
+		while(rs.next()) {
+			coche = new Coche(rs.getString(1), "", rs.getString(4), rs.getString(2), rs.getString(3),rs.getDouble(5), rs.getString(6),rs.getString(7),rs.getString(8), new ArrayList<Extra>());
+			listaCoches.add(coche);
+		}
+		rs.close();
+		return listaCoches;
+	}
+
+	public boolean existeEmail(Connection con, String email) throws SQLException {
+
+		String sent = "select * from Usuario where email='"+email+"'";
+		Statement st = null;
+		st = con.createStatement();
+
+		ResultSet rs = st.executeQuery(sent);
+		boolean existe = false;
+		if(rs.next())
+			existe = true;
+		rs.close();
+		return existe;
+	}
 
 
-    }
-    
-    public String getUltimaMatricula(Connection con) {
-    	int id = BD.getSiguienteIdCompra(con);
-    	int id_old = id -1; 
-    	String matricula = "";
-    	String sent = "select matricula from Compra where id = " + id_old;
-    	Statement st = null;
-    	 try {
-             st = con.createStatement();
-             ResultSet rs=st.executeQuery(sent);
-             if (rs.next()) {
-            	 matricula = rs.getString(1);
-             }
-    	 } catch (SQLException e) { 
-             e.printStackTrace();
-         }
+	public static int getSiguienteIdCompra(Connection con) {
+		String sent = "select MAX(ID) from Compra";
+		Statement st = null;
+		int ultimoIDCompra=0;
+		try {
+			st = con.createStatement();
+			ResultSet rs=st.executeQuery(sent);
 
-         return matricula;
-    }
+			if (rs.next()) {
+				ultimoIDCompra=rs.getInt(1);
+				ultimoIDCompra++;
+			}
+		} catch (SQLException e) { 
+			e.printStackTrace();
+		}
+		return ultimoIDCompra;
 
-    public static ArrayList<Compra> obtenerListaCompras(Connection con) throws DBException {
+
+	}
+
+	public String getUltimaMatricula(Connection con) {
+		int id = BD.getSiguienteIdCompra(con);
+		int id_old = id -1; 
+		String matricula = "";
+		String sent = "select matricula from Compra where id = " + id_old;
+		Statement st = null;
+		try {
+			st = con.createStatement();
+			ResultSet rs=st.executeQuery(sent);
+			if (rs.next()) {
+				matricula = rs.getString(1);
+			}
+		} catch (SQLException e) { 
+			e.printStackTrace();
+		}
+
+		return matricula;
+	}
+
+	public static ArrayList<Compra> obtenerListaCompras(Connection con) throws DBException {
 		String sentencia = "SELECT * FROM compra";
 		Statement st = null;
 		ArrayList<Compra> compras=new ArrayList<Compra>();
@@ -315,7 +315,7 @@ public class BD {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DBException("No se ha podido comprobar si existe el usuario");
-			
+
 		} finally {
 			if(st!=null) {
 				try {
@@ -327,23 +327,23 @@ public class BD {
 		}
 		return compras;
 	}
-	
-public static void insertarCompra(Connection con, Compra compra) throws DBException {
-		
+
+	public static void insertarCompra(Connection con, Compra compra) throws DBException {
+
 		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Compra (usuario, matricula, fecha, id_coche) VALUES (?,?,?,?)"); 
 				Statement stmtForId = con.createStatement()) {
 
-				stmt.setString(1, compra.getCliente());
-				stmt.setString(2, compra.getMatricula());
-				stmt.setString(3, compra.getFecha());
-				stmt.setString(4, compra.getId_coche());
-		
-		
-				stmt.executeUpdate();
-				stmt.close();
-				 
-			} catch (SQLException e) {
-			
+			stmt.setString(1, compra.getCliente());
+			stmt.setString(2, compra.getMatricula());
+			stmt.setString(3, compra.getFecha());
+			stmt.setString(4, compra.getId_coche());
+
+
+			stmt.executeUpdate();
+			stmt.close();
+
+		} catch (SQLException e) {
+
 			e.printStackTrace();
 			throw new DBException("No se ha podido insertar la compra");
 		} finally {
@@ -357,54 +357,97 @@ public static void insertarCompra(Connection con, Compra compra) throws DBExcept
 		}
 	}
 
-public static Cliente getCliente(Connection con, String usuario, String contra) {
-	Cliente resultado = null;
-	String nombre;
-	String apellido;
-	String email;
-	String contrasenya;
-	String fecha;
-	String dni;
-	String tipo;
-	
-	try {
-		if(obtenerUsuario(con, usuario, contra) == 2) {
-			resultado = new Cliente();
-			
-			String sent = "select * from usuario where email = '" + usuario + "' AND contrasenya = '" + contra + "';";
-			
-			Statement st = null;
-	    	 try {
-	             st = con.createStatement();
-	             ResultSet rs=st.executeQuery(sent);
-	             if (rs.next()) {
-	            	email = rs.getString(1);
-	            	contrasenya = rs.getString(2);
-	            	nombre = rs.getString(3);
-	            	apellido = rs.getString(4);
-	            	dni = rs.getString(5);
-	            	fecha = rs.getString(6);
-	            	tipo = rs.getString(7);
-	            	
-	            	resultado.setApellido(apellido);
-	            	resultado.setDni(dni);
-	            	resultado.setEmail(email);
-	            	resultado.setFechaNacimiento(sent);
-	            	resultado.setNombre(nombre);
-	            	resultado.setTipo(tipo);
-	            	
-	             }
-	    	 } catch (SQLException e) { 
-	             e.printStackTrace();
-	         }
+	public static Cliente getCliente(Connection con, String usuario, String contra) {
+		Cliente resultado = null;
+		String nombre;
+		String apellido;
+		String email;
+		String contrasenya;
+		String fecha;
+		String dni;
+		String tipo;
+
+		try {
+			if(obtenerUsuario(con, usuario, contra) == 2) {
+				resultado = new Cliente();
+
+				String sent = "select * from usuario where email = '" + usuario + "' AND contrasenya = '" + contra + "';";
+
+				Statement st = null;
+				try {
+					st = con.createStatement();
+					ResultSet rs=st.executeQuery(sent);
+					if (rs.next()) {
+						email = rs.getString(1);
+						contrasenya = rs.getString(2);
+						nombre = rs.getString(3);
+						apellido = rs.getString(4);
+						dni = rs.getString(5);
+						fecha = rs.getString(6);
+						tipo = rs.getString(7);
+
+						resultado.setApellido(apellido);
+						resultado.setDni(dni);
+						resultado.setEmail(email);
+						resultado.setFechaNacimiento(sent);
+						resultado.setNombre(nombre);
+						resultado.setTipo(tipo);
+
+					}
+				} catch (SQLException e) { 
+					e.printStackTrace();
+				}
+			}
+		} catch (DBException e) {
+
 		}
-	} catch (DBException e) {
-		
+		return resultado;
 	}
-	return resultado;
-		
+
+	public static ArrayList<Cliente> getEmpleados(Connection con){
+		ArrayList<Cliente> empleados = new ArrayList<>();
+
+		String sent = "select * from usuario;";
+		Statement st = null;
+		try {
+			st = con.createStatement();
+			ResultSet rs=st.executeQuery(sent);
+			if (rs.next()) {
+				if(rs.getString(7).matches("empleado")) {
+					
+					Cliente temp = new Cliente();
+					String nombre;
+					String apellido;
+					String email;
+					String contrasenya;
+					String fecha;
+					String dni;
+					String tipo;
+					
+					email = rs.getString(1);
+					contrasenya = rs.getString(2);
+					nombre = rs.getString(3);
+					apellido = rs.getString(4);
+					dni = rs.getString(5);
+					fecha = rs.getString(6);
+					tipo = rs.getString(7);
+
+					temp.setApellido(apellido);
+					temp.setDni(dni);
+					temp.setEmail(email);
+					temp.setFechaNacimiento(sent);
+					temp.setNombre(nombre);
+					temp.setTipo(tipo);
+				}
+			}
+		}catch (Exception e) {
+			
+		}
+
+
+		return empleados;
+	}
+
+
 }
-	
-	
-}
-    
+

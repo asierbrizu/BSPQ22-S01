@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -22,24 +23,23 @@ import concesionario.clases.Coche;
 import concesionario.server.bd.BD;
 import concesionario.server.bd.DBException;
 
-public class VentanaEmpleado extends JFrame{
+public class VentanaEmpleado extends JInternalFrame{
 	static JPanel panelPrincipal;
 	private JMenuBar menuPrincipal;
 	public static JLabel lblDeustoAuto;
-	private static JMenu volverInicio;
+	private static JMenu cerrar;
 	private static JMenu listaMecanicos;
 	private static JMenu listaEmpleados;
-	private JMenuItem menuItemVolverInicio;
+	private JMenuItem menuItemCerrarVentana;
 	private JMenuItem menuItemCerrarSesion;
 	private JMenuItem menuItemListarMecanicos;
 	private JMenuItem menuItemListarEmpleados;
 	
-	public BD bd;
+	public VentanaEmpleado(BD bd){
 
-	public VentanaEmpleado(){
-		bd = new BD();
 		
 		setLayout(new GridLayout(1,1));
+		setSize(new Dimension(600,450));
 
 		panelPrincipal = new JPanel();
 		panelPrincipal.setBackground(Color.WHITE);
@@ -88,8 +88,8 @@ public class VentanaEmpleado extends JFrame{
 		listaEmpleados = new JMenu();
 		listaEmpleados.setMnemonic('U');
 
-		volverInicio = new JMenu();
-		volverInicio.setMnemonic('I');
+		cerrar = new JMenu();
+		cerrar.setMnemonic('I');
 
 		lblDeustoAuto = new JLabel("CONCESIONARIO ADAIA");
 		lblDeustoAuto.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 36));
@@ -107,10 +107,7 @@ public class VentanaEmpleado extends JFrame{
 		listaMecanicos.add(menuItemListarMecanicos);
 		menuItemListarMecanicos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				panelPrincipal.removeAll();
-				panelPrincipal.add(new VentanaAdministrador());
-				repaint();
-				validate();
+				
 
 			}
 
@@ -124,38 +121,22 @@ public class VentanaEmpleado extends JFrame{
 		listaEmpleados.add(menuItemListarEmpleados);
 		menuItemListarEmpleados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				panelPrincipal.removeAll();
-				panelPrincipal.add(new VentanaAdministrador());
-				repaint();
-				validate();
+				
 
 			}
 
 		});
 		
 
-		volverInicio.setText("Volver");
-		menuPrincipal.add(volverInicio);
+		cerrar.setText("Cerrar");
+		menuPrincipal.add(cerrar);
 
-		menuItemVolverInicio = new JMenuItem();
-		menuItemVolverInicio.setText("Ventana Inicio");
-		volverInicio.add(menuItemVolverInicio);
-		menuItemVolverInicio.addActionListener(new ActionListener() {
+		menuItemCerrarVentana = new JMenuItem();
+		menuItemCerrarVentana.setText("Cerrar Ventana");
+		cerrar.add(menuItemCerrarVentana);
+		menuItemCerrarVentana.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				dispose();
-				new VentanaAdministrador();
-
-			}
-
-		});
-		
-		menuItemCerrarSesion = new JMenuItem();
-		menuItemCerrarSesion.setText("Cerrar Sesion");
-		volverInicio.add(menuItemCerrarSesion);
-		menuItemCerrarSesion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				dispose();
-				new VentanaInicio();
 
 			}
 
@@ -163,10 +144,6 @@ public class VentanaEmpleado extends JFrame{
 
 		setJMenuBar(menuPrincipal);
 		setTitle("VENTANA EMPLEADO");
-
-
-		pack();
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 	}
 }
