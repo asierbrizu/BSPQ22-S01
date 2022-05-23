@@ -180,8 +180,8 @@ public class VentanaInicio extends JFrame {
 							break;
 						case 2:
 							clienteActual = BD.getCliente(con, n, c);
+							new VentanaAdministrador(clienteActual);
 							dispose();
-							new VentanaAdministrador();
 
 							break;
 						default:

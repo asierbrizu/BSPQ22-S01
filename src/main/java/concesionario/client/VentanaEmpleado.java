@@ -50,41 +50,6 @@ public class VentanaEmpleado extends JInternalFrame{
 		listaMecanicos = new JMenu();
 		listaMecanicos.setMnemonic('C');
 		
-		ArrayList<String> empleados = new ArrayList<>();
-		ArrayList<Cliente> infoEmpleados = new ArrayList<>();
-		
-		for (String  empleado : empleados) {
-
-			Connection con =null;
-			try {
-				con = bd.initBD("bd_bspq");
-
-				try {
-					BD.crearTablas(con);
-				} catch (DBException e3) {
-					e3.printStackTrace();
-				}
-				
-				Cliente temp = new Cliente();
-				temp = BD.obtenerInfoCliente(con, empleado);
-				infoEmpleados.add(temp);
-				
-			} catch (DBException e1) {
-				e1.printStackTrace();
-			}
-			
-			try {
-				BD.closeBD(con);
-			} catch (DBException e1) {
-				e1.printStackTrace();	
-			}
-			
-		}
-
-		for(int i = 0; i < infoEmpleados.size(); i++) {
-			
-		}
-		
 		listaEmpleados = new JMenu();
 		listaEmpleados.setMnemonic('U');
 
