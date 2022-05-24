@@ -19,6 +19,12 @@ public class BD {
 
 	private static Connection con;
 
+	/**
+	 * Metodo que crea la conexion con la BBD
+	 * @param String nombreBD El nombre de la BBDD
+	 * @return El objeto Conexión con
+	 * @throws DBException 
+	 */
 	public Connection initBD(String nombreBD) throws DBException {
 		con = null;
 		try {
@@ -38,7 +44,11 @@ public class BD {
 		return con;
 	}
 
-
+	/**
+	 * Metodo que cierra la conexion con la BBDD
+	 * @param con Objeto Connection
+	 * @throws DBException 
+	 */
 	public static void closeBD() throws DBException {
 		if(con!=null) {
 			try {
@@ -51,8 +61,12 @@ public class BD {
 		}
 	}
 
-
-
+	/**
+	 * Metodo que obtiene un usuario de la BD
+	 * @param Connection con, String usuario, String contra (la conexion, el email del usuario y la contraseña)
+	 * @return integer, 2 si coincide la contraseña, 1 si no coincide
+	 * @throws DBException 
+	 */
 	public static int obtenerUsuario(String usuario, String contra) throws DBException {
 		String sentencia = "SELECT contrasenya FROM Usuario WHERE email = '"+usuario+"'";
 		Statement st = null;
@@ -84,8 +98,12 @@ public class BD {
 		return resul;
 	}
 
-
-
+	/**
+	 * Metodo que obtiene la informacion del cliente
+	 * @param Connection con, String tipo (la conexion y el tipo de cliente)
+	 * @return El cliente
+	 * @throws DBException 
+	 */
 	public static Cliente obtenerInfoCliente(String tipo) throws DBException {
 		String sentencia = "SELECT nombre,apellido,dni,email,fecha_ncto FROM Usuario WHERE tipo = '"+tipo+"'";
 		Statement st = null;
@@ -185,7 +203,12 @@ public class BD {
 		}
 	}
 
-
+	/**
+	 * Metodo que inserta un administrador a la BD
+	 * @param Connection con, String usuario, String contra (la conexion, el usuario y la contraseña)
+	 * @return El cliente
+	 * @throws DBException 
+	 */
 	public static void insertarAdministrador(String usuario, String contra) throws DBException {
 
 		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO usuario (usuario, contrasenya) VALUES (?,?)"); 
@@ -233,7 +256,12 @@ public class BD {
 		return existe;
 	}
 
-
+	/**
+	 * Metodo que obtiene la lista de coches
+	 * @param Connection con, String marca (la conexion y la marca del coche)
+	 * @return Un array con los coches
+	 * @throws SQLException 
+	 */
 	public static ArrayList<Coche> listaCoches(String marca) throws SQLException {
 
 		String sent = "select * from coche where marca='"+ marca +"'";
@@ -252,7 +280,12 @@ public class BD {
 		return listaCoches;
 	}
 
-
+	/**
+	 * Metodo que comprueba si exite un email
+	 * @param Connection con, String email (la conexion y el email)
+	 * @return true si exite, false si no existe
+	 * @throws SQLException 
+	 */
 	public boolean existeEmail(String email) throws SQLException {
 
 		String sent = "select * from Usuario where email='"+email+"'";
@@ -267,7 +300,11 @@ public class BD {
 		return existe;
 	}
 
-
+	/**
+	 * Metodo que obtiene la siguiente compra
+	 * @param Connection con(la conexion)
+	 * @return El id de la compra
+	 */
 	public static int getSiguienteIdCompra() {
 		String sent = "select MAX(ID) from Compra";
 		Statement st = null;
@@ -288,7 +325,11 @@ public class BD {
 
 	}
 
-
+	/**
+	 * Metodo que obtiene la ultima matricula
+	 * @param Connection con (la conexion)
+	 * @return La matricula
+	 */
 	public String getUltimaMatricula() {
 		int id = BD.getSiguienteIdCompra();
 		int id_old = id -1; 
@@ -308,8 +349,12 @@ public class BD {
 		return matricula;
 	}
 
-
-
+	/**
+	 * Metodo que obtiene la lista de las compras
+	 * @param Connection con (la conexion)
+	 * @return Lista de compras
+	 * @throws DBException 
+	 */
 	public static ArrayList<Compra> obtenerListaCompras() throws DBException {
 		String sentencia = "SELECT * FROM compra";
 		Statement st = null;
@@ -344,7 +389,11 @@ public class BD {
 	}
 
 
-
+	/**
+	 * Metodo que inserta una compra
+	 * @param Connection con, Compra compra (la conexion y la compra)
+	 * @throws DBException 
+	 */
 	public static void insertarCompra(Compra compra) throws DBException {
 
 		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO Compra (usuario, matricula, fecha, id_coche) VALUES (?,?,?,?)"); 
@@ -374,7 +423,11 @@ public class BD {
 		}
 	}
 
-
+	/**
+	 * Metodo que obtiene un cliente
+	 * @param Connection con, String usuario, String contra (la conexion, el cliente y la contraseña)
+	 * @return El cliente
+	 */
 	public static Cliente getCliente(String usuario, String contra) {
 		Cliente resultado = null;
 		String nombre;
@@ -422,7 +475,11 @@ public class BD {
 		return resultado;
 	}
 
-
+	/**
+	 * Metodo que obtiene los empleados
+	 * @param Connection con (la conexion)
+	 * @return Lista de empleados (de tipo Cliente)
+	 */
 	public static ArrayList<Cliente> getEmpleados(){
 		ArrayList<Cliente> empleados = new ArrayList<>();
 
