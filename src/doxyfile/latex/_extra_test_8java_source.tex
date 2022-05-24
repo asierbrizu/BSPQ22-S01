@@ -1,0 +1,55 @@
+\hypertarget{_extra_test_8java_source}{}\doxysection{Extra\+Test.\+java}
+\label{_extra_test_8java_source}\index{src/test/java/concesionario/clases/ExtraTest.java@{src/test/java/concesionario/clases/ExtraTest.java}}
+\mbox{\hyperlink{_extra_test_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00001}00001 \textcolor{keyword}{package }concesionario.clases;}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00003}00003 \textcolor{keyword}{import} \textcolor{keyword}{static} org.junit.Assert.*;}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00005}00005 \textcolor{keyword}{import} org.junit.Test;}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00007}\mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_test}{00007}} \textcolor{keyword}{public} \textcolor{keyword}{class }\mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_test}{ExtraTest}} \{}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00009}00009     }
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00010}00010     \mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra}{Extra}} extra1 = \textcolor{keyword}{new} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra}{Extra}}(\textcolor{stringliteral}{"{}Faros led"{}}, \textcolor{stringliteral}{"{}Faros con tecnología led."{}}, 320.00);}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00011}00011     \mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra}{Extra}} extra2 = \textcolor{keyword}{new} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra}{Extra}}();}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00012}00012     \textcolor{comment}{//"{}Pintura mate"{}, "{}Pintura con estilo calcáreo y polvoriento."{}, (float)1879.99}}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00013}00013     @Test}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00014}\mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_test_aa4a8805ac897bf152d78fa3089299d3e}{00014}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_test_aa4a8805ac897bf152d78fa3089299d3e}{getNombre}}() \{}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00015}00015         assertEquals(extra1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_a49fe0c9808115f7716ec7d4e0875e424}{getNombre}}(), \textcolor{stringliteral}{"{}Faros led"{}});}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00016}00016     \}}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00017}00017     }
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00018}00018     @Test}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00019}\mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_test_aaadc266f1a923a4e71ea4d30f7009319}{00019}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_test_aaadc266f1a923a4e71ea4d30f7009319}{getDescripcion}}() \{}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00020}00020         assertEquals(extra1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_a95db1b6cb420c4d772bc80649e3600d1}{getDescripcion}}(), \textcolor{stringliteral}{"{}Faros con tecnología led."{}});}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00021}00021     \}}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00022}00022     }
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00023}00023     @Test}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00024}\mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_test_a8050d68af2e8f16df453e568e0873100}{00024}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_test_a8050d68af2e8f16df453e568e0873100}{getPrecio}}() \{}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00025}00025         assertEquals(extra1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_ae5859b6c2de6f57d0205bcac517b29e2}{getPrecio}}(), 320.00, 0);}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00026}00026     \}}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00027}00027     }
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00028}00028     @Test}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00029}\mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_test_aaa40a809d8a8853587efb06f4c4582cc}{00029}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_test_aaa40a809d8a8853587efb06f4c4582cc}{setNombre}}() \{}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00030}00030         extra2.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_ab79d1722ee04e2fe4874bded59739a63}{setNombre}}(\textcolor{stringliteral}{"{}Pintura mate"{}});}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00031}00031         assertEquals(extra2.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_a49fe0c9808115f7716ec7d4e0875e424}{getNombre}}(), \textcolor{stringliteral}{"{}Pintura mate"{}});}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00032}00032     \}}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00033}00033     }
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00034}00034     @Test}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00035}\mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_test_a9e77a81e040e11ec519dc4cfecaae312}{00035}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_test_a9e77a81e040e11ec519dc4cfecaae312}{setDescripcion}}() \{}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00036}00036         extra2.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_ad8cd8b9efb31e7e143189276541969b5}{setDescripcion}}(\textcolor{stringliteral}{"{}Pintura con estilo calcareo y polvoriento."{}});}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00037}00037         assertEquals(extra2.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_a95db1b6cb420c4d772bc80649e3600d1}{getDescripcion}}(), \textcolor{stringliteral}{"{}Pintura con estilo calcareo y polvoriento."{}});}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00038}00038     \}}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00039}00039     }
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00040}00040     @Test}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00041}\mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_test_a3e0e5e5f58d27901e1b183d113b46462}{00041}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_test_a3e0e5e5f58d27901e1b183d113b46462}{setPrecio}}() \{}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00042}00042         extra2.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_aa4c0b88fc159ba3fb150a49af3b27c8c}{setPrecio}}(1879.99);}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00043}00043         assertEquals(extra2.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_extra_ae5859b6c2de6f57d0205bcac517b29e2}{getPrecio}}(), 1879.99, 0);}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00044}00044     \}}
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00045}00045     }
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00046}00046     }
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00047}00047     }
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{_extra_test_8java_source_l00049}00049 \}}
+
+\end{DoxyCode}

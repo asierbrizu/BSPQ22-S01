@@ -1,0 +1,248 @@
+\hypertarget{classconcesionario_1_1server_1_1bd_1_1_b_d}{}\doxysection{concesionario.\+server.\+bd.\+BD Class Reference}
+\label{classconcesionario_1_1server_1_1bd_1_1_b_d}\index{concesionario.server.bd.BD@{concesionario.server.bd.BD}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Connection \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d_a0f1f7303cf5d0b87383249a7cb4fe6a1}{init\+BD}} (String nombre\+BD)  throws DBException 
+\item 
+boolean \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d_a9c4d183e8c048162008e9850beb2124a}{existe\+Dni}} (String dni)  throws SQLException 
+\item 
+boolean \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d_ab3be85b77b88b6796dae1287e171bc21}{existe\+Email}} (String email)  throws SQLException 
+\item 
+String \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d_ad2bd9ec1aeaa98a654ab43206bd482bf}{get\+Ultima\+Matricula}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d_a988c8dd14da211606339cc18234a1b35}{close\+BD}} ()  throws DBException 
+\item 
+static int \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d_a4c14b48bee033b98f1eb1165f4c32158}{obtener\+Usuario}} (String usuario, String contra)  throws DBException 
+\item 
+static \mbox{\hyperlink{classconcesionario_1_1clases_1_1_cliente}{Cliente}} \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d_a98c62fd70cd0bf49d7333fdb44942fd5}{obtener\+Info\+Cliente}} (String tipo)  throws DBException 
+\item 
+static void \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d_aee215db75497898315545cf9bb6e26be}{crear\+Tablas}} ()  throws DBException 
+\item 
+static void \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d_a86f1e2cf04d40b6c1ed81ab79045edba}{insertar\+Usuario}} (String email, String contra, String nombre, String apellido, String dni, String fecha\+\_\+ncto, String tipo)  throws DBException 
+\item 
+static void \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d_a7803ed2f69cdb67e1288ea317bb86ea8}{insertar\+Administrador}} (String usuario, String contra)  throws DBException 
+\item 
+static Array\+List$<$ \mbox{\hyperlink{classconcesionario_1_1clases_1_1_coche}{Coche}} $>$ \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d_a94531b9afc2343edfa19737e8c5a8167}{lista\+Coches}} (String marca)  throws SQLException 
+\item 
+static int \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d_aff7930ef44ea53ce9239af70caac05d4}{get\+Siguiente\+Id\+Compra}} ()
+\item 
+static Array\+List$<$ \mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra}{Compra}} $>$ \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d_abb15b249bf391cbc2994e4156f6cdba6}{obtener\+Lista\+Compras}} ()  throws DBException 
+\item 
+static void \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d_accea0659c93b380c1e1826f02364a5f1}{insertar\+Compra}} (\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra}{Compra}} compra)  throws DBException 
+\item 
+static \mbox{\hyperlink{classconcesionario_1_1clases_1_1_cliente}{Cliente}} \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d_a0cf994112957d33dd38b1fad9c1dfdc6}{get\+Cliente}} (String usuario, String contra)
+\item 
+static Array\+List$<$ \mbox{\hyperlink{classconcesionario_1_1clases_1_1_cliente}{Cliente}} $>$ \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d_a6a24d1a91958c223b1801fdc5885d7e4}{get\+Empleados}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_b_d_8java_source_l00018}{18}} of file \mbox{\hyperlink{_b_d_8java_source}{BD.\+java}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classconcesionario_1_1server_1_1bd_1_1_b_d_a988c8dd14da211606339cc18234a1b35}\label{classconcesionario_1_1server_1_1bd_1_1_b_d_a988c8dd14da211606339cc18234a1b35}} 
+\index{concesionario.server.bd.BD@{concesionario.server.bd.BD}!closeBD@{closeBD}}
+\index{closeBD@{closeBD}!concesionario.server.bd.BD@{concesionario.server.bd.BD}}
+\doxysubsubsection{\texorpdfstring{closeBD()}{closeBD()}}
+{\footnotesize\ttfamily static void concesionario.\+server.\+bd.\+BD.\+close\+BD (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_d_b_exception}{DBException}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_b_d_8java_source_l00042}{42}} of file \mbox{\hyperlink{_b_d_8java_source}{BD.\+java}}.
+
+\mbox{\Hypertarget{classconcesionario_1_1server_1_1bd_1_1_b_d_aee215db75497898315545cf9bb6e26be}\label{classconcesionario_1_1server_1_1bd_1_1_b_d_aee215db75497898315545cf9bb6e26be}} 
+\index{concesionario.server.bd.BD@{concesionario.server.bd.BD}!crearTablas@{crearTablas}}
+\index{crearTablas@{crearTablas}!concesionario.server.bd.BD@{concesionario.server.bd.BD}}
+\doxysubsubsection{\texorpdfstring{crearTablas()}{crearTablas()}}
+{\footnotesize\ttfamily static void concesionario.\+server.\+bd.\+BD.\+crear\+Tablas (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_d_b_exception}{DBException}}\hspace{0.3cm}{\ttfamily [static]}}
+
+Metodo que crea las tablas de la \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d}{BD}} 
+\begin{DoxyParams}{Parameters}
+{\em Connection} & con (la conexion con la \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d}{BD}}) \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_d_b_exception}{DBException}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{_b_d_8java_source_l00121}{121}} of file \mbox{\hyperlink{_b_d_8java_source}{BD.\+java}}.
+
+\mbox{\Hypertarget{classconcesionario_1_1server_1_1bd_1_1_b_d_a9c4d183e8c048162008e9850beb2124a}\label{classconcesionario_1_1server_1_1bd_1_1_b_d_a9c4d183e8c048162008e9850beb2124a}} 
+\index{concesionario.server.bd.BD@{concesionario.server.bd.BD}!existeDni@{existeDni}}
+\index{existeDni@{existeDni}!concesionario.server.bd.BD@{concesionario.server.bd.BD}}
+\doxysubsubsection{\texorpdfstring{existeDni()}{existeDni()}}
+{\footnotesize\ttfamily boolean concesionario.\+server.\+bd.\+BD.\+existe\+Dni (\begin{DoxyParamCaption}\item[{String}]{dni }\end{DoxyParamCaption}) throws SQLException}
+
+Metodo que compueba si existe una persona con el dni 
+\begin{DoxyParams}{Parameters}
+{\em Connection} & con, String dni (la conexion y el dni) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si exite, false si no existe 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em SQLException} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{_b_d_8java_source_l00222}{222}} of file \mbox{\hyperlink{_b_d_8java_source}{BD.\+java}}.
+
+\mbox{\Hypertarget{classconcesionario_1_1server_1_1bd_1_1_b_d_ab3be85b77b88b6796dae1287e171bc21}\label{classconcesionario_1_1server_1_1bd_1_1_b_d_ab3be85b77b88b6796dae1287e171bc21}} 
+\index{concesionario.server.bd.BD@{concesionario.server.bd.BD}!existeEmail@{existeEmail}}
+\index{existeEmail@{existeEmail}!concesionario.server.bd.BD@{concesionario.server.bd.BD}}
+\doxysubsubsection{\texorpdfstring{existeEmail()}{existeEmail()}}
+{\footnotesize\ttfamily boolean concesionario.\+server.\+bd.\+BD.\+existe\+Email (\begin{DoxyParamCaption}\item[{String}]{email }\end{DoxyParamCaption}) throws SQLException}
+
+
+
+Definition at line \mbox{\hyperlink{_b_d_8java_source_l00256}{256}} of file \mbox{\hyperlink{_b_d_8java_source}{BD.\+java}}.
+
+\mbox{\Hypertarget{classconcesionario_1_1server_1_1bd_1_1_b_d_a0cf994112957d33dd38b1fad9c1dfdc6}\label{classconcesionario_1_1server_1_1bd_1_1_b_d_a0cf994112957d33dd38b1fad9c1dfdc6}} 
+\index{concesionario.server.bd.BD@{concesionario.server.bd.BD}!getCliente@{getCliente}}
+\index{getCliente@{getCliente}!concesionario.server.bd.BD@{concesionario.server.bd.BD}}
+\doxysubsubsection{\texorpdfstring{getCliente()}{getCliente()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classconcesionario_1_1clases_1_1_cliente}{Cliente}} concesionario.\+server.\+bd.\+BD.\+get\+Cliente (\begin{DoxyParamCaption}\item[{String}]{usuario,  }\item[{String}]{contra }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_b_d_8java_source_l00378}{378}} of file \mbox{\hyperlink{_b_d_8java_source}{BD.\+java}}.
+
+\mbox{\Hypertarget{classconcesionario_1_1server_1_1bd_1_1_b_d_a6a24d1a91958c223b1801fdc5885d7e4}\label{classconcesionario_1_1server_1_1bd_1_1_b_d_a6a24d1a91958c223b1801fdc5885d7e4}} 
+\index{concesionario.server.bd.BD@{concesionario.server.bd.BD}!getEmpleados@{getEmpleados}}
+\index{getEmpleados@{getEmpleados}!concesionario.server.bd.BD@{concesionario.server.bd.BD}}
+\doxysubsubsection{\texorpdfstring{getEmpleados()}{getEmpleados()}}
+{\footnotesize\ttfamily static Array\+List$<$ \mbox{\hyperlink{classconcesionario_1_1clases_1_1_cliente}{Cliente}} $>$ concesionario.\+server.\+bd.\+BD.\+get\+Empleados (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_b_d_8java_source_l00426}{426}} of file \mbox{\hyperlink{_b_d_8java_source}{BD.\+java}}.
+
+\mbox{\Hypertarget{classconcesionario_1_1server_1_1bd_1_1_b_d_aff7930ef44ea53ce9239af70caac05d4}\label{classconcesionario_1_1server_1_1bd_1_1_b_d_aff7930ef44ea53ce9239af70caac05d4}} 
+\index{concesionario.server.bd.BD@{concesionario.server.bd.BD}!getSiguienteIdCompra@{getSiguienteIdCompra}}
+\index{getSiguienteIdCompra@{getSiguienteIdCompra}!concesionario.server.bd.BD@{concesionario.server.bd.BD}}
+\doxysubsubsection{\texorpdfstring{getSiguienteIdCompra()}{getSiguienteIdCompra()}}
+{\footnotesize\ttfamily static int concesionario.\+server.\+bd.\+BD.\+get\+Siguiente\+Id\+Compra (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_b_d_8java_source_l00271}{271}} of file \mbox{\hyperlink{_b_d_8java_source}{BD.\+java}}.
+
+\mbox{\Hypertarget{classconcesionario_1_1server_1_1bd_1_1_b_d_ad2bd9ec1aeaa98a654ab43206bd482bf}\label{classconcesionario_1_1server_1_1bd_1_1_b_d_ad2bd9ec1aeaa98a654ab43206bd482bf}} 
+\index{concesionario.server.bd.BD@{concesionario.server.bd.BD}!getUltimaMatricula@{getUltimaMatricula}}
+\index{getUltimaMatricula@{getUltimaMatricula}!concesionario.server.bd.BD@{concesionario.server.bd.BD}}
+\doxysubsubsection{\texorpdfstring{getUltimaMatricula()}{getUltimaMatricula()}}
+{\footnotesize\ttfamily String concesionario.\+server.\+bd.\+BD.\+get\+Ultima\+Matricula (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_b_d_8java_source_l00292}{292}} of file \mbox{\hyperlink{_b_d_8java_source}{BD.\+java}}.
+
+\mbox{\Hypertarget{classconcesionario_1_1server_1_1bd_1_1_b_d_a0f1f7303cf5d0b87383249a7cb4fe6a1}\label{classconcesionario_1_1server_1_1bd_1_1_b_d_a0f1f7303cf5d0b87383249a7cb4fe6a1}} 
+\index{concesionario.server.bd.BD@{concesionario.server.bd.BD}!initBD@{initBD}}
+\index{initBD@{initBD}!concesionario.server.bd.BD@{concesionario.server.bd.BD}}
+\doxysubsubsection{\texorpdfstring{initBD()}{initBD()}}
+{\footnotesize\ttfamily Connection concesionario.\+server.\+bd.\+BD.\+init\+BD (\begin{DoxyParamCaption}\item[{String}]{nombre\+BD }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_d_b_exception}{DBException}}}
+
+
+
+Definition at line \mbox{\hyperlink{_b_d_8java_source_l00022}{22}} of file \mbox{\hyperlink{_b_d_8java_source}{BD.\+java}}.
+
+\mbox{\Hypertarget{classconcesionario_1_1server_1_1bd_1_1_b_d_a7803ed2f69cdb67e1288ea317bb86ea8}\label{classconcesionario_1_1server_1_1bd_1_1_b_d_a7803ed2f69cdb67e1288ea317bb86ea8}} 
+\index{concesionario.server.bd.BD@{concesionario.server.bd.BD}!insertarAdministrador@{insertarAdministrador}}
+\index{insertarAdministrador@{insertarAdministrador}!concesionario.server.bd.BD@{concesionario.server.bd.BD}}
+\doxysubsubsection{\texorpdfstring{insertarAdministrador()}{insertarAdministrador()}}
+{\footnotesize\ttfamily static void concesionario.\+server.\+bd.\+BD.\+insertar\+Administrador (\begin{DoxyParamCaption}\item[{String}]{usuario,  }\item[{String}]{contra }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_d_b_exception}{DBException}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_b_d_8java_source_l00189}{189}} of file \mbox{\hyperlink{_b_d_8java_source}{BD.\+java}}.
+
+\mbox{\Hypertarget{classconcesionario_1_1server_1_1bd_1_1_b_d_accea0659c93b380c1e1826f02364a5f1}\label{classconcesionario_1_1server_1_1bd_1_1_b_d_accea0659c93b380c1e1826f02364a5f1}} 
+\index{concesionario.server.bd.BD@{concesionario.server.bd.BD}!insertarCompra@{insertarCompra}}
+\index{insertarCompra@{insertarCompra}!concesionario.server.bd.BD@{concesionario.server.bd.BD}}
+\doxysubsubsection{\texorpdfstring{insertarCompra()}{insertarCompra()}}
+{\footnotesize\ttfamily static void concesionario.\+server.\+bd.\+BD.\+insertar\+Compra (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra}{Compra}}}]{compra }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_d_b_exception}{DBException}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_b_d_8java_source_l00348}{348}} of file \mbox{\hyperlink{_b_d_8java_source}{BD.\+java}}.
+
+\mbox{\Hypertarget{classconcesionario_1_1server_1_1bd_1_1_b_d_a86f1e2cf04d40b6c1ed81ab79045edba}\label{classconcesionario_1_1server_1_1bd_1_1_b_d_a86f1e2cf04d40b6c1ed81ab79045edba}} 
+\index{concesionario.server.bd.BD@{concesionario.server.bd.BD}!insertarUsuario@{insertarUsuario}}
+\index{insertarUsuario@{insertarUsuario}!concesionario.server.bd.BD@{concesionario.server.bd.BD}}
+\doxysubsubsection{\texorpdfstring{insertarUsuario()}{insertarUsuario()}}
+{\footnotesize\ttfamily static void concesionario.\+server.\+bd.\+BD.\+insertar\+Usuario (\begin{DoxyParamCaption}\item[{String}]{email,  }\item[{String}]{contra,  }\item[{String}]{nombre,  }\item[{String}]{apellido,  }\item[{String}]{dni,  }\item[{String}]{fecha\+\_\+ncto,  }\item[{String}]{tipo }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_d_b_exception}{DBException}}\hspace{0.3cm}{\ttfamily [static]}}
+
+Metodo que inserta usuarios en la \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d}{BD}} 
+\begin{DoxyParams}{Parameters}
+{\em Connection} & con, String email, String contra, String nombre, String apellido, String dni, String fecha\+\_\+ncto, String tipo (la conexion para la \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_b_d}{BD}} y los datos del usuario) \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_d_b_exception}{DBException}}} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{_b_d_8java_source_l00157}{157}} of file \mbox{\hyperlink{_b_d_8java_source}{BD.\+java}}.
+
+\mbox{\Hypertarget{classconcesionario_1_1server_1_1bd_1_1_b_d_a94531b9afc2343edfa19737e8c5a8167}\label{classconcesionario_1_1server_1_1bd_1_1_b_d_a94531b9afc2343edfa19737e8c5a8167}} 
+\index{concesionario.server.bd.BD@{concesionario.server.bd.BD}!listaCoches@{listaCoches}}
+\index{listaCoches@{listaCoches}!concesionario.server.bd.BD@{concesionario.server.bd.BD}}
+\doxysubsubsection{\texorpdfstring{listaCoches()}{listaCoches()}}
+{\footnotesize\ttfamily static Array\+List$<$ \mbox{\hyperlink{classconcesionario_1_1clases_1_1_coche}{Coche}} $>$ concesionario.\+server.\+bd.\+BD.\+lista\+Coches (\begin{DoxyParamCaption}\item[{String}]{marca }\end{DoxyParamCaption}) throws SQLException\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_b_d_8java_source_l00237}{237}} of file \mbox{\hyperlink{_b_d_8java_source}{BD.\+java}}.
+
+\mbox{\Hypertarget{classconcesionario_1_1server_1_1bd_1_1_b_d_a98c62fd70cd0bf49d7333fdb44942fd5}\label{classconcesionario_1_1server_1_1bd_1_1_b_d_a98c62fd70cd0bf49d7333fdb44942fd5}} 
+\index{concesionario.server.bd.BD@{concesionario.server.bd.BD}!obtenerInfoCliente@{obtenerInfoCliente}}
+\index{obtenerInfoCliente@{obtenerInfoCliente}!concesionario.server.bd.BD@{concesionario.server.bd.BD}}
+\doxysubsubsection{\texorpdfstring{obtenerInfoCliente()}{obtenerInfoCliente()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classconcesionario_1_1clases_1_1_cliente}{Cliente}} concesionario.\+server.\+bd.\+BD.\+obtener\+Info\+Cliente (\begin{DoxyParamCaption}\item[{String}]{tipo }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_d_b_exception}{DBException}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_b_d_8java_source_l00089}{89}} of file \mbox{\hyperlink{_b_d_8java_source}{BD.\+java}}.
+
+\mbox{\Hypertarget{classconcesionario_1_1server_1_1bd_1_1_b_d_abb15b249bf391cbc2994e4156f6cdba6}\label{classconcesionario_1_1server_1_1bd_1_1_b_d_abb15b249bf391cbc2994e4156f6cdba6}} 
+\index{concesionario.server.bd.BD@{concesionario.server.bd.BD}!obtenerListaCompras@{obtenerListaCompras}}
+\index{obtenerListaCompras@{obtenerListaCompras}!concesionario.server.bd.BD@{concesionario.server.bd.BD}}
+\doxysubsubsection{\texorpdfstring{obtenerListaCompras()}{obtenerListaCompras()}}
+{\footnotesize\ttfamily static Array\+List$<$ \mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra}{Compra}} $>$ concesionario.\+server.\+bd.\+BD.\+obtener\+Lista\+Compras (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_d_b_exception}{DBException}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_b_d_8java_source_l00313}{313}} of file \mbox{\hyperlink{_b_d_8java_source}{BD.\+java}}.
+
+\mbox{\Hypertarget{classconcesionario_1_1server_1_1bd_1_1_b_d_a4c14b48bee033b98f1eb1165f4c32158}\label{classconcesionario_1_1server_1_1bd_1_1_b_d_a4c14b48bee033b98f1eb1165f4c32158}} 
+\index{concesionario.server.bd.BD@{concesionario.server.bd.BD}!obtenerUsuario@{obtenerUsuario}}
+\index{obtenerUsuario@{obtenerUsuario}!concesionario.server.bd.BD@{concesionario.server.bd.BD}}
+\doxysubsubsection{\texorpdfstring{obtenerUsuario()}{obtenerUsuario()}}
+{\footnotesize\ttfamily static int concesionario.\+server.\+bd.\+BD.\+obtener\+Usuario (\begin{DoxyParamCaption}\item[{String}]{usuario,  }\item[{String}]{contra }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classconcesionario_1_1server_1_1bd_1_1_d_b_exception}{DBException}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_b_d_8java_source_l00056}{56}} of file \mbox{\hyperlink{_b_d_8java_source}{BD.\+java}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/concesionario/server/bd/\mbox{\hyperlink{_b_d_8java}{BD.\+java}}\end{DoxyCompactItemize}

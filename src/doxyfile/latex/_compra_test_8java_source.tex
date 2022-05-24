@@ -1,0 +1,92 @@
+\hypertarget{_compra_test_8java_source}{}\doxysection{Compra\+Test.\+java}
+\label{_compra_test_8java_source}\index{src/test/java/concesionario/clases/CompraTest.java@{src/test/java/concesionario/clases/CompraTest.java}}
+\mbox{\hyperlink{_compra_test_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00001}00001 \textcolor{keyword}{package }concesionario.clases;}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00002}00002 \textcolor{keyword}{import} \textcolor{keyword}{static} org.junit.Assert.*;}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00004}00004 \textcolor{keyword}{import} org.junit.Test;}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00005}00005 }
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00006}\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test}{00006}} \textcolor{keyword}{public} \textcolor{keyword}{class }\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test}{CompraTest}} \{}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00007}00007 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00008}00008 \textcolor{comment}{ * }}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00009}00009 \textcolor{comment}{ * private String id;}}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00010}00010 \textcolor{comment}{    private Cliente cliente;}}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00011}00011 \textcolor{comment}{    private String matricula;}}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00012}00012 \textcolor{comment}{    private String fecha;}}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00013}00013 \textcolor{comment}{    private String id\_coche;}}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00014}00014 \textcolor{comment}{ * }}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00015}00015 \textcolor{comment}{ * }}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00016}00016 \textcolor{comment}{ * */}}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00017}00017     }
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00018}00018     \mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra}{Compra}} c1 = \textcolor{keyword}{new} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra}{Compra}}();}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00019}00019     \mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra}{Compra}} c2 = \textcolor{keyword}{new} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra}{Compra}}(\textcolor{stringliteral}{"{}1"{}}, \textcolor{stringliteral}{"{}12345678A"{}}, \textcolor{stringliteral}{"{}123AAA"{}}, \textcolor{stringliteral}{"{}27-\/04-\/2022"{}}, \textcolor{stringliteral}{"{}70"{}});}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00020}00020     }
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00021}00021     @Test}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00022}\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_a3dcd9c66944b73042fab108ce6c778f3}{00022}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_a3dcd9c66944b73042fab108ce6c778f3}{testGetId}}() \{}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00023}00023         assertEquals(\textcolor{stringliteral}{"{}1"{}}, c2.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_a5e1c2cfeb00faf3da46e15d02a1b274b}{getId}}());}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00024}00024     \}}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00025}00025     @Test}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00026}\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_aa3a8994eb62d719bdb6c8f08febd4069}{00026}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_aa3a8994eb62d719bdb6c8f08febd4069}{testSetId}}() \{}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00027}00027         c1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_a5a7fd8f2fb4dab6ea96f058735c5b52f}{setId}}(\textcolor{stringliteral}{"{}45"{}});}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00028}00028         assertEquals(\textcolor{stringliteral}{"{}45"{}}, c1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_a5e1c2cfeb00faf3da46e15d02a1b274b}{getId}}());}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00029}00029     \}}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00030}00030     @Test}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00031}\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_ab778dfe622886efe752ff8a449b28595}{00031}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_ab778dfe622886efe752ff8a449b28595}{testGetCliente}}() \{}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00032}00032         assertEquals(\textcolor{stringliteral}{"{}12345678A"{}}, c2.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_a4d92ed35b3a4898cdfae2cb37d5fc74a}{getCliente}}());}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00033}00033     \}}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00034}00034     @Test}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00035}\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_a0def9e9ea9ee3f29194c5a7cd69b9dd5}{00035}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_a0def9e9ea9ee3f29194c5a7cd69b9dd5}{testSetCliente}}() \{}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00036}00036         c1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_a72f2348e4aea0c056fe7f665abf6befc}{setCliente}}(\textcolor{stringliteral}{"{}23423423B"{}});}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00037}00037         assertEquals(\textcolor{stringliteral}{"{}23423423B"{}}, c1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_a4d92ed35b3a4898cdfae2cb37d5fc74a}{getCliente}}());}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00038}00038     \}}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00039}00039     @Test}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00040}\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_aac0c9bbeac182efca9aa0b6bdc335b11}{00040}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_aac0c9bbeac182efca9aa0b6bdc335b11}{testGetMatricula}}() \{}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00041}00041         assertEquals(\textcolor{stringliteral}{"{}123AAA"{}}, c2.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_a47dc2fe26d9465fd0822f4df67df4399}{getMatricula}}());}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00042}00042     \}}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00043}00043     @Test}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00044}\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_adc89995b5b568ba4bd24cfa33a70ec71}{00044}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_adc89995b5b568ba4bd24cfa33a70ec71}{testSetMatricula}}() \{}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00045}00045         c1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_a7310d7548bf892d2c7b1a3d19645d2c2}{setMatricula}}(\textcolor{stringliteral}{"{}567JJJ"{}});}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00046}00046         assertEquals(\textcolor{stringliteral}{"{}567JJJ"{}}, c1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_a47dc2fe26d9465fd0822f4df67df4399}{getMatricula}}());}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00047}00047     \}}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00048}00048     @Test}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00049}\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_a005494e96f4879a2bd63da5e735cec4b}{00049}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_a005494e96f4879a2bd63da5e735cec4b}{testGetFecha}}() \{}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00050}00050         assertEquals(\textcolor{stringliteral}{"{}27-\/04-\/2022"{}}, c2.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_ad0d6ac2ef755c094ca8552d3480e9466}{getFecha}}());}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00051}00051     \}}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00052}00052     @Test}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00053}\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_a28f77753f014903ad67b1e1c381f2845}{00053}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_a28f77753f014903ad67b1e1c381f2845}{testSetFecha}}() \{}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00054}00054         c1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_adfc953e17dd6151b7d55edba31d92254}{setFecha}}(\textcolor{stringliteral}{"{}20-\/04-\/2022"{}});}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00055}00055         assertEquals(\textcolor{stringliteral}{"{}20-\/04-\/2022"{}}, c1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_ad0d6ac2ef755c094ca8552d3480e9466}{getFecha}}());}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00056}00056     \}}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00057}00057     @Test}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00058}\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_aa77b16e5b89f9a3f53d6479cb6e2befb}{00058}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_aa77b16e5b89f9a3f53d6479cb6e2befb}{testGetIdCoche}}() \{}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00059}00059         assertEquals(\textcolor{stringliteral}{"{}70"{}}, c2.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_a5856e4bb2a84415f773785a8f3046266}{getId\_coche}}());}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00060}00060     \}}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00061}00061     @Test}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00062}\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_aede2719824745736ff06d94364397643}{00062}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_aede2719824745736ff06d94364397643}{testSetIdCoche}}() \{}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00063}00063         c1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_abf854cf4c1ab17649398472c1f3c2816}{setId\_coche}}(\textcolor{stringliteral}{"{}50"{}});}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00064}00064         assertEquals(\textcolor{stringliteral}{"{}50"{}}, c1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_a5856e4bb2a84415f773785a8f3046266}{getId\_coche}}());}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00065}00065     \}}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00066}00066     }
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00067}00067     @Test}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00068}\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_a4f40cf93ffe429771929cdaae96c9c20}{00068}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_test_a4f40cf93ffe429771929cdaae96c9c20}{testEquals}}() \{}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00069}00069         }
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00070}00070         assertTrue(c1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_a51869a6675daae3f831848aaf738453b}{equals}}(c1));}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00071}00071         }
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00072}00072         assertFalse(c1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_a51869a6675daae3f831848aaf738453b}{equals}}(\textcolor{keyword}{null}));}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00073}00073         }
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00074}00074         assertFalse(c1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_a51869a6675daae3f831848aaf738453b}{equals}}(\textcolor{stringliteral}{"{}Alpargata"{}}));}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00075}00075         }
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00076}00076         }
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00077}00077         c1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_a5a7fd8f2fb4dab6ea96f058735c5b52f}{setId}}(\textcolor{stringliteral}{"{}1"{}});}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00078}00078         \textcolor{keywordtype}{boolean} cierto= c1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_a51869a6675daae3f831848aaf738453b}{equals}}(c2);}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00079}00079         assertTrue(cierto);}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00080}00080         }
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00081}00081         c1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_a5a7fd8f2fb4dab6ea96f058735c5b52f}{setId}}(\textcolor{stringliteral}{"{}9"{}});}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00082}00082         \textcolor{keywordtype}{boolean} falso=c1.\mbox{\hyperlink{classconcesionario_1_1clases_1_1_compra_a51869a6675daae3f831848aaf738453b}{equals}}(c2);}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00083}00083         assertFalse(falso);}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00084}00084     \}}
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00085}00085 }
+\DoxyCodeLine{\Hypertarget{_compra_test_8java_source_l00086}00086 \}}
+
+\end{DoxyCode}

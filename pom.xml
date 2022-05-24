@@ -18,6 +18,7 @@
 		<server.port>8080</server.port>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<doxygen.config.file>${basedir}/src/main/doxyfile</doxygen.config.file>
 	</properties>
 
 	<dependencies>

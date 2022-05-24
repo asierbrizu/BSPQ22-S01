@@ -76,12 +76,6 @@ public class BDPerfTest {
 	public void existeEmailTest() throws SQLException, DBException{
 		assertEquals(clBD.getEmail(), "emiliano@gmail.com");
 	}
-	
-	@Test
-	public void testObtenerUsuario() throws DBException {
-		
-		assertNotNull(bd.obtenerUsuario( "as", "1234"));
-	}
 		
 	@Test
 	public void testCloseBD() throws DBException {
