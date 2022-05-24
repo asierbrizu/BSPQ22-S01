@@ -34,7 +34,6 @@ public class VentanaAdministrador extends JFrame {
 	private static JMenu menuCerrar;
 	private JMenuBar menuPrincipal;
 	private JMenuItem menuItemCerrarSesion=new JMenuItem();
-	private JMenuItem menuItemDarPermisos;
 	private JMenuItem menuItemVentanaEmpleado;
 
 	private ArrayList<Coche> listaCoches = new ArrayList<>();
@@ -168,22 +167,16 @@ public class VentanaAdministrador extends JFrame {
 			menuEmpleados.setText("Empleados");
 			menuPrincipal.add(menuEmpleados);
 
-			menuItemDarPermisos = new JMenuItem();
-			menuItemDarPermisos.setText("Dar permisos");
-			menuEmpleados.add(menuItemDarPermisos);
-			menuItemDarPermisos.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent evt) {
-
-				}
-
-			});
 
 			menuItemVentanaEmpleado = new JMenuItem();
 			menuItemVentanaEmpleado.setText("Ventana Empleado");
 			menuEmpleados.add(menuItemVentanaEmpleado);
 			menuItemVentanaEmpleado.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
+					panelPrincipal.removeAll();
 					panelPrincipal.add(new VentanaEmpleado(bd));
+					repaint();
+					validate();
 				}
 			});
 		}
@@ -196,9 +189,8 @@ public class VentanaAdministrador extends JFrame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
 
-	/**
-	 * deshabilita el menu
-	 */
+
+
 	public static void bloquearBotones() {
 
 		menuCoches.setEnabled(false);
@@ -206,9 +198,8 @@ public class VentanaAdministrador extends JFrame {
 
 	}
 
-	/**
-	 * habilita el menu
-	 */
+
+
 	public static void desbloquearBotones() {
 
 		menuCoches.setEnabled(true);

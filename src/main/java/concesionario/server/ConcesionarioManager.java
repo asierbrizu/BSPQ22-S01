@@ -158,11 +158,7 @@ public class ConcesionarioManager extends JFrame implements ActionListener, Runn
 		thread.start();
 	}
 
-	/**
-	 * Metodo que devuelve las compras
-	 * @return La lista de compras
-	 * @throws CompraException 
-	 */
+
 	public ArrayList<Compra> getCompras() throws CompraException {
 		WebTarget donationsWebTarget = webTarget.path("collector/compra");
 		Invocation.Builder invocationBuilder = donationsWebTarget.request(MediaType.APPLICATION_JSON);
@@ -186,7 +182,6 @@ public class ConcesionarioManager extends JFrame implements ActionListener, Runn
 				Thread.sleep(5000);
 				System.out.println("Obtaining data from server...");
 
-				//Cosas que hace el server
 
 				try {					
 					arrayParaLaJList = new String[compras.size()];

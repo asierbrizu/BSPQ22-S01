@@ -432,7 +432,7 @@ public class BD {
 			st = con.createStatement();
 			ResultSet rs=st.executeQuery(sent);
 			while (rs.next()) {
-				JOptionPane.showMessageDialog(null, rs.getString(1));
+//				JOptionPane.showMessageDialog(null, rs.getString(1));
 				if(rs.getString(7).matches("empleado")) {
 
 					Cliente temp = new Cliente();
