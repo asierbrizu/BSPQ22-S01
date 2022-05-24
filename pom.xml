@@ -18,11 +18,15 @@
 		<server.port>8080</server.port>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<doxygen.config.file>${basedir}/src/main/doxyfile</doxygen.config.file>
+		<doxygen.config.file>${basedir}/src/main/resources</doxygen.config.file>
 	</properties>
 
 	<dependencies>
-	
+	<dependency>
+	    <groupId>com.github.igoryeremin</groupId>
+	    <artifactId>doxygen-report-maven-plugin</artifactId>
+	    <version>1.0</version>
+	</dependency>	
 	<dependency>
     	<groupId>com.jgoodies</groupId>
     	<artifactId>looks</artifactId>
@@ -123,6 +127,7 @@
 				<configurationFile>${doxygen.config.file}</configurationFile>
 			</configuration>
 		</plugin>
+		
 		<plugin>
            <artifactId>maven-surefire-plugin</artifactId>
            <version>2.22.2</version>
