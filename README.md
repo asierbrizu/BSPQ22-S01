@@ -25,3 +25,15 @@ Sirve para ejecutar el lado servidor, que muestra la ventana donde aparecen las 
 Sirve para ejecutar el lado cliente; las ventanas para iniciar sesión,registrarse como nuevo usuario, y comprar coches.	
 
 	mvn exec:java -Pclient
+	
+Generar la documentacion del proyecto
+<br>
+Con Maven(no funcional):
+</br>
+
+	mvn doxygen:report
+
+Manual:
+
+	https://alud.deusto.es/pluginfile.php/1668998/mod_resource/content/5/UNIT4_Resources/lab_doxygen/HOWTO_Documentation_Doxygen_2019.pdf
+
