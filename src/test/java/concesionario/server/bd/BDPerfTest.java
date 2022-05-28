@@ -25,7 +25,7 @@ import org.databene.contiperf.junit.ContiPerfRule;
 import org.databene.contiperf.report.EmptyReportModule;
 
 @PerfTest(invocations = 1000, threads = 20)
-@Required(max = 100, average = 60)
+@Required(max = 150, average = 60)
 public class BDPerfTest {
 	@Rule 
 	public ContiPerfRule rule = new ContiPerfRule();
@@ -76,11 +76,5 @@ public class BDPerfTest {
 	public void existeEmailTest() throws SQLException, DBException{
 		assertEquals(clBD.getEmail(), "emiliano@gmail.com");
 	}
-		
-	@Test
-	public void testCloseBD() throws DBException {
-		
-		bd.closeBD();
-		
-	}
+
 }

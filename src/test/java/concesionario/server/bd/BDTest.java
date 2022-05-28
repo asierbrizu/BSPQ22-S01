@@ -5,12 +5,10 @@ import static org.mockito.Mockito.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-
 import concesionario.clases.Cliente;
 
 @RunWith(org.mockito.runners.MockitoJUnitRunner.class)
